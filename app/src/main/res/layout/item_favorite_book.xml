@@ -74,7 +74,7 @@
                 android:background="@null"
                 android:scaleType="centerCrop"
                 android:src="@drawable/favorite"
-                android:contentDescription="favorite item"
+                android:contentDescription="favorite_item"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
