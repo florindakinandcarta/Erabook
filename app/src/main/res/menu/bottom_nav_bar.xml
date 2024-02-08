@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/home"
+        android:title="@string/home"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/focusTime"
+        android:icon="@drawable/focus"
+        android:title="@string/focus_time"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/favoriteFragment"
+        android:icon="@drawable/favorite"
+        android:title="@string/favorite"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/discover_nav"
+        android:icon="@drawable/discover"
+        android:title="@string/discover"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/userSignInFragment"
+        android:icon="@drawable/profile"
+        android:title="@string/profile"
+        app:showAsAction="ifRoom" />
+</menu>

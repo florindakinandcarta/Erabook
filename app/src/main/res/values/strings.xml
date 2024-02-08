@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Erabook</string>
+    <string name="welcome">Welcome to Erabook!</string>
+    <string name="welcome_desc">The Number One Best Ebook Store &amp; Reader Application in this Century</string>
+    <string name="get_started">Get Started</string>
+    <string name="already_have_acc">I Already Have an Account</string>
+    <string name="desc_img">Some description for img</string>
+    <string name="gender">What is you gender?</string>
+    <string name="select_gender">Select gender for better content.</string>
+    <string name="male">I am male</string>
+    <string name="female">I am female</string>
+    <string name="notsay">Rather not to say</string>
+    <string name="continue_text">Continue</string>
+    <string name="age">Chose Your Age</string>
+    <string name="select_age">Select age range for better content.</string>
+    <string name="age_1">14–17</string>
+    <string name="age_2">18–24</string>
+    <string name="age_3">25–29</string>
+    <string name="age_4">30–34</string>
+    <string name="age_5">35–39</string>
+    <string name="age_6">40–44</string>
+    <string name="age_7">45–49</string>
+    <string name="age_8">>=50</string>
+    <string name="genre">Chose the Book Genre You Like</string>
+    <string name="genre_text">Select your preferred book genre for better recommendations, or you can skip it.</string>
+    <string name="skip">Skip</string>
+    <string name="genre_item">Classics</string>
+    <string name="complete_profile">Complete Your Profile</string>
+    <string name="complete_description">Don\'t worry, only you can see your personal data. No one else will be able to see it.</string>
+    <string name="full_name_label">Full Name</string>
+    <string name="phone_number_label">Phone Number</string>
+    <string name="birthday_label">Date of Birth</string>
+    <string name="country_label">Country</string>
+    <string name="create_acc">Create an Account</string>
+    <string name="create_desc">Enter your username, email &amp; password. If you forget it, then you have to do forgot password.</string>
+    <string name="username_label">Username</string>
+    <string name="username_email_label">Username / Email</string>
+    <string name="email_label">Email</string>
+    <string name="password_label">Password</string>
+    <string name="confirm_label">Confirm Password</string>
+    <string name="remember">Remember me</string>
+    <string name="signup">Sign Up</string>
+    <string name="signup_succ">Sign Up Successful!</string>
+    <string name="signup_succ_desc">Your account has been created. Please wait a moment, we are preparing for you …</string>
+    <string name="hello_message">Hello there</string>
+    <string name="hello_message_desc">Please enter your username/email and password to sign in.</string>
+    <string name="forgot">Forgot Password</string>
+    <string name="signin">Sign In</string>
+    <string name="continue_with">------------ or continue with ------------</string>
+    <string name="search">Search</string>
+    <string name="notification">Notification</string>
+    <string name="notification_time_is_up">Time is up! Take a rest.</string>
+    <string name="home">Home</string>
+    <string name="discover">Discover</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="purchase">Purchase</string>
+    <string name="profile">Profile</string>
+    <string name="explore_genre">Explore by Genre</string>
+    <string name="recommended">Recommended for you</string>
+    <string name="on_wishlist">On Your Wishlist</string>
+    <string name="book_title">Harry Potter &amp; the Deathly Hallows</string>
+    <string name="book_author">J.K.Rowling</string>
+    <string name="release_date">Release date: </string>
+    <string name="total_reviews">6.8k reviews</string>
+    <string name="size_number">5.6 MB</string>
+    <string name="size">size</string>
+    <string name="pages_number">748</string>
+    <string name="pages">Number of pages:  </string>
+    <string name="purchase_number">50M+</string>
+    <string name="purchases">purchases</string>
+    <string name="buy_book">Buy Book</string>
+    <string name="about_book">About this book</string>
+    <string name="about_book_desc">There\'s no description for this book!!!</string>
+    <string name="favorite">Favorite Books</string>
+    <string name="focus_time">Focus Time</string>
+    <string name="book_list_to_single_book_transition_image">book_list_to_single_book_transition_image</string>
+    <string name="genre_word">Genre</string>
+    <string name="favorite_info">You don\'t have any books marked as favorite, go to Home and mark some!</string>
+    <string name="share_book">Hey check out this book %1$s. It\'s written by %2$s and has %3$s pages,it was released in: %4$s. </string>
+    <string name="share_book_subject">Book details</string>
+    <string name="send_details">Send book details via: </string>
+    <string name="dumb_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="erabook_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="erabook_notification_channel_name" translatable="false">Erabook</string>
+    <string name="notification_title">Erabook</string>
+    <string name="you_can_do_it">You can do it!</string>
+    <string name="timer_zero">00:00</string>
+    <string name="start_button">Start</string>
+    <string name="give_up_button">Give Up</string>
+    <string name="random_number">4.6</string>
+    <string name="pick_focus_time">Chose a time to focus</string>
+    <string name="hold_button">"Long hold the button to stop the timer."</string>
+    <string name="pick_time">"Pick a time please!"</string>
+    <string name="snooze">Snooze</string>
+
+
+
+
+
+
+
+
+</resources>

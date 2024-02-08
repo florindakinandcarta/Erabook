@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.erabook.fragments.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/homeToDetails"
+            app:destination="@id/bookDetailsFragment" />
+        <argument
+            android:name="imageLink"
+            android:defaultValue=" "
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="author"
+            android:defaultValue=" "
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="country"
+            android:defaultValue=" "
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="language"
+            android:defaultValue=" "
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="title"
+            android:defaultValue=" "
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="pages"
+            app:argType="integer" />
+        <argument
+            android:name="year"
+            app:argType="integer" />
+        <argument
+            android:name="link"
+            android:defaultValue=" "
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/homeToFavorite"
+            app:destination="@id/favoriteFragment" />
+        <action
+            android:id="@+id/homeToSearch"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/homeToLogin"
+            app:destination="@id/userSignInFragment" />
+        <action
+            android:id="@+id/homeToFocus"
+            app:destination="@id/focusTime" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="com.example.erabook.fragments.favorite.FavoriteFragment"
+        android:label="FavoriteFragment"
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/favoriteToDetails"
+            app:destination="@id/bookDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.erabook.fragments.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search_books">
+        <argument
+            android:name="imageLink"
+            android:defaultValue=" "
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="author"
+            android:defaultValue=" "
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="country"
+            android:defaultValue=" "
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="language"
+            android:defaultValue=" "
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="title"
+            android:defaultValue=" "
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="pages"
+            app:argType="integer" />
+        <argument
+            android:name="year"
+            app:argType="integer" />
+        <argument
+            android:name="link"
+            android:defaultValue=" "
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/searchToDetails"
+            app:destination="@id/bookDetailsFragment" />
+        <action
+            android:id="@+id/searchToHome"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/bookDetailsFragment"
+        android:name="com.example.erabook.fragments.details.BookDetailsFragment"
+        android:label="BookDetailsFragment"
+        tools:layout="@layout/fragment_book_details">
+        <argument
+            android:name="imageLink"
+            android:defaultValue=" "
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="author"
+            android:defaultValue=" "
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="country"
+            android:defaultValue=" "
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="language"
+            android:defaultValue=" "
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="title"
+            android:defaultValue=" "
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="pages"
+            app:argType="integer" />
+        <argument
+            android:name="year"
+            app:argType="integer" />
+        <argument
+            android:name="link"
+            android:defaultValue=" "
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/detailToHome"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userSignInFragment"
+        android:name="com.example.erabook.fragments.userlogin.UserSignInFragment"
+        android:label="UserSignInFragment"
+        tools:layout="@layout/fragment_sign_in"
+        />
+    <fragment
+        android:id="@+id/focusTime"
+        android:name="com.example.erabook.fragments.focustimer.FocusTimeFragment"
+        android:label="FocusTime"
+        tools:layout="@layout/fragment_focus_time"
+        />
+</navigation>

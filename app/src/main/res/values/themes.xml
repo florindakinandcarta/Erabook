@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Erabook" parent="Theme.Material3.Light.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="backgroundColor">@color/lightb</item>
+        <item name="textFillColor">@color/black</item>
+    </style>
+
+    <style name="Theme.Erabook" parent="Base.Theme.Erabook" />
+
+
+<!--    <style name="moreScreenDividerStyle">-->
+<!--        <item name="android:layout_width">0dp</item>-->
+<!--        <item name="android:layout_height">1dp</item>-->
+<!--        <item name="background">#989494</item>-->
+<!--    </style>-->
+</resources>
