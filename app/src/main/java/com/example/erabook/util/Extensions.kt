@@ -4,7 +4,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 
-@BindingAdapter("test")
+@BindingAdapter("loadImage")
 fun ImageView.loadImage(imageLink: String?) {
     imageLink?.let {
         val absolutePath = "file:///android_asset/$imageLink"

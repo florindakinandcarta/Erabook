@@ -10,8 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import cancelNotifications
 import com.example.erabook.R
 import com.example.erabook.adapters.FocusMinutesAdapter
 import com.example.erabook.databinding.FragmentFocusTimeBinding
@@ -43,6 +45,12 @@ class FocusTimeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         spinnerAdapter = FocusMinutesAdapter(requireContext())
+
+
+        val notificationManager = ContextCompat.getSystemService(
+            requireContext(),
+            NotificationManager::class.java
+        ) as NotificationManager
 
         focusViewModel.remainingTimeInMillis.observe(
             viewLifecycleOwner
@@ -77,6 +85,7 @@ class FocusTimeFragment : Fragment() {
                 true
             }
             start.setOnClickListener {
+                notificationManager.cancelNotifications()
                 focusViewModel.setIsTimerRunning(true)
                 focusViewModel.stopCountDownTimer()
 
