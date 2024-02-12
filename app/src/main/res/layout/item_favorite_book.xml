@@ -16,6 +16,7 @@
         app:cardCornerRadius="14dp"
         app:cardElevation="2dp"
         app:cardUseCompatPadding="true"
+        style="@style/CardView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -72,9 +73,9 @@
                 android:layout_marginEnd="@dimen/space20"
                 android:layout_marginBottom="@dimen/space20"
                 android:background="@null"
+                android:contentDescription="favorite_item"
                 android:scaleType="centerCrop"
                 android:src="@drawable/favorite"
-                android:contentDescription="favorite_item"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
