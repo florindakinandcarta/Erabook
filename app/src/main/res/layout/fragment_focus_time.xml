@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/primary">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/you_can_do_it"
@@ -12,7 +11,6 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         android:text="@string/you_can_do_it"
-        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -64,7 +62,6 @@
         android:layout_marginBottom="@dimen/space20"
         android:backgroundTint="@color/bg_green"
         android:text="@string/start_button"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/give_up"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -76,7 +73,6 @@
         android:layout_marginBottom="@dimen/space20"
         android:backgroundTint="@color/bg_red"
         android:text="@string/give_up_button"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/start"

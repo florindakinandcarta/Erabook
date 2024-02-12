@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/space5"
-        android:background="@drawable/rectangle">
+        android:background="@drawable/rectangle"
+        >
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/bookImage"
@@ -34,7 +35,6 @@
             android:maxLines="2"
             android:singleLine="false"
             android:text="@{book.title}"
-            android:textColor="@color/white"
             android:textSize="12sp"
             android:textStyle="bold"
             android:layout_marginStart="@dimen/space10"
@@ -54,7 +54,6 @@
             android:maxLines="2"
             android:singleLine="false"
             android:text="@{book.author}"
-            android:textColor="@color/white"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/bookTitle"
