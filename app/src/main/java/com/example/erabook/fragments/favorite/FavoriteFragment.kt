@@ -40,9 +40,7 @@ class FavoriteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (!::layoutManager.isInitialized) {
-            layoutManager = GridLayoutManager(requireContext(), 2)
-        }
+        layoutManager = GridLayoutManager(requireContext(), 2)
 
         binding.apply {
             favoriteList.apply {
@@ -50,7 +48,7 @@ class FavoriteFragment : Fragment() {
                 layoutManager = this@FavoriteFragment.layoutManager
             }
 
-            val orientationEventListener = object : OrientationEventListener(requireContext()){
+            val orientationEventListener = object : OrientationEventListener(requireContext()) {
                 override fun onOrientationChanged(orientation: Int) {
                     val newSpanCount = if (orientation in 80..100 || orientation in 260..280) {
                         4
@@ -58,7 +56,7 @@ class FavoriteFragment : Fragment() {
                         2
                     }
 
-                    if (::layoutManager.isInitialized && layoutManager.spanCount != newSpanCount){
+                    if (::layoutManager.isInitialized && layoutManager.spanCount != newSpanCount) {
                         layoutManager.spanCount = newSpanCount
                         favoriteList.layoutManager = layoutManager
                     }
@@ -75,9 +73,9 @@ class FavoriteFragment : Fragment() {
 
         favoriteAdapter.submitList(favoriteViewModel.loadFavorites())
 
-        if (favoriteAdapter.currentList.isEmpty()){
+        if (favoriteAdapter.currentList.isEmpty()) {
             binding.favoriteInfo.visibility = View.VISIBLE
-        }else{
+        } else {
             binding.favoriteInfo.visibility = View.GONE
         }
 
@@ -89,8 +87,6 @@ class FavoriteFragment : Fragment() {
         favoriteAdapter.submitList(favoriteViewModel.loadFavorites())
 
     }
-
-
 
 
 }
