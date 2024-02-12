@@ -15,7 +15,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="16dp">
+        android:paddingBottom="@dimen/space16">
 
             <TextView
                 android:id="@+id/genreListText"
@@ -26,15 +26,15 @@
                 app:layout_constraintStart_toStartOf="@id/genreList"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_margin="16dp"
+                android:layout_margin="@dimen/space16"
                 />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/genreList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_marginTop="8dp"
+                android:layout_margin="@dimen/space10"
+                android:layout_marginTop="@dimen/space8"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"

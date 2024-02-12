@@ -42,9 +42,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:textSize="14sp"
-            android:padding="5dp"
+            android:padding="@dimen/space5"
             android:textStyle="bold"
-            android:layout_margin="8dp"
+            android:layout_margin="@dimen/space8"
             />
             <RatingBar
                 android:id="@+id/bookRating"
@@ -58,7 +58,7 @@
                 android:scaleX="0.3"
                 android:scaleY="0.3"
                 android:progressTint="@color/primary"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/space10"
                 />
             <TextView
                 android:id="@+id/ratingNumber"
@@ -70,7 +70,7 @@
                 android:text="@string/random_number"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="@dimen/space10"
                 />
 
 
