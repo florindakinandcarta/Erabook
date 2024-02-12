@@ -29,6 +29,7 @@ class BookDetailsViewModel(private val url: String) : ViewModel() {
                     val firstParagraph = parseHtmlForFirstParagraph(responseBody.string())
                     _firstParagraph.postValue(firstParagraph)
                 } catch (e: Exception) {
+                    _firstParagraph.postValue("Failed to fetch data!!!")
                     e.printStackTrace()
                     println("Failed to fetch data.")
                 }
