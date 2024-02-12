@@ -10,20 +10,21 @@
         android:id="@+id/you_can_do_it"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:textSize="24sp"
         android:text="@string/you_can_do_it"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/timerAnimation"
+        />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/timerAnimation"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space20"
-        app:layout_constraintBottom_toTopOf="@+id/count_down_timer"
+        app:layout_constraintBottom_toTopOf="@+id/spinner_pick_time"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/you_can_do_it"
@@ -42,6 +43,7 @@
         app:layout_constraintEnd_toEndOf="@+id/timerAnimation"
         app:layout_constraintStart_toStartOf="@+id/timerAnimation"
         app:layout_constraintTop_toBottomOf="@id/timerAnimation"
+        app:layout_constraintBottom_toTopOf="@id/count_down_timer"
         tools:listitem="@layout/item_focus_spinner" />
 
     <TextView
@@ -51,6 +53,7 @@
         android:layout_marginBottom="@dimen/space20"
         android:text="@string/timer_zero"
         android:textSize="48sp"
+        app:layout_constraintTop_toBottomOf="@id/spinner_pick_time"
         app:layout_constraintBottom_toTopOf="@+id/give_up"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

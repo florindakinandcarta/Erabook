@@ -62,8 +62,6 @@ class HomeFragment : Fragment() {
         homeViewModel.booksList.observe(viewLifecycleOwner) { listOfBooks ->
             homeAdapter.submitList(listOfBooks)
         }
-
-        binding.topAppBar.inflateMenu(R.menu.top_app_bar_menu)
         binding.topAppBar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.searchFragmentIcon -> {
