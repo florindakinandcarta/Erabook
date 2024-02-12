@@ -56,7 +56,7 @@ class FavoriteFragment : Fragment() {
                         2
                     }
 
-                    if (::layoutManager.isInitialized && layoutManager.spanCount != newSpanCount) {
+                    if (layoutManager.spanCount != newSpanCount) {
                         layoutManager.spanCount = newSpanCount
                         favoriteList.layoutManager = layoutManager
                     }
