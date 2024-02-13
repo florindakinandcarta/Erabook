@@ -33,7 +33,7 @@
         android:textSize="14sp"
         />
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/username_email_input"
+        android:id="@+id/email_login_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/username_email_label"
@@ -51,11 +51,11 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/password_signin_input"
+        android:id="@+id/password_login_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/password_label"
-        app:layout_constraintTop_toBottomOf="@+id/username_email_input"
+        app:layout_constraintTop_toBottomOf="@+id/email_login_input"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="@dimen/space20"
@@ -74,7 +74,7 @@
         android:layout_height="wrap_content"
         android:text="@string/remember"
         android:layout_margin="@dimen/space20"
-        app:layout_constraintTop_toBottomOf="@id/password_signin_input"
+        app:layout_constraintTop_toBottomOf="@id/password_login_input"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:buttonTint="@color/primary"
@@ -94,7 +94,7 @@
         android:gravity="center"
         />
     <TextView
-        android:id="@+id/continue_with"
+        android:id="@+id/go_to_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/forgot_text"
@@ -110,13 +110,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/space20"
-        app:layout_constraintBottom_toTopOf="@+id/signin_button"
+        app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/continue_with"
+        app:layout_constraintTop_toBottomOf="@+id/go_to_register"
         />
     <Button
-        android:id="@+id/signin_button"
+        android:id="@+id/login_button"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:circularflow_radiusInDP="22"

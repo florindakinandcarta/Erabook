@@ -41,13 +41,16 @@
     <string name="confirm_label">Confirm Password</string>
     <string name="remember">Remember me</string>
     <string name="signup">Sign Up</string>
+    <string name="register">Register</string>
     <string name="signup_succ">Sign Up Successful!</string>
     <string name="signup_succ_desc">Your account has been created. Please wait a moment, we are preparing for you …</string>
     <string name="hello_message">Hello there</string>
-    <string name="hello_message_desc">Please enter your username/email and password to sign in.</string>
+    <string name="hello_message_desc">Please enter your username/email and password to log in.</string>
     <string name="forgot">Forgot Password</string>
     <string name="signin">Sign In</string>
+    <string name="login">Log In</string>
     <string name="continue_with">------------ or continue with ------------</string>
+    <string name="dont_have_acc">Don\'t have an account? Register!</string>
     <string name="search">Search</string>
     <string name="notification">Notification</string>
     <string name="notification_time_is_up">Time is up! Take a rest.</string>
@@ -93,11 +96,5 @@
     <string name="hold_button">"Long hold the button to stop the timer."</string>
     <string name="pick_time">"Pick a time please!"</string>
     <string name="snooze">Snooze</string>
-
-
-
-
-
-
-
+    <string name="already_login">Already have an account? Log in.</string>
 </resources>

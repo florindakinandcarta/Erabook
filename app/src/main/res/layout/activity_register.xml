@@ -15,18 +15,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.progressindicator.LinearProgressIndicator
-        android:id="@+id/progress_steps"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:progress="100"
-        app:indicatorColor="@color/primary"
-        app:layout_constraintBottom_toBottomOf="@id/backRegister"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/backRegister"
-        app:layout_constraintTop_toTopOf="@id/backRegister"
-        app:trackColor="@color/greybg"
-        app:trackCornerRadius="16dp" />
+<!--    <com.google.android.material.progressindicator.LinearProgressIndicator-->
+<!--        android:id="@+id/progress_steps"-->
+<!--        android:layout_width="200dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:progress="100"-->
+<!--        app:indicatorColor="@color/primary"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/back"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@id/back"-->
+<!--        app:layout_constraintTop_toTopOf="@id/back"-->
+<!--        app:trackColor="@color/greybg"-->
+<!--        app:trackCornerRadius="16dp" />-->
 
     <TextView
         android:id="@+id/acc_q"
@@ -38,7 +38,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progress_steps" />
+        app:layout_constraintTop_toBottomOf="@+id/backRegister" />
 
     <TextView
         android:id="@+id/create_acc_text"
@@ -129,6 +129,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <CheckBox
+        android:id="@+id/rember_me"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -138,16 +139,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/confirm_password_input" />
 
+    <TextView
+        android:id="@+id/already_have_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/space20"
+        android:text="@string/already_login"
+        android:textColor="@color/primary"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rember_me" />
     <Button
-        android:id="@+id/continue_profile"
+        android:id="@+id/register"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_margin="20dp"
-        android:text="@string/signup"
+        android:text="@string/register"
         android:textStyle="bold"
         app:circularflow_radiusInDP="22"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/already_have_login"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
