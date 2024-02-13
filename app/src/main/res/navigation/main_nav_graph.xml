@@ -172,7 +172,7 @@
         />
     <activity
         android:id="@+id/logIn"
-        android:name="com.example.erabook.firebaseServices.LogIn"
+        android:name="com.example.erabook.firebaseActivities.LogIn"
         android:label="LogIn"
         tools:layout="@layout/activity_log_in"
         />

@@ -1,59 +1,60 @@
-package com.example.erabook.firebaseServices
+package com.example.erabook.firebaseActivities
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.erabook.databinding.ActivityLogInBinding
+import com.example.erabook.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class LogIn : AppCompatActivity() {
-    private lateinit var binding: ActivityLogInBinding
+class Register : AppCompatActivity() {
+    private lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
 
-    //    public override fun onStart() {
+//    public override fun onStart() {
 //        super.onStart()
 //        val currentUser = auth.currentUser
 //        if (currentUser != null) {
 //            TODO("open the fragment that shows the user profile")
 //        }
 //    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLogInBinding.inflate(layoutInflater)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         auth = Firebase.auth
 
 
+
         binding.apply {
-            loginButton.setOnClickListener {
-                val emailLogIn = emailLoginInput.editText?.text.toString()
-                val passwordLogIn = passwordLoginInput.editText?.text.toString()
-                if (emailLogIn.isEmpty()) {
+            register.setOnClickListener {
+                val email = emailInput.editText?.text.toString()
+                val password = passwordInput.editText?.text.toString()
+
+                if (email.isEmpty()) {
                     Toast.makeText(
                         baseContext,
                         "Enter email please!",
                         Toast.LENGTH_SHORT
                     ).show()
+                    return@setOnClickListener
                 }
-                if (passwordLogIn.isEmpty()) {
+                if (password.isEmpty()) {
                     Toast.makeText(
                         baseContext,
                         "Enter password please!",
                         Toast.LENGTH_SHORT
                     ).show()
+                    return@setOnClickListener
                 }
-                auth.signInWithEmailAndPassword(emailLogIn.trim(), passwordLogIn)
+                auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(
-                                baseContext,
-                                "Log in successful.",
-                                Toast.LENGTH_SHORT,
-                            ).show()
+                            val dialog = RegisterSuccessfulDialogFragment()
+                            dialog.show(supportFragmentManager, "RegistrationSuccessDialog")
                         } else {
                             Toast.makeText(
                                 baseContext,
@@ -64,11 +65,11 @@ class LogIn : AppCompatActivity() {
                     }
 
             }
-            goToRegister.setOnClickListener {
-                val registerIntent = Intent(baseContext, Register::class.java)
-                startActivity(registerIntent)
+            alreadyHaveLogin.setOnClickListener {
+                val loginIntent = Intent(baseContext, LogIn::class.java)
+                startActivity(loginIntent)
             }
-            backLogin.setOnClickListener {
+            backRegister.setOnClickListener {
                 finish()
                 super.onBackPressedDispatcher
             }

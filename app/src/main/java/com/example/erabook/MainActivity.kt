@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.erabook.databinding.ActivityMainBinding
-import com.example.erabook.firebaseServices.LogIn
+import com.example.erabook.firebaseActivities.LogIn
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

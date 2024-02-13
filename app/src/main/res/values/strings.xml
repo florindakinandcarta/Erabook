@@ -42,8 +42,8 @@
     <string name="remember">Remember me</string>
     <string name="signup">Sign Up</string>
     <string name="register">Register</string>
-    <string name="signup_succ">Sign Up Successful!</string>
-    <string name="signup_succ_desc">Your account has been created. Please wait a moment, we are preparing for you …</string>
+    <string name="signup_succ">You have been registered successfully!</string>
+    <string name="signup_succ_desc">Go to log in…</string>
     <string name="hello_message">Hello there</string>
     <string name="hello_message_desc">Please enter your username/email and password to log in.</string>
     <string name="forgot">Forgot Password</string>
