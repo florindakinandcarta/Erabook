@@ -51,7 +51,7 @@ class Register : AppCompatActivity() {
                     return@setOnClickListener
                 }
                 auth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener() { task ->
+                    .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             Toast.makeText(
                                 baseContext,

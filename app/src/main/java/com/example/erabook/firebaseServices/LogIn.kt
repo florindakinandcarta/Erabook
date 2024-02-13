@@ -47,7 +47,7 @@ class LogIn : AppCompatActivity() {
                     ).show()
                 }
                 auth.signInWithEmailAndPassword(emailLogIn.trim(), passwordLogIn)
-                    .addOnCompleteListener() { task ->
+                    .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             Toast.makeText(
                                 baseContext,

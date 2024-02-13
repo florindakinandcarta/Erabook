@@ -7,7 +7,7 @@ import com.example.erabook.MainActivity
 import com.example.erabook.R
 
 
-private val NOTIFICATION_ID = 0
+private const val NOTIFICATION_ID = 0
 fun NotificationManager.sendNotification(messageBody: String, applicationContext: Context) {
 
 

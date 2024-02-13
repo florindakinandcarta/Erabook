@@ -69,7 +69,7 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
     <CheckBox
-        android:id="@+id/remember_sigin"
+        android:id="@+id/remember_signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/remember"
@@ -83,7 +83,7 @@
         android:id="@+id/forgot_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/remember_sigin"
+        app:layout_constraintTop_toBottomOf="@+id/remember_signin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="@dimen/space20"
