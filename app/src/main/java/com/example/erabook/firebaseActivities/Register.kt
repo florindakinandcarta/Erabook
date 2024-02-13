@@ -27,8 +27,6 @@ class Register : AppCompatActivity() {
         setContentView(binding.root)
         auth = Firebase.auth
 
-
-
         binding.apply {
             register.setOnClickListener {
                 val email = emailInput.editText?.text.toString()
@@ -63,7 +61,6 @@ class Register : AppCompatActivity() {
                             ).show()
                         }
                     }
-
             }
             alreadyHaveLogin.setOnClickListener {
                 val loginIntent = Intent(baseContext, LogIn::class.java)

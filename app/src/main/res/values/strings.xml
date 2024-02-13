@@ -37,11 +37,15 @@
     <string name="username_label">Username</string>
     <string name="username_email_label">Username / Email</string>
     <string name="email_label">Email</string>
+    <string name="mobile_label">Mobile</string>
+    <string name="email_example">hasani.florinda@gmail.com</string>
+    <string name="mobile_example">+383 44 123 456</string>
     <string name="password_label">Password</string>
     <string name="confirm_label">Confirm Password</string>
     <string name="remember">Remember me</string>
     <string name="signup">Sign Up</string>
     <string name="register">Register</string>
+    <string name="log_out">Log out</string>
     <string name="signup_succ">You have been registered successfully!</string>
     <string name="signup_succ_desc">Go to log in…</string>
     <string name="hello_message">Hello there</string>
