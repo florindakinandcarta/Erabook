@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
 import com.example.erabook.databinding.ActivityMainBinding
 import com.example.erabook.firebaseActivities.LogInActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -23,7 +22,6 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        binding.bottomNavBar.setupWithNavController(navHostFragment.navController)
 
         binding.bottomNavBar.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -35,6 +33,18 @@ class MainActivity : AppCompatActivity() {
                         navHostFragment.navController.navigate(R.id.userProfileFragment)
                         return@setOnNavigationItemSelectedListener true
                     }
+                }
+                R.id.homeFragment -> {
+                    navHostFragment.navController.navigate(R.id.homeFragment)
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.focusTime -> {
+                    navHostFragment.navController.navigate(R.id.focusTime)
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.favoriteFragment -> {
+                    navHostFragment.navController.navigate(R.id.favoriteFragment)
+                    return@setOnNavigationItemSelectedListener true
                 }
                 else -> return@setOnNavigationItemSelectedListener false
             }
