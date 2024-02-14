@@ -71,7 +71,7 @@ class RegisterActivity : AppCompatActivity() {
                         }
                     }
             }
-            alreadyHaveLogin.setOnClickListener {
+            alreadyHaveLoginTextview.setOnClickListener {
                 startActivity(Intent(this@RegisterActivity, LogInActivity::class.java))
             }
             backRegister.setOnClickListener {
