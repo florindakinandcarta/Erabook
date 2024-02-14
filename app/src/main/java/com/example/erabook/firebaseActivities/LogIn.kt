@@ -4,6 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import com.example.erabook.MainActivity
+import com.example.erabook.R
 import com.example.erabook.databinding.ActivityLogInBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -12,22 +16,12 @@ import com.google.firebase.ktx.Firebase
 class LogIn : AppCompatActivity() {
     private lateinit var binding: ActivityLogInBinding
     private lateinit var auth: FirebaseAuth
-
-    //    public override fun onStart() {
-//        super.onStart()
-//        val currentUser = auth.currentUser
-//        if (currentUser != null) {
-//            TODO("open the fragment that shows the user profile")
-//        }
-//    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLogInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         auth = Firebase.auth
-
-
         binding.apply {
             loginButton.setOnClickListener {
                 val emailLogIn = emailLoginInput.editText?.text.toString()
@@ -49,6 +43,9 @@ class LogIn : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(emailLogIn.trim(), passwordLogIn)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
+                            startActivity(Intent(this@LogIn, MainActivity::class.java).apply {
+                                putExtra("destination", R.id.userProfileFragment)
+                            })
                             Toast.makeText(
                                 baseContext,
                                 "Log in successful.",
@@ -62,15 +59,16 @@ class LogIn : AppCompatActivity() {
                             ).show()
                         }
                     }
-
             }
             goToRegister.setOnClickListener {
-                val registerIntent = Intent(baseContext, Register::class.java)
-                startActivity(registerIntent)
+                startActivity(Intent(baseContext, Register::class.java))
             }
             backLogin.setOnClickListener {
                 finish()
-                super.onBackPressedDispatcher
+                val intent = Intent(this@LogIn, MainActivity::class.java).apply {
+                    putExtra("destination", R.id.homeFragment)
+                }
+                startActivity(intent)
             }
         }
     }

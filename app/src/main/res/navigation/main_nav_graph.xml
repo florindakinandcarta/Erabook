@@ -61,6 +61,9 @@
         <action
             android:id="@+id/homeToLogin"
             app:destination="@id/logIn" />
+        <action
+            android:id="@+id/homeToProfile"
+            app:destination="@id/userProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -176,4 +179,14 @@
         android:label="LogIn"
         tools:layout="@layout/activity_log_in"
         />
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.example.erabook.fragments.userlogin.UserProfileFragment"
+        android:label="UserProfileFragment"
+        tools:layout="@layout/user_profile"
+        >
+        <action
+            android:id="@+id/profileToHome"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

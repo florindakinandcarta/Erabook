@@ -33,8 +33,7 @@ class RegisterSuccessfulDialogFragment : DialogFragment() {
                 dialog?.dismiss()
             }
             goToLogin.setOnClickListener {
-                val loginIntent = Intent(requireContext(), LogIn::class.java)
-                startActivity(loginIntent)
+                startActivity(Intent(requireContext(), LogIn::class.java))
             }
         }
 

@@ -44,10 +44,11 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="@dimen/space20"
         android:hint="@string/username_label"
         app:boxStrokeColor="@color/primary"
         app:boxStrokeWidth="2dp"
+        app:layout_constraintBottom_toTopOf="@id/email_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_acc_text">
@@ -67,6 +68,7 @@
         android:hint="@string/email_label"
         app:boxStrokeColor="@color/primary"
         app:boxStrokeWidth="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/password_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username_input">
@@ -77,6 +79,16 @@
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/email_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/email_error"
+        android:textColor="@color/bg_red"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/email_input"
+        app:layout_constraintStart_toStartOf="@id/email_input" />
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password_input"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -86,6 +98,7 @@
         android:hint="@string/password_label"
         app:boxStrokeColor="@color/primary"
         app:boxStrokeWidth="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/confirm_password_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email_input">
@@ -105,6 +118,7 @@
         android:hint="@string/confirm_label"
         app:boxStrokeColor="@color/primary"
         app:boxStrokeWidth="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/remember_me"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_input">
@@ -115,6 +129,16 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/password_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/password_match"
+        android:textColor="@color/bg_red"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/confirm_password_input"
+        app:layout_constraintStart_toStartOf="@id/email_input" />
     <CheckBox
         android:id="@+id/remember_me"
         android:layout_width="match_parent"
@@ -151,7 +175,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/already_have_login"
-        />
+        app:layout_constraintTop_toBottomOf="@id/already_have_login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

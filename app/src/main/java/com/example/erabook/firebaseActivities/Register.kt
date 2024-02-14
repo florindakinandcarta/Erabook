@@ -2,8 +2,10 @@ package com.example.erabook.firebaseActivities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import com.example.erabook.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -12,15 +14,6 @@ import com.google.firebase.ktx.Firebase
 class Register : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
-
-//    public override fun onStart() {
-//        super.onStart()
-//        val currentUser = auth.currentUser
-//        if (currentUser != null) {
-//            TODO("open the fragment that shows the user profile")
-//        }
-//    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -28,6 +21,27 @@ class Register : AppCompatActivity() {
         auth = Firebase.auth
 
         binding.apply {
+            emailInput.editText?.addTextChangedListener { editable ->
+                if (editable.toString().trim()
+                        .isNotEmpty() && !android.util.Patterns.EMAIL_ADDRESS.matcher(
+                        editable.toString().trim()
+                    )
+                        .matches()
+                ) {
+                    emailMessage.visibility = View.VISIBLE
+                } else {
+                    emailMessage.visibility = View.GONE
+                }
+            }
+            confirmPasswordInput.editText?.addTextChangedListener { passwordEditable ->
+                if (passwordInput.editText?.text.toString().trim() != passwordEditable.toString()
+                        .trim()
+                ) {
+                    passwordMessage.visibility = View.VISIBLE
+                } else {
+                    passwordMessage.visibility = View.GONE
+                }
+            }
             register.setOnClickListener {
                 val email = emailInput.editText?.text.toString()
                 val password = passwordInput.editText?.text.toString()
@@ -63,8 +77,7 @@ class Register : AppCompatActivity() {
                     }
             }
             alreadyHaveLogin.setOnClickListener {
-                val loginIntent = Intent(baseContext, LogIn::class.java)
-                startActivity(loginIntent)
+                startActivity(Intent(baseContext, LogIn::class.java))
             }
             backRegister.setOnClickListener {
                 finish()
