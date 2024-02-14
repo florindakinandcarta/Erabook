@@ -105,4 +105,9 @@
     <string name="pick_time">"Pick a time please!"</string>
     <string name="snooze">Snooze</string>
     <string name="already_login">Already have an account? Log in.</string>
+    <string name="enter_email">Enter email please!</string>
+    <string name="enter_password">Enter password please!</string>
+    <string name="login_successful">Log in successful.</string>
+    <string name="auth_failed">Authentication failed.</string>
+
 </resources>

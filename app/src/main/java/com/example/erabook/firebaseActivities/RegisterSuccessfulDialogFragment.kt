@@ -11,7 +11,6 @@ import com.example.erabook.databinding.RegisterSuccessfulBinding
 
 class RegisterSuccessfulDialogFragment : DialogFragment() {
     private lateinit var binding: RegisterSuccessfulBinding
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,21 +23,19 @@ class RegisterSuccessfulDialogFragment : DialogFragment() {
             )
         return binding.root
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            OK.setOnClickListener {
+            okImageButton.setOnClickListener {
                 dialog?.dismiss()
             }
-            goToLogin.setOnClickListener {
-                startActivity(Intent(requireContext(), LogIn::class.java))
+            goToLoginText.setOnClickListener {
+                startActivity(Intent(requireContext(), LogInActivity::class.java))
             }
         }
 
     }
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return Dialog(requireContext())
     }

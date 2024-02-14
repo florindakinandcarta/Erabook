@@ -5,38 +5,38 @@
     android:layout_height="wrap_content">
     <TextView
         android:id="@+id/signupsucc"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/space20"
         android:text="@string/signup_succ"
         android:textColor="@color/primary"
-        android:textSize="34sp"
+        android:textSize="@dimen/textXL"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/go_to_login"
-        android:layout_width="match_parent"
+        android:id="@+id/go_to_login_text"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/space20"
         android:text="@string/signup_succ_desc"
-        android:textSize="14sp"
+        android:textSize="@dimen/textMedium"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/signupsucc" />
 
     <ImageView
-        android:id="@+id/OK"
+        android:id="@+id/ok_imageButton"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_margin="40dp"
+        android:layout_marginTop="@dimen/space10"
         android:contentDescription="@string/desc_img"
         android:src="@drawable/successful"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/go_to_login" />
+        app:layout_constraintTop_toBottomOf="@id/go_to_login_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>

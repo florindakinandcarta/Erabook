@@ -8,8 +8,10 @@
     <dimen name="cornerRadiusRectangle">14dp</dimen>
     <dimen name="rectangleWidth">200dp</dimen>
     <dimen name="rectangleHeight">100dp</dimen>
-
-
-
-
+    <dimen name="textSmall">12sp</dimen>
+    <dimen name="textMedium">14sp</dimen>
+    <dimen name="textXMedium">20sp</dimen>
+    <dimen name="textLarge">24sp</dimen>
+    <dimen name="textXL">34sp</dimen>
+    <dimen name="textXXL">48sp</dimen>
 </resources>

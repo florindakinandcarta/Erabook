@@ -29,7 +29,7 @@
         app:trackCornerRadius="16dp" />
 
     <TextView
-        android:id="@+id/acc_q"
+        android:id="@+id/create_acc_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
@@ -50,7 +50,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/acc_q" />
+        app:layout_constraintTop_toBottomOf="@+id/create_acc_title" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username_input"

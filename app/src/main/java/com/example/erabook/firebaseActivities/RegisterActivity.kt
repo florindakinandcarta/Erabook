@@ -3,15 +3,16 @@ package com.example.erabook.firebaseActivities
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
+import com.example.erabook.R
 import com.example.erabook.databinding.ActivityRegisterBinding
+import com.example.erabook.util.showToast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class Register : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,24 +43,22 @@ class Register : AppCompatActivity() {
                     passwordMessage.visibility = View.GONE
                 }
             }
-            register.setOnClickListener {
+            setupOnClickListeners()
+
+        }
+    }
+    private fun setupOnClickListeners() {
+        binding.apply {
+            registerButton.setOnClickListener {
                 val email = emailInput.editText?.text.toString()
                 val password = passwordInput.editText?.text.toString()
 
                 if (email.isEmpty()) {
-                    Toast.makeText(
-                        baseContext,
-                        "Enter email please!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showToast(R.string.enter_email)
                     return@setOnClickListener
                 }
                 if (password.isEmpty()) {
-                    Toast.makeText(
-                        baseContext,
-                        "Enter password please!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showToast(R.string.enter_password)
                     return@setOnClickListener
                 }
                 auth.createUserWithEmailAndPassword(email, password)
@@ -68,16 +67,12 @@ class Register : AppCompatActivity() {
                             val dialog = RegisterSuccessfulDialogFragment()
                             dialog.show(supportFragmentManager, "RegistrationSuccessDialog")
                         } else {
-                            Toast.makeText(
-                                baseContext,
-                                "Authentication failed.",
-                                Toast.LENGTH_SHORT,
-                            ).show()
+                            showToast(R.string.auth_failed)
                         }
                     }
             }
             alreadyHaveLogin.setOnClickListener {
-                startActivity(Intent(baseContext, LogIn::class.java))
+                startActivity(Intent(this@RegisterActivity, LogInActivity::class.java))
             }
             backRegister.setOnClickListener {
                 finish()

@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.erabook.databinding.ActivityMainBinding
-import com.example.erabook.firebaseActivities.LogIn
+import com.example.erabook.firebaseActivities.LogInActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             when (item.itemId) {
                 R.id.logIn -> {
                     if (currentUser == null) {
-                        startActivity(Intent(this, LogIn::class.java))
+                        startActivity(Intent(this, LogInActivity::class.java))
                         return@setOnNavigationItemSelectedListener true
                     } else {
                         navHostFragment.navController.navigate(R.id.userProfileFragment)

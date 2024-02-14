@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.erabook.R
 import com.example.erabook.databinding.UserProfileBinding
-import com.example.erabook.firebaseActivities.LogIn
+import com.example.erabook.firebaseActivities.LogInActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -39,7 +39,7 @@ class UserProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val currentUser = auth.currentUser
         if (currentUser == null) {
-            startActivity(Intent(requireContext(), LogIn::class.java))
+            startActivity(Intent(requireContext(), LogInActivity::class.java))
         } else {
             binding.apply {
                 profileName.text = currentUser.displayName
@@ -48,7 +48,7 @@ class UserProfileFragment : Fragment() {
                 println(currentUser.displayName)
                 logOut.setOnClickListener {
                     Firebase.auth.signOut()
-                    startActivity(Intent(requireContext(), LogIn::class.java))
+                    startActivity(Intent(requireContext(), LogInActivity::class.java))
                 }
                 backProfile.setOnClickListener {
                     findNavController().navigate(R.id.profileToHome)
