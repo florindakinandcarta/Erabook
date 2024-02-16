@@ -18,10 +18,10 @@
         android:theme="@style/Theme.Erabook"
         tools:targetApi="31">
         <activity
-            android:name=".firebaseActivities.Register"
+            android:name=".firebaseActivities.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".firebaseActivities.LogIn"
+            android:name=".firebaseActivities.LogInActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

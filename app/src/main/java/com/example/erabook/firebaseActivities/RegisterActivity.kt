@@ -66,7 +66,10 @@ class RegisterActivity : AppCompatActivity() {
                         if (task.isSuccessful) {
                             val dialog = RegisterSuccessfulDialogFragment()
                             dialog.show(supportFragmentManager, "RegistrationSuccessDialog")
-                        } else {
+                        } else if (password.length < 6) {
+                            showToast(R.string.password_to_short)
+                        }
+                        else{
                             showToast(R.string.auth_failed)
                         }
                     }

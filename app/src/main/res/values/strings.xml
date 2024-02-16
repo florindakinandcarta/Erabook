@@ -33,8 +33,10 @@
     <string name="birthday_label">Date of Birth</string>
     <string name="country_label">Country</string>
     <string name="create_acc">Create an Account</string>
+    <string name="user_info">User Info</string>
     <string name="create_desc">Enter your username, email &amp; password. If you forget it, then you have to do forgot password.</string>
     <string name="username_label">Username</string>
+    <string name="user_info_desc">Please enter some more info about your profile.</string>
     <string name="username_email_label">Username / Email</string>
     <string name="email_label">Email</string>
     <string name="mobile_label">Mobile</string>
@@ -49,6 +51,7 @@
     <string name="password_match">Your passwords doesn\'t match!!!</string>
     <string name="signup">Sign Up</string>
     <string name="register">Register</string>
+    <string name="update_profile">Update profile</string>
     <string name="log_out">Log out</string>
     <string name="signup_succ">You have been registered successfully!</string>
     <string name="signup_succ_desc">Go to log in…</string>
@@ -57,6 +60,8 @@
     <string name="forgot">Forgot Password</string>
     <string name="signin">Sign In</string>
     <string name="login">Log In</string>
+    <string name="user_name">Name</string>
+    <string name="user_surname">Surname</string>
     <string name="continue_with">------------ or continue with ------------</string>
     <string name="dont_have_acc">Don\'t have an account? Register!</string>
     <string name="search">Search</string>
@@ -109,5 +114,5 @@
     <string name="enter_password">Enter password please!</string>
     <string name="login_successful">Log in successful.</string>
     <string name="auth_failed">Authentication failed.</string>
-
+    <string name="password_to_short">Password must be at least 6 characters!</string>
 </resources>

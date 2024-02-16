@@ -72,7 +72,8 @@ dependencies {
     implementation("androidx.webkit:webkit:1.10.0")
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
     implementation ("com.airbnb.android:lottie:6.3.0")
-
+    implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
+    implementation("com.google.firebase:firebase-firestore")
 
 
 }

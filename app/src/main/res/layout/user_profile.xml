@@ -14,11 +14,12 @@
 
         <ImageButton
             android:id="@+id/backProfile"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:layout_margin="20dp"
             android:background="@null"
             android:contentDescription="@string/desc_img"
+            android:scaleType="centerCrop"
             android:src="@drawable/arrow_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,18 +31,31 @@
             android:padding="20dp"
             android:text="@string/profile"
             android:textAlignment="center"
-            android:textSize="@dimen/textXL"
+            android:textSize="@dimen/textLarge"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/editProfile"
+            app:layout_constraintStart_toEndOf="@id/backProfile"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/editProfile"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_margin="20dp"
+            android:background="@null"
+            android:contentDescription="@string/desc_img"
+            android:scaleType="centerCrop"
+            android:src="@drawable/edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
             android:id="@+id/profileImg"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/circle"
+            android:backgroundTint="@null"
+            app:srcCompat="@drawable/camera"
+            android:background="@drawable/circle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile" />
@@ -53,7 +67,7 @@
             android:padding="@dimen/space10"
             android:text="@string/full_name_label"
             android:textAlignment="center"
-            android:textSize="@dimen/textLarge"
+            android:textSize="@dimen/textXMedium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profileImg" />
@@ -61,10 +75,10 @@
 
     <ImageView
         android:id="@+id/emailIcon"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="@dimen/space20"
+        android:layout_marginTop="40dp"
         android:src="@drawable/email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profileContainer" />
@@ -76,7 +90,7 @@
         android:layout_marginStart="@dimen/space10"
         android:text="@string/email_label"
         android:textAlignment="center"
-        android:textSize="@dimen/textXMedium"
+        android:textSize="@dimen/textMedium"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/emailIcon"
         app:layout_constraintStart_toEndOf="@id/emailIcon" />
@@ -89,14 +103,14 @@
         android:layout_marginTop="@dimen/space5"
         android:text="@string/email_example"
         android:textAlignment="center"
-        android:textSize="@dimen/textXMedium"
+        android:textSize="@dimen/textMedium"
         app:layout_constraintStart_toEndOf="@id/emailIcon"
         app:layout_constraintTop_toBottomOf="@id/emailIcon" />
 
     <ImageView
         android:id="@+id/mobileIcon"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_margin="@dimen/space20"
         android:src="@drawable/mobile"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,7 +123,7 @@
         android:layout_marginStart="@dimen/space10"
         android:text="@string/mobile_label"
         android:textAlignment="center"
-        android:textSize="@dimen/textXMedium"
+        android:textSize="@dimen/textMedium"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/mobileIcon"
         app:layout_constraintStart_toEndOf="@id/mobileIcon" />
@@ -122,17 +136,19 @@
         android:layout_marginTop="@dimen/space5"
         android:text="@string/mobile_example"
         android:textAlignment="center"
-        android:textSize="@dimen/textXMedium"
+        android:textSize="@dimen/textMedium"
         app:layout_constraintStart_toEndOf="@id/mobileIcon"
         app:layout_constraintTop_toBottomOf="@id/mobileIcon" />
+
     <ImageView
         android:id="@+id/locationIcon"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_margin="@dimen/space20"
         android:src="@drawable/location"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mobileNumber" />
+
     <TextView
         android:id="@+id/locationProfileText"
         android:layout_width="wrap_content"
@@ -140,10 +156,11 @@
         android:layout_marginStart="@dimen/space10"
         android:text="@string/location_label"
         android:textAlignment="center"
-        android:textSize="@dimen/textXMedium"
+        android:textSize="@dimen/textMedium"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/locationIcon"
         app:layout_constraintStart_toEndOf="@id/locationIcon" />
+
     <TextView
         android:id="@+id/locationCity"
         android:layout_width="wrap_content"
@@ -152,29 +169,29 @@
         android:layout_marginTop="@dimen/space5"
         android:text="@string/location_example"
         android:textAlignment="center"
-        android:textSize="@dimen/textXMedium"
+        android:textSize="@dimen/textMedium"
         app:layout_constraintStart_toEndOf="@id/locationIcon"
         app:layout_constraintTop_toBottomOf="@id/locationIcon" />
+
     <ImageView
         android:id="@+id/locationNext"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_margin="@dimen/space20"
         android:src="@drawable/next"
+        app:layout_constraintBottom_toBottomOf="@id/locationCity"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/locationIcon"
-        app:layout_constraintBottom_toBottomOf="@id/locationCity"/>
+        app:layout_constraintTop_toTopOf="@id/locationIcon" />
+
     <Button
         android:id="@+id/log_out"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_margin="20dp"
+        android:layout_margin="@dimen/space20"
         android:text="@string/log_out"
         android:textStyle="bold"
         app:circularflow_radiusInDP="22"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
-
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
