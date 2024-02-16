@@ -37,17 +37,28 @@
     <string name="username_label">Username</string>
     <string name="username_email_label">Username / Email</string>
     <string name="email_label">Email</string>
+    <string name="mobile_label">Mobile</string>
+    <string name="location_label">Location</string>
+    <string name="email_example">example@gmail.com</string>
+    <string name="mobile_example">+383 44 123 456</string>
+    <string name="location_example">Prishtine, Kosove</string>
     <string name="password_label">Password</string>
+    <string name="email_error">Email is not valid!</string>
     <string name="confirm_label">Confirm Password</string>
     <string name="remember">Remember me</string>
+    <string name="password_match">Your passwords doesn\'t match!!!</string>
     <string name="signup">Sign Up</string>
-    <string name="signup_succ">Sign Up Successful!</string>
-    <string name="signup_succ_desc">Your account has been created. Please wait a moment, we are preparing for you …</string>
+    <string name="register">Register</string>
+    <string name="log_out">Log out</string>
+    <string name="signup_succ">You have been registered successfully!</string>
+    <string name="signup_succ_desc">Go to log in…</string>
     <string name="hello_message">Hello there</string>
-    <string name="hello_message_desc">Please enter your username/email and password to sign in.</string>
+    <string name="hello_message_desc">Please enter your username/email and password to log in.</string>
     <string name="forgot">Forgot Password</string>
     <string name="signin">Sign In</string>
+    <string name="login">Log In</string>
     <string name="continue_with">------------ or continue with ------------</string>
+    <string name="dont_have_acc">Don\'t have an account? Register!</string>
     <string name="search">Search</string>
     <string name="notification">Notification</string>
     <string name="notification_time_is_up">Time is up! Take a rest.</string>
@@ -93,11 +104,10 @@
     <string name="hold_button">"Long hold the button to stop the timer."</string>
     <string name="pick_time">"Pick a time please!"</string>
     <string name="snooze">Snooze</string>
-
-
-
-
-
-
+    <string name="already_login">Already have an account? Log in.</string>
+    <string name="enter_email">Enter email please!</string>
+    <string name="enter_password">Enter password please!</string>
+    <string name="login_successful">Log in successful.</string>
+    <string name="auth_failed">Authentication failed.</string>
 
 </resources>

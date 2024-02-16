@@ -56,11 +56,14 @@
             android:id="@+id/homeToSearch"
             app:destination="@id/searchFragment" />
         <action
-            android:id="@+id/homeToLogin"
-            app:destination="@id/userSignInFragment" />
-        <action
             android:id="@+id/homeToFocus"
             app:destination="@id/focusTime" />
+        <action
+            android:id="@+id/homeToLogin"
+            app:destination="@id/logIn" />
+        <action
+            android:id="@+id/homeToProfile"
+            app:destination="@id/userProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -165,15 +168,25 @@
             app:destination="@id/homeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/userSignInFragment"
-        android:name="com.example.erabook.fragments.userlogin.UserSignInFragment"
-        android:label="UserSignInFragment"
-        tools:layout="@layout/fragment_sign_in"
-        />
-    <fragment
         android:id="@+id/focusTime"
         android:name="com.example.erabook.fragments.focustimer.FocusTimeFragment"
         android:label="FocusTime"
         tools:layout="@layout/fragment_focus_time"
         />
+    <activity
+        android:id="@+id/logIn"
+        android:name="com.example.erabook.firebaseActivities.LogInActivity"
+        android:label="LogIn"
+        tools:layout="@layout/activity_log_in"
+        />
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.example.erabook.fragments.userlogin.UserProfileFragment"
+        android:label="UserProfileFragment"
+        tools:layout="@layout/user_profile"
+        >
+        <action
+            android:id="@+id/profileToHome"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

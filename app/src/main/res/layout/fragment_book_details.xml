@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space5"
             android:layout_marginTop="@dimen/space5"
-            android:padding="10dp"
+            android:padding="@dimen/space10"
             android:text="@string/book_title"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -68,7 +68,7 @@
             android:padding="@dimen/space8"
             android:text="@string/book_author"
             android:textColor="@color/primary"
-            android:textSize="14sp"
+            android:textSize="@dimen/textMedium"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/bookNameDetails"
@@ -122,7 +122,7 @@
 
         <Button
             android:id="@+id/buyBook"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_margin="@dimen/space10"
             android:text="@string/buy_book"
@@ -140,7 +140,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space5"
             android:text="@string/about_book"
-            android:textSize="20sp"
+            android:textSize="@dimen/textXMedium"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/bookImageDetails"
             app:layout_constraintTop_toBottomOf="@id/bookImageDetails" />
@@ -148,11 +148,11 @@
 
         <TextView
             android:id="@+id/paragraphText"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/space10"
             android:padding="@dimen/space10"
-            android:textSize="14sp"
+            android:textSize="@dimen/textMedium"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

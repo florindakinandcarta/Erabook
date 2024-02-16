@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -17,6 +16,7 @@ import cancelNotifications
 import com.example.erabook.R
 import com.example.erabook.adapters.FocusMinutesAdapter
 import com.example.erabook.databinding.FragmentFocusTimeBinding
+import com.example.erabook.util.showToast
 
 class FocusTimeFragment : Fragment() {
     private lateinit var binding: FragmentFocusTimeBinding
@@ -68,11 +68,9 @@ class FocusTimeFragment : Fragment() {
                     focusViewModel.stopCountDownTimer()
                     binding.start.setText(R.string.continue_text)
                     remainingTimeWhenPaused = focusViewModel.remainingTimeInMillis.value ?: 0
-                    Toast.makeText(
-                        context,
-                        getString(R.string.hold_button),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    requireContext().showToast(
+                        R.string.hold_button
+                    )
                 }
             }
             giveUp.setOnLongClickListener {
@@ -92,11 +90,9 @@ class FocusTimeFragment : Fragment() {
                 if (remainingTimeWhenPaused > 0) {
                     focusViewModel.startCountDownTimer(remainingTimeWhenPaused, requireContext())
                 } else if (selectedTime == 0.toLong()) {
-                    Toast.makeText(
-                        context,
-                        getString(R.string.pick_time),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    requireContext().showToast(
+                        R.string.pick_time
+                    )
                 } else {
                     focusViewModel.startCountDownTimer((selectedTime * 60 * 1000), requireContext())
                 }

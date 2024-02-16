@@ -8,45 +8,32 @@
         android:id="@+id/backRegister"
         android:layout_width="34dp"
         android:layout_height="34dp"
-        android:layout_margin="20dp"
+        android:layout_margin="@dimen/space20"
         android:background="@null"
         android:contentDescription="@string/desc_img"
         android:src="@drawable/arrow_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.progressindicator.LinearProgressIndicator
-        android:id="@+id/progress_steps"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:progress="100"
-        app:indicatorColor="@color/primary"
-        app:layout_constraintBottom_toBottomOf="@id/backRegister"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/backRegister"
-        app:layout_constraintTop_toTopOf="@id/backRegister"
-        app:trackColor="@color/greybg"
-        app:trackCornerRadius="16dp" />
-
     <TextView
         android:id="@+id/create_acc_title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:padding="@dimen/space20"
         android:text="@string/create_acc"
-        android:textSize="34sp"
+        android:textSize="@dimen/textXL"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progress_steps" />
+        app:layout_constraintTop_toBottomOf="@+id/backRegister" />
 
     <TextView
         android:id="@+id/create_acc_text"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:padding="@dimen/space20"
         android:text="@string/create_desc"
-        android:textSize="14sp"
+        android:textSize="@dimen/textMedium"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,12 +42,13 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username_input"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="@dimen/space20"
         android:hint="@string/username_label"
         app:boxStrokeColor="@color/primary"
         app:boxStrokeWidth="2dp"
+        app:layout_constraintBottom_toTopOf="@id/email_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_acc_text">
@@ -74,12 +62,13 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email_input"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="@dimen/space20"
         android:hint="@string/email_label"
         app:boxStrokeColor="@color/primary"
         app:boxStrokeWidth="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/password_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username_input">
@@ -90,15 +79,26 @@
             android:inputType="text" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/email_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/email_error"
+        android:textColor="@color/bg_red"
+        android:textSize="@dimen/textMedium"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/email_input"
+        app:layout_constraintStart_toStartOf="@id/email_input" />
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password_input"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="@dimen/space20"
         android:hint="@string/password_label"
         app:boxStrokeColor="@color/primary"
         app:boxStrokeWidth="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/confirm_password_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email_input">
@@ -112,12 +112,13 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/confirm_password_input"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_margin="@dimen/space20"
         android:hint="@string/confirm_label"
         app:boxStrokeColor="@color/primary"
         app:boxStrokeWidth="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/remember_me_checkbox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_input">
@@ -128,26 +129,51 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <CheckBox
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/password_message"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:text="@string/password_match"
+        android:textColor="@color/bg_red"
+        android:textSize="@dimen/textMedium"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/confirm_password_input"
+        app:layout_constraintStart_toStartOf="@id/email_input" />
+    <CheckBox
+        android:id="@+id/remember_me_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space20"
         android:buttonTint="@color/primary"
         android:text="@string/remember"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/confirm_password_input" />
 
+    <TextView
+        android:id="@+id/already_have_login_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/space20"
+        android:text="@string/already_login"
+        android:textColor="@color/primary"
+        android:textSize="@dimen/textMedium"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/register_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/remember_me_checkbox" />
     <Button
-        android:id="@+id/continue_profile"
-        android:layout_width="match_parent"
+        android:id="@+id/register_button"
+        android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_margin="20dp"
-        android:text="@string/signup"
+        android:layout_margin="@dimen/space20"
+        android:text="@string/register"
         android:textStyle="bold"
         app:circularflow_radiusInDP="22"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/already_have_login_textview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

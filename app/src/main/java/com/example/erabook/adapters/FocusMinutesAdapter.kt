@@ -16,12 +16,8 @@ class FocusMinutesAdapter(context: Context) : ArrayAdapter<FocusMinutes>(
 ) {
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view: View
-        if (convertView == null) {
-            view = layoutInflater.inflate(R.layout.item_focus_spinner, parent, false)
-        } else {
-            view = convertView
-        }
+        val view: View =
+            convertView ?: layoutInflater.inflate(R.layout.item_focus_spinner, parent, false)
 
         getItem(position)?.let { focusMinutes ->
             setFocusMinutes(view, focusMinutes)
