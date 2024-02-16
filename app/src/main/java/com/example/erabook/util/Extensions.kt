@@ -1,6 +1,7 @@
 package com.example.erabook.util
 
 import android.content.Context
+import android.support.annotation.StringRes
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.databinding.BindingAdapter
@@ -16,6 +17,6 @@ fun ImageView.loadImage(imageLink: String?) {
     }
 }
 
-fun Context.showToast(messageResId: Int, duration: Int = Toast.LENGTH_SHORT) {
+fun Context.showToast(@StringRes messageResId: Int, duration: Int = Toast.LENGTH_SHORT) {
     Toast.makeText(this, messageResId, duration).show()
 }
