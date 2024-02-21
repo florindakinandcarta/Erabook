@@ -20,7 +20,6 @@ class SearchAdapter : ListAdapter<Books, SearchAdapter.ViewHolder>(HomeAdapterDi
         fun bind(books: Books) {
             binding.apply {
                 book = books
-                println(books.author)
                 this.executePendingBindings()
                 itemView.setOnClickListener {
                     val bundleBookData = bundleOf(

@@ -8,6 +8,7 @@ import com.example.erabook.R
 import com.example.erabook.databinding.ActivityLogInBinding
 import com.example.erabook.util.showToast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -57,10 +58,25 @@ class LogInActivity : AppCompatActivity() {
                                     putExtra(DESTINATION_PROFILE, R.id.userProfileFragment)
                                 })
                             showToast(R.string.login_successful)
+                            finish()
                         } else {
-                            showToast(R.string.auth_failed)
+                            val exception = task.exception as FirebaseAuthException?
+                            exception?.let {
+                                when (it.errorCode) {
+                                    "ERROR_INVALID_CREDENTIAL" -> showToast(R.string.wrong_password_email)
+                                }
+                            }
                         }
                     }
+            }
+            forgotPasswordTextView.setOnClickListener {
+                startActivity(
+                    Intent(
+                        this@LogInActivity,
+                        ForgotPasswordActivity::class.java
+                    )
+                )
+                finish()
             }
         }
     }

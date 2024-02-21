@@ -181,7 +181,7 @@
         />
     <fragment
         android:id="@+id/userProfileFragment"
-        android:name="com.example.erabook.fragments.userLogin.UserProfileFragment"
+        android:name="com.example.erabook.fragments.userProfile.UserProfileFragment"
         android:label="UserProfileFragment"
         tools:layout="@layout/user_profile"
         >
@@ -196,5 +196,9 @@
         android:id="@+id/userInfoFragment"
         android:name="com.example.erabook.fragments.userInfo.UserInfoFragment"
         android:label="UserInfoFragment"
-        tools:layout="@layout/fragment_user_info"/>
+        tools:layout="@layout/fragment_user_info">
+        <action
+            android:id="@+id/editToProfile"
+            app:destination="@id/userProfileFragment" />
+    </fragment>
 </navigation>
