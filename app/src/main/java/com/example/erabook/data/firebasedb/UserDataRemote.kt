@@ -1,6 +1,5 @@
 package com.example.erabook.data.firebasedb
 
-import com.google.firebase.Timestamp
 import com.google.gson.annotations.SerializedName
 import java.util.Date
 
@@ -12,7 +11,7 @@ data class UserDataRemote(
     @SerializedName("userMobile") var userMobile: Int,
     @SerializedName("userProfileImg") var userProfileImg: String?,
     @SerializedName("userUsername") var userUsername: String,
-    @SerializedName("userBirthday") var userBirthday: Timestamp,
+    @SerializedName("userBirthday") var userBirthday: Date,
     @SerializedName("favoriteBooks") var favoriteBooks: ArrayList<FavoriteBooks> = arrayListOf()
 )
 

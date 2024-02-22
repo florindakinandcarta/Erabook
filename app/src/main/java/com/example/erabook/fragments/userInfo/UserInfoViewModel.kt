@@ -2,6 +2,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.erabook.R
 import com.example.erabook.data.firebasedb.UserDataRemote
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.SetOptions
@@ -10,12 +11,16 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.Date
 
 class UserInfoViewModel : ViewModel() {
     private val _userInfo = MutableLiveData<UserDataRemote>()
     private val db = Firebase.firestore
     private val _documentId = MutableLiveData<String>()
+    private val _errorMessage = MutableLiveData<Int>()
 
+    val errorMessage: LiveData<Int>
+        get() = _errorMessage
 
     val userInfo: LiveData<UserDataRemote>
         get() = _userInfo
@@ -42,7 +47,7 @@ class UserInfoViewModel : ViewModel() {
                                 (document.data["userMobile"] as? Long)?.toInt() ?: 0,
                                 "",
                                 document.data["userUsername"].toString(),
-                                userBirthday,
+                                userBirthday.toDate(),
                                 ArrayList()
                             ).apply {
                                 this.userUid = document.data["userUid"].toString()
@@ -52,6 +57,7 @@ class UserInfoViewModel : ViewModel() {
                         }
                     }
                     .addOnFailureListener { exception ->
+                        _errorMessage.postValue(R.string.error_fetching_data)
                         println("Error getting documents $exception")
                     }
             }
@@ -76,7 +82,7 @@ class UserInfoViewModel : ViewModel() {
                                     "userName" to updatedUserData.userName,
                                     "userUsername" to updatedUserData.userUsername,
                                     "userMobile" to updatedUserData.userMobile,
-                                    "userBirthday" to updatedUserData.userBirthday.toDate()
+                                    "userBirthday" to updatedUserData.userBirthday
                                 )
                             )
                         }
@@ -103,6 +109,14 @@ class UserInfoViewModel : ViewModel() {
                     .set(newUserDataRemote, SetOptions.merge())
             }
         }
+    }
+    fun updateUserBirthday(newBirthday: Date){
+        val currentUser = userInfo.value
+        requireNotNull(currentUser){
+            "User info must not be null"
+        }
+        val updatedBirthday = currentUser.copy(userBirthday = newBirthday)
+        _userInfo.postValue(updatedBirthday)
     }
     //TODO(getUserLocation)
 //    private fun parseCoordinates(coordinatesMap: Map<*, *>?): Coordinates? {

@@ -23,7 +23,7 @@ class BookDetailsViewModel(private val url: String) : ViewModel() {
 
     private fun fetchData() {
         viewModelScope.launch {
-            withContext(Dispatchers.Default) {
+            withContext(Dispatchers.IO) {
                 try {
                     val responseBody = WikipediaRepo().wikipediaService.getWikipediaPage(url)
                     val firstParagraph = parseHtmlForFirstParagraph(responseBody.string())

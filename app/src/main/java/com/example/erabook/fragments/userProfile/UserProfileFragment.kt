@@ -13,6 +13,7 @@ import com.example.erabook.R
 import com.example.erabook.databinding.UserProfileBinding
 import com.example.erabook.firebaseActivities.LogInActivity
 import com.example.erabook.util.GetCurrentUser
+import com.example.erabook.util.showToast
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -34,17 +35,7 @@ class UserProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setOnCLickListener()
-        if (GetCurrentUser.getCurrentUser() == null) {
-            startActivity(Intent(requireContext(), LogInActivity::class.java))
-        } else {
-            userInfoViewModel.userInfo.observe(viewLifecycleOwner) { userData ->
-                binding.apply {
-                    profileName.text = userData.userName
-                    emailProfile.text = userData.userEmail
-                    mobileNumber.text = userData.userMobile.toString()
-                }
-            }
-        }
+        userStatus()
     }
 
     private fun setOnCLickListener() {
@@ -62,6 +53,25 @@ class UserProfileFragment : Fragment() {
             profileImg.setOnClickListener {
             }
 
+        }
+    }
+
+    private fun userStatus() {
+        if (GetCurrentUser.getCurrentUser() == null) {
+            startActivity(Intent(requireContext(), LogInActivity::class.java))
+        } else {
+            userInfoViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
+                if (error != null) {
+                    requireContext().showToast(error)
+                }
+            }
+            userInfoViewModel.userInfo.observe(viewLifecycleOwner) { userData ->
+                binding.apply {
+                    profileName.text = userData.userName
+                    emailProfile.text = userData.userEmail
+                    mobileNumber.text = userData.userMobile.toString()
+                }
+            }
         }
     }
 

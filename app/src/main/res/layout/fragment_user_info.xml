@@ -138,25 +138,19 @@
             app:layout_constraintStart_toEndOf="@id/update_location_input"
             app:layout_constraintTop_toTopOf="@id/update_location_input" />
 
-        <com.google.android.material.textfield.TextInputLayout
+        <Button
             android:id="@+id/update_birthday_input"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:focusable="false"
-            android:hint="@string/birthday_label"
-            app:boxStrokeColor="@color/primary"
-            app:boxStrokeWidth="2dp"
+            android:layout_height="60dp"
+            android:layout_margin="@dimen/space20"
+            android:background="@null"
+            android:backgroundTint="@color/lightb"
+            android:text="@string/birthday_label"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/update_location_input">
+            app:layout_constraintTop_toBottomOf="@+id/update_location_input"/>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="date" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/update_submit_info_button"

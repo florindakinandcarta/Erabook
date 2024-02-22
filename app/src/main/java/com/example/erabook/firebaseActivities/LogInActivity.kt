@@ -7,8 +7,8 @@ import com.example.erabook.MainActivity
 import com.example.erabook.R
 import com.example.erabook.databinding.ActivityLogInBinding
 import com.example.erabook.util.showToast
+import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -60,10 +60,11 @@ class LogInActivity : AppCompatActivity() {
                             showToast(R.string.login_successful)
                             finish()
                         } else {
-                            val exception = task.exception as FirebaseAuthException?
-                            exception?.let {
-                                when (it.errorCode) {
-                                    "ERROR_INVALID_CREDENTIAL" -> showToast(R.string.wrong_password_email)
+                            val exception = task.exception as FirebaseException
+                            exception.let {
+                                when (it.message) {
+                                    getString(R.string.error_code_message_incorrect) -> showToast(R.string.wrong_password_email)
+                                    getString(R.string.error_code_message_connection) -> showToast(R.string.error_connection)
                                 }
                             }
                         }

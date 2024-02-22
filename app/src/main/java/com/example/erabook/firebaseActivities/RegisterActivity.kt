@@ -15,6 +15,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import java.util.Date
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
@@ -74,7 +75,7 @@ class RegisterActivity : AppCompatActivity() {
                                 userName = "",
                                 userEmail = email,
                                 userMobile = 0,
-                                userBirthday = Timestamp.now(),
+                                userBirthday = Date(),
                                 userProfileImg = "",
                                 userUsername = "",
                             )

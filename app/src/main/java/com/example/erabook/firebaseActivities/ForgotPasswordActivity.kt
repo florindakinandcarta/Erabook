@@ -25,6 +25,8 @@ class ForgotPasswordActivity : AppCompatActivity() {
                         if (task.isSuccessful) {
                             showToast(R.string.email_sent, duration = Toast.LENGTH_LONG)
                             finish()
+                        }else{
+                            showToast(R.string.email_not_sent, duration = Toast.LENGTH_LONG)
                         }
                     }
             }

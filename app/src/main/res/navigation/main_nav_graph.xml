@@ -200,5 +200,12 @@
         <action
             android:id="@+id/editToProfile"
             app:destination="@id/userProfileFragment" />
+        <action
+            android:id="@+id/userIntoToDatePicker"
+            app:destination="@id/datePickerFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/datePickerFragment"
+        android:name="com.example.erabook.fragments.userInfo.DatePickerFragment"
+        android:label="DatePickerFragment" />
 </navigation>

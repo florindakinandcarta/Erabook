@@ -12,6 +12,8 @@ import com.example.erabook.R
 import com.example.erabook.data.firebasedb.UserDataRemote
 import com.example.erabook.databinding.FragmentUserInfoBinding
 import com.example.erabook.util.GetCurrentUser
+import com.example.erabook.util.showToast
+import java.text.SimpleDateFormat
 
 class UserInfoFragment : Fragment() {
     private lateinit var binding: FragmentUserInfoBinding
@@ -31,13 +33,21 @@ class UserInfoFragment : Fragment() {
         userInfoViewModel.userInfo.observe(viewLifecycleOwner) { userUpdated ->
             this.updatedUser = userUpdated
         }
+        userInfoViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
+            if (error != null) {
+                requireContext().showToast(error)
+            }
+        }
 
         binding.apply {
+            updateBirthdayInput.setOnClickListener {
+                val dateDialogFragment = DatePickerFragment { selectedDate ->
+                    userInfoViewModel.updateUserBirthday(selectedDate)
+                    updateBirthdayInput.text = SimpleDateFormat.getDateInstance().format(selectedDate)
+                }
+                dateDialogFragment.show(parentFragmentManager, "DatePicker")
+            }
             updateSubmitInfoButton.setOnClickListener {
-
-//                updateBirthdayInput.editText?.addTextChangedListener {
-//                    //TODO(date picker dialog)
-//                }
                 updatedUser.apply {
                     userName = updateNameInput.editText?.text.toString()
                     userUsername = updateUsernameInput.editText?.text.toString()
