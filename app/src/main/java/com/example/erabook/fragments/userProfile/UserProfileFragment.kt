@@ -50,7 +50,7 @@ class UserProfileFragment : Fragment() {
             editProfile.setOnClickListener {
                 findNavController().navigate(R.id.userProfileToEdit)
             }
-            profileImg.setOnClickListener {
+            takeProfileImg.setOnClickListener {
             }
 
         }

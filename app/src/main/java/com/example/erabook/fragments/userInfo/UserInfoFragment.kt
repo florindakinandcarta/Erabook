@@ -57,7 +57,6 @@ class UserInfoFragment : Fragment() {
                     updatedUser,
                     GetCurrentUser.getCurrentUser()?.email.toString()
                 )
-
             }
             backUserInfo.setOnClickListener {
                 findNavController().navigate(R.id.editToProfile)
