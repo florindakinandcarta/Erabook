@@ -9,7 +9,7 @@
         android:layout_height="wrap_content">
 
         <ImageButton
-            android:id="@+id/backLogin"
+            android:id="@+id/back_login"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_margin="@dimen/space20"
@@ -30,10 +30,10 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/backLogin" />
+            app:layout_constraintTop_toBottomOf="@+id/back_login" />
 
         <TextView
-            android:id="@+id/signin_text"
+            android:id="@+id/forgot_login_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/space20"
@@ -55,7 +55,7 @@
             app:boxStrokeWidth="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signin_text">
+            app:layout_constraintTop_toBottomOf="@+id/forgot_login_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -92,7 +92,7 @@
             app:layout_constraintTop_toBottomOf="@id/password_login_input" />
 
         <TextView
-            android:id="@+id/forgot_text"
+            android:id="@+id/forgot_password_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -115,7 +115,7 @@
             android:textSize="@dimen/textMedium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/forgot_text" />
+            app:layout_constraintTop_toBottomOf="@+id/forgot_password_textView" />
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/google_button"

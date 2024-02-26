@@ -23,7 +23,7 @@ class BookDetailsViewModel(private val url: String) : ViewModel() {
 
     private fun fetchData() {
         viewModelScope.launch {
-            withContext(Dispatchers.Default) {
+            withContext(Dispatchers.IO) {
                 try {
                     val responseBody = WikipediaRepo().wikipediaService.getWikipediaPage(url)
                     val firstParagraph = parseHtmlForFirstParagraph(responseBody.string())
@@ -31,7 +31,6 @@ class BookDetailsViewModel(private val url: String) : ViewModel() {
                 } catch (e: Exception) {
                     _firstParagraph.postValue("Failed to fetch data!!!")
                     e.printStackTrace()
-                    println("Failed to fetch data.")
                 }
             }
         }

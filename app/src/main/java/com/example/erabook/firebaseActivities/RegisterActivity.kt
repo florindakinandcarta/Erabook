@@ -1,20 +1,26 @@
 package com.example.erabook.firebaseActivities
 
+import UserInfoViewModel
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.example.erabook.R
+import com.example.erabook.data.firebasedb.UserDataRemote
 import com.example.erabook.databinding.ActivityRegisterBinding
 import com.example.erabook.util.showToast
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import java.util.Date
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
+    private val userInfoViewModel: UserInfoViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -64,8 +70,22 @@ class RegisterActivity : AppCompatActivity() {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
+                            val addDocumentForUser = UserDataRemote(
+                                userUid = "",
+                                userName = "",
+                                userEmail = email,
+                                userMobile = 0,
+                                userBirthday = Date(),
+                                userProfileImg = "",
+                                userUsername = "",
+                            )
+                            addDocumentForUser.let {
+                                userInfoViewModel.addUserData(it)
+                            }
                             val dialog = RegisterSuccessfulDialogFragment()
                             dialog.show(supportFragmentManager, "RegistrationSuccessDialog")
+                        } else if (password.length < 6) {
+                            showToast(R.string.password_to_short)
                         } else {
                             showToast(R.string.auth_failed)
                         }
@@ -73,10 +93,11 @@ class RegisterActivity : AppCompatActivity() {
             }
             alreadyHaveLoginTextview.setOnClickListener {
                 startActivity(Intent(this@RegisterActivity, LogInActivity::class.java))
+                finish()
             }
             backRegister.setOnClickListener {
-                finish()
                 super.onBackPressedDispatcher
+                finish()
             }
         }
     }

@@ -33,8 +33,10 @@
     <string name="birthday_label">Date of Birth</string>
     <string name="country_label">Country</string>
     <string name="create_acc">Create an Account</string>
+    <string name="user_info">User Info</string>
     <string name="create_desc">Enter your username, email &amp; password. If you forget it, then you have to do forgot password.</string>
     <string name="username_label">Username</string>
+    <string name="user_info_desc">Please enter some more info about your profile.</string>
     <string name="username_email_label">Username / Email</string>
     <string name="email_label">Email</string>
     <string name="mobile_label">Mobile</string>
@@ -49,14 +51,19 @@
     <string name="password_match">Your passwords doesn\'t match!!!</string>
     <string name="signup">Sign Up</string>
     <string name="register">Register</string>
+    <string name="update_profile">Update profile</string>
     <string name="log_out">Log out</string>
     <string name="signup_succ">You have been registered successfully!</string>
     <string name="signup_succ_desc">Go to log in…</string>
     <string name="hello_message">Hello there</string>
     <string name="hello_message_desc">Please enter your username/email and password to log in.</string>
+    <string name="forgot_password_email">Please enter your email!</string>
     <string name="forgot">Forgot Password</string>
     <string name="signin">Sign In</string>
     <string name="login">Log In</string>
+    <string name="send_email">Send email</string>
+    <string name="user_name">Name</string>
+    <string name="user_surname">Surname</string>
     <string name="continue_with">------------ or continue with ------------</string>
     <string name="dont_have_acc">Don\'t have an account? Register!</string>
     <string name="search">Search</string>
@@ -91,7 +98,10 @@
     <string name="share_book">Hey check out this book %1$s. It\'s written by %2$s and has %3$s pages,it was released in: %4$s. </string>
     <string name="share_book_subject">Book details</string>
     <string name="send_details">Send book details via: </string>
-    <string name="dumb_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+    <string name="dumb_text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy
+        text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five
+        centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+        sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <string name="erabook_notification_channel_id" translatable="false">fcm_default_channel</string>
     <string name="erabook_notification_channel_name" translatable="false">Erabook</string>
     <string name="notification_title">Erabook</string>
@@ -103,11 +113,21 @@
     <string name="pick_focus_time">Chose a time to focus</string>
     <string name="hold_button">"Long hold the button to stop the timer."</string>
     <string name="pick_time">"Pick a time please!"</string>
+    <string name="email_sent">Email sent, please check your inbox!</string>
+    <string name="email_not_sent">Email was not sent, something went wrong!</string>
     <string name="snooze">Snooze</string>
     <string name="already_login">Already have an account? Log in.</string>
     <string name="enter_email">Enter email please!</string>
+    <string name="email_exists">Email already exists!!!</string>
+    <string name="wrong_password_email">Wrong password or email!!!</string>
     <string name="enter_password">Enter password please!</string>
     <string name="login_successful">Log in successful.</string>
-    <string name="auth_failed">Authentication failed.</string>
+    <string name="auth_failed">Authentication failed.Check if email in use?</string>
+    <string name="email_in_use">The email address is already in use by another account.</string>
+    <string name="password_to_short">Password must be at least 6 characters!</string>
+    <string name="error_fetching_data">Error fetching data!</string>
+    <string name="error_connection">You\'re not connected to the internet!</string>
+    <string name="error_code_message_incorrect">The supplied auth credential is incorrect, malformed or has expired.</string>
+    <string name="error_code_message_connection">A network error (such as timeout, interrupted connection or unreachable host) has occurred.</string>
 
 </resources>

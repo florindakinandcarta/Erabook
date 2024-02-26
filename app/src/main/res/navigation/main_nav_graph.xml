@@ -181,12 +181,31 @@
         />
     <fragment
         android:id="@+id/userProfileFragment"
-        android:name="com.example.erabook.fragments.userlogin.UserProfileFragment"
+        android:name="com.example.erabook.fragments.userProfile.UserProfileFragment"
         android:label="UserProfileFragment"
         tools:layout="@layout/user_profile"
         >
         <action
             android:id="@+id/profileToHome"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/userProfileToEdit"
+            app:destination="@id/userInfoFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/userInfoFragment"
+        android:name="com.example.erabook.fragments.userInfo.UserInfoFragment"
+        android:label="UserInfoFragment"
+        tools:layout="@layout/fragment_user_info">
+        <action
+            android:id="@+id/editToProfile"
+            app:destination="@id/userProfileFragment" />
+        <action
+            android:id="@+id/userIntoToDatePicker"
+            app:destination="@id/datePickerFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/datePickerFragment"
+        android:name="com.example.erabook.fragments.userInfo.DatePickerFragment"
+        android:label="DatePickerFragment" />
 </navigation>
