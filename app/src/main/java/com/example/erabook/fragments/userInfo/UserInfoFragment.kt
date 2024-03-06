@@ -8,16 +8,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.erabook.AuthenticationViewModel
 import com.example.erabook.R
 import com.example.erabook.data.firebasedb.UserDataRemote
 import com.example.erabook.databinding.FragmentUserInfoBinding
-import com.example.erabook.util.GetCurrentUser
 import com.example.erabook.util.showToast
 import java.text.SimpleDateFormat
 
 class UserInfoFragment : Fragment() {
     private lateinit var binding: FragmentUserInfoBinding
     private val userInfoViewModel: UserInfoViewModel by viewModels()
+    private val authenticationViewModel: AuthenticationViewModel by viewModels()
     private lateinit var updatedUser: UserDataRemote
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,7 +44,8 @@ class UserInfoFragment : Fragment() {
             updateBirthdayInput.setOnClickListener {
                 val dateDialogFragment = DatePickerFragment { selectedDate ->
                     userInfoViewModel.updateUserBirthday(selectedDate)
-                    updateBirthdayInput.text = SimpleDateFormat.getDateInstance().format(selectedDate)
+                    updateBirthdayInput.text =
+                        SimpleDateFormat.getDateInstance().format(selectedDate)
                 }
                 dateDialogFragment.show(parentFragmentManager, "DatePicker")
             }
@@ -53,10 +55,12 @@ class UserInfoFragment : Fragment() {
                     userUsername = updateUsernameInput.editText?.text.toString()
                     userMobile = updateMobileInput.editText?.text.toString().toIntOrNull() ?: 0
                 }
-                userInfoViewModel.updateUserDataByEmail(
-                    updatedUser,
-                    GetCurrentUser.getCurrentUser()?.email.toString()
-                )
+                authenticationViewModel.userLiveData.observe(viewLifecycleOwner) { user ->
+                    userInfoViewModel.updateUserDataByEmail(
+                        updatedUser,
+                        user?.email.toString()
+                    )
+                }
 
             }
             backUserInfo.setOnClickListener {
