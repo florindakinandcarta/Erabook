@@ -129,5 +129,5 @@
     <string name="error_connection">You\'re not connected to the internet!</string>
     <string name="error_code_message_incorrect">The supplied auth credential is incorrect, malformed or has expired.</string>
     <string name="error_code_message_connection">A network error (such as timeout, interrupted connection or unreachable host) has occurred.</string>
-
+    <string name="default_web_client_id">"1048665387941-uto14qr1gqqm6g7oefdh49png8s136vb.apps.googleusercontent.com"</string>
 </resources>

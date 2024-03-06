@@ -1,32 +1,41 @@
-package com.example.erabook.firebaseActivities
+package com.example.erabook.fragments.login
 
 import UserInfoViewModel
-import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
+import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.erabook.R
 import com.example.erabook.data.firebasedb.UserDataRemote
-import com.example.erabook.databinding.ActivityRegisterBinding
+import com.example.erabook.databinding.FragmentRegisterBinding
+import com.example.erabook.firebaseActivities.RegisterSuccessfulDialogFragment
 import com.example.erabook.util.showToast
-import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import java.util.Date
 
-class RegisterActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityRegisterBinding
+class RegisterFragment : Fragment() {
+    private lateinit var binding: FragmentRegisterBinding
     private lateinit var auth: FirebaseAuth
     private val userInfoViewModel: UserInfoViewModel by viewModels()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        auth = Firebase.auth
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentRegisterBinding.inflate(layoutInflater, container, false)
+        auth = Firebase.auth
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.apply {
             emailInput.editText?.addTextChangedListener { editable ->
                 if (editable.toString().trim()
@@ -53,6 +62,8 @@ class RegisterActivity : AppCompatActivity() {
 
         }
     }
+
+
     private fun setupOnClickListeners() {
         binding.apply {
             registerButton.setOnClickListener {
@@ -60,11 +71,11 @@ class RegisterActivity : AppCompatActivity() {
                 val password = passwordInput.editText?.text.toString()
 
                 if (email.isEmpty()) {
-                    showToast(R.string.enter_email)
+                    requireContext().showToast(R.string.enter_email)
                     return@setOnClickListener
                 }
                 if (password.isEmpty()) {
-                    showToast(R.string.enter_password)
+                    requireContext().showToast(R.string.enter_password)
                     return@setOnClickListener
                 }
                 auth.createUserWithEmailAndPassword(email, password)
@@ -83,21 +94,19 @@ class RegisterActivity : AppCompatActivity() {
                                 userInfoViewModel.addUserData(it)
                             }
                             val dialog = RegisterSuccessfulDialogFragment()
-                            dialog.show(supportFragmentManager, "RegistrationSuccessDialog")
+                            dialog.showsDialog
                         } else if (password.length < 6) {
-                            showToast(R.string.password_to_short)
+                            requireContext().showToast(R.string.password_to_short)
                         } else {
-                            showToast(R.string.auth_failed)
+                            requireContext().showToast(R.string.auth_failed)
                         }
                     }
             }
             alreadyHaveLoginTextview.setOnClickListener {
-                startActivity(Intent(this@RegisterActivity, LogInActivity::class.java))
-                finish()
+                findNavController().navigate(R.id.registerToLogin)
             }
             backRegister.setOnClickListener {
-                super.onBackPressedDispatcher
-                finish()
+                requireActivity().onBackPressedDispatcher.onBackPressed()
             }
         }
     }

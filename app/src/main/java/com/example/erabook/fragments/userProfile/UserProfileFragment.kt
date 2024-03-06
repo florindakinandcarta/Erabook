@@ -1,7 +1,6 @@
 package com.example.erabook.fragments.userProfile
 
 import UserInfoViewModel
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.erabook.R
 import com.example.erabook.databinding.UserProfileBinding
-import com.example.erabook.firebaseActivities.LogInActivity
 import com.example.erabook.util.GetCurrentUser
 import com.example.erabook.util.showToast
 import com.google.firebase.auth.ktx.auth
@@ -42,7 +40,7 @@ class UserProfileFragment : Fragment() {
         binding.apply {
             logOut.setOnClickListener {
                 Firebase.auth.signOut()
-                startActivity(Intent(requireContext(), LogInActivity::class.java))
+                findNavController().navigate(R.id.userProfileToLogin)
             }
             backProfile.setOnClickListener {
                 findNavController().navigate(R.id.profileToHome)
@@ -58,7 +56,7 @@ class UserProfileFragment : Fragment() {
 
     private fun userStatus() {
         if (GetCurrentUser.getCurrentUser() == null) {
-            startActivity(Intent(requireContext(), LogInActivity::class.java))
+            findNavController().navigate(R.id.userProfileToLogin)
         } else {
             userInfoViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
                 if (error != null) {

@@ -59,9 +59,6 @@
             android:id="@+id/homeToFocus"
             app:destination="@id/focusTime" />
         <action
-            android:id="@+id/homeToLogin"
-            app:destination="@id/logIn" />
-        <action
             android:id="@+id/homeToProfile"
             app:destination="@id/userProfileFragment" />
     </fragment>
@@ -173,12 +170,6 @@
         android:label="FocusTime"
         tools:layout="@layout/fragment_focus_time"
         />
-    <activity
-        android:id="@+id/logIn"
-        android:name="com.example.erabook.firebaseActivities.LogInActivity"
-        android:label="LogIn"
-        tools:layout="@layout/activity_log_in"
-        />
     <fragment
         android:id="@+id/userProfileFragment"
         android:name="com.example.erabook.fragments.userProfile.UserProfileFragment"
@@ -191,6 +182,9 @@
         <action
             android:id="@+id/userProfileToEdit"
             app:destination="@id/userInfoFragment" />
+        <action
+            android:id="@+id/userProfileToLogin"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/userInfoFragment"
@@ -208,4 +202,34 @@
         android:id="@+id/datePickerFragment"
         android:name="com.example.erabook.fragments.userInfo.DatePickerFragment"
         android:label="DatePickerFragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.erabook.fragments.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_log_in"
+        >
+        <action
+            android:id="@+id/loginToRegister"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.erabook.fragments.login.RegisterFragment"
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register"
+        >
+        <action
+            android:id="@+id/registerToLogin"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/registerSuccessfulDialogFragment"
+        android:name="com.example.erabook.firebaseActivities.RegisterSuccessfulDialogFragment"
+        android:label="RegisterSuccessfulDialogFragment"
+        tools:layout="@layout/register_successful"
+        >
+        <action
+            android:id="@+id/registerSuccessToLogin"
+            app:destination="@id/loginFragment" />
+    </dialog>
 </navigation>

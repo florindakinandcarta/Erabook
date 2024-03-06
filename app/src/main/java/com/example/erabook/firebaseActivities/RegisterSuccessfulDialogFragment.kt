@@ -1,12 +1,13 @@
 package com.example.erabook.firebaseActivities
 
 import android.app.Dialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.findNavController
+import com.example.erabook.R
 import com.example.erabook.databinding.RegisterSuccessfulBinding
 
 class RegisterSuccessfulDialogFragment : DialogFragment() {
@@ -31,7 +32,7 @@ class RegisterSuccessfulDialogFragment : DialogFragment() {
                 dialog?.dismiss()
             }
             goToLoginText.setOnClickListener {
-                startActivity(Intent(requireContext(), LogInActivity::class.java))
+                findNavController().navigate(R.id.registerSuccessToLogin)
             }
         }
 
