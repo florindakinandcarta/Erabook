@@ -1,7 +1,7 @@
 package com.example.erabook
 
 import android.content.Context
-import androidx.fragment.app.Fragment
+import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -50,14 +50,10 @@ class AuthenticationViewModel : ViewModel() {
         mGoogleSignInClient = GoogleSignIn.getClient(context, googleSignInOptions)
     }
 
-    fun signOut(fragment: Fragment) {
+    fun signOut() {
         mGoogleSignInClient.signOut()
             .addOnCompleteListener {
-                val signInIntent = mGoogleSignInClient.signInIntent
-                fragment.startActivityForResult(
-                    signInIntent,
-                    RC_SIGN_IN
-                )
+                println("Successfully signed out!")
             }
     }
 
@@ -76,6 +72,14 @@ class AuthenticationViewModel : ViewModel() {
                 }
 
             }
+    }
+
+    fun getGoogleSignInIntent(): Intent? {
+        return if (::mGoogleSignInClient.isInitialized) {
+            mGoogleSignInClient.signInIntent
+        } else {
+            null
+        }
     }
 
     fun logout() {

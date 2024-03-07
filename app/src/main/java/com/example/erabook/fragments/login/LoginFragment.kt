@@ -1,11 +1,14 @@
 package com.example.erabook.fragments.login
 
 import UserInfoViewModel
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -20,13 +23,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.common.api.ApiException
 
 private const val DESTINATION_HOME = "HOME_FRAGMENT"
-private const val DESTINATION_PROFILE = "PROFILE_FRAGMENT"
-private const val RC_SIGN_IN = 9001
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLogInBinding
     private val authenticationViewModel: AuthenticationViewModel by viewModels()
     private val userInfoViewModel: UserInfoViewModel by viewModels()
+    private lateinit var startSignInActivityForResult: ActivityResultLauncher<Intent>
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,6 +48,38 @@ class LoginFragment : Fragment() {
         }
         authenticationViewModel.googleSignInOptions(requireContext())
         setupOnClickListeners()
+
+        startSignInActivityForResult =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == RESULT_OK) {
+                    val data: Intent? = result.data
+                    handleSignInResult(data)
+                }
+
+            }
+    }
+
+    private fun handleSignInResult(data: Intent?) {
+        try {
+            val account =
+                GoogleSignIn.getSignedInAccountFromIntent(data).getResult(ApiException::class.java)
+            authenticationViewModel.firebaseAuthWithGoogle(
+                account?.idToken,
+                {
+                    UserDataRemote(
+                        userEmail = account?.email,
+                    ).let {
+                        userInfoViewModel.addUserData(it)
+                    }
+                    requireContext().showToast(R.string.login_successful)
+                },
+                {
+                    requireContext().showToast(R.string.auth_failed)
+                }
+            )
+        } catch (e: ApiException) {
+            println("Error: $e")
+        }
     }
 
 
@@ -61,7 +95,11 @@ class LoginFragment : Fragment() {
                 startActivity(intent)
             }
             googleButton.setOnClickListener {
-                authenticationViewModel.signOut(this@LoginFragment)
+                authenticationViewModel.signOut()
+                val signInIntent = authenticationViewModel.getGoogleSignInIntent()
+                signInIntent?.let { intent ->
+                    startSignInActivityForResult.launch(intent)
+                }
             }
             loginButton.setOnClickListener {
                 val emailLogIn = emailLoginInput.editText?.text.toString()
@@ -99,32 +137,6 @@ class LoginFragment : Fragment() {
                         ForgotPasswordActivity::class.java
                     )
                 )
-            }
-        }
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-                val account = task.getResult(ApiException::class.java)
-                authenticationViewModel.firebaseAuthWithGoogle(account.idToken,
-                    {
-                        UserDataRemote(
-                            userEmail = account?.email,
-                        ).let {
-                            userInfoViewModel.addUserData(it)
-                        }
-                        requireContext().showToast(R.string.login_successful)
-                    },
-                    {
-                        requireContext().showToast(R.string.auth_failed)
-                    }
-                )
-            } catch (e: ApiException) {
-                println("Error: $e")
             }
         }
     }

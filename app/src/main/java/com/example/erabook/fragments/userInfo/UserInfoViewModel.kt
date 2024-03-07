@@ -18,6 +18,9 @@ class UserInfoViewModel : ViewModel() {
     private val db = Firebase.firestore
     private val _documentId = MutableLiveData<String>()
     private val _errorMessage = MutableLiveData<Int>()
+    private val _updateMessage = MutableLiveData<Int>()
+    val updateMessage: LiveData<Int>
+        get() = _updateMessage
 
     val errorMessage: LiveData<Int>
         get() = _errorMessage
@@ -85,14 +88,14 @@ class UserInfoViewModel : ViewModel() {
                         }
                         batch.commit().addOnSuccessListener {
                             fetchUserInfo()
-                            println("Data updated successfully")
+                            _updateMessage.postValue(R.string.update_message_success)
                         }
-                            .addOnFailureListener { exception ->
-                                println("Error updating documents: $exception")
+                            .addOnFailureListener {
+                                _updateMessage.postValue(R.string.update_message_error)
                             }
                     }
-                    .addOnFailureListener { exception ->
-                        println("Error getting documents: $exception")
+                    .addOnFailureListener {
+                        _updateMessage.postValue(R.string.update_message_error_getting_data)
                     }
             }
         }

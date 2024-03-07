@@ -39,6 +39,14 @@ class UserInfoFragment : Fragment() {
                 requireContext().showToast(error)
             }
         }
+        userInfoViewModel.updateMessage.observe(viewLifecycleOwner) { updateMessage ->
+            if (updateMessage != null) {
+                requireContext().showToast(updateMessage)
+                if (updateMessage == R.string.update_message_success){
+                    findNavController().navigate(R.id.editToProfile)
+                }
+            }
+        }
 
         binding.apply {
             updateBirthdayInput.setOnClickListener {
@@ -61,7 +69,6 @@ class UserInfoFragment : Fragment() {
                         user?.email.toString()
                     )
                 }
-
             }
             backUserInfo.setOnClickListener {
                 findNavController().navigate(R.id.editToProfile)
