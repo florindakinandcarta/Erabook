@@ -17,7 +17,6 @@ import com.example.erabook.util.showToast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import java.util.Date
 
 class RegisterFragment : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
@@ -81,16 +80,9 @@ class RegisterFragment : Fragment() {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            val addDocumentForUser = UserDataRemote(
-                                userUid = "",
-                                userName = "",
+                            UserDataRemote(
                                 userEmail = email,
-                                userMobile = 0,
-                                userBirthday = Date(),
-                                userProfileImg = "",
-                                userUsername = "",
-                            )
-                            addDocumentForUser.let {
+                            ).let {
                                 userInfoViewModel.addUserData(it)
                             }
                             val dialog = RegisterSuccessfulDialogFragment()

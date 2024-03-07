@@ -23,7 +23,7 @@
         android:title="@string/discover"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/userProfileFragment"
+        android:id="@+id/loginFragment"
         android:icon="@drawable/profile"
         android:title="@string/profile"
         app:showAsAction="ifRoom" />

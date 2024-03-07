@@ -105,14 +105,35 @@ class UserInfoViewModel : ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 db.collection("erabook-users")
-                    .document()
-                    .set(newUserDataRemote, SetOptions.merge())
+                    .whereEqualTo("userEmail",newUserDataRemote.userEmail)
+                    .get()
+                    .addOnSuccessListener { documents ->
+                        if (documents.isEmpty){
+                            db.collection("erabook-users")
+                                .document()
+                                .set(newUserDataRemote, SetOptions.merge())
+                                .addOnSuccessListener {
+                                    println("Data added successfully")
+                                }
+                                .addOnFailureListener { e ->
+                                    println("Error adding document: $e")
+                                }
+                        }else{
+                            println("User with email ${newUserDataRemote.userEmail} already exists in the db!!!")
+                        }
+
+                    }
+                    .addOnFailureListener { e ->
+                        println("Error querying the documents: $e")
+
+                    }
             }
         }
     }
-    fun updateUserBirthday(newBirthday: Date){
+
+    fun updateUserBirthday(newBirthday: Date) {
         val currentUser = userInfo.value
-        requireNotNull(currentUser){
+        requireNotNull(currentUser) {
             "User info must not be null"
         }
         val updatedBirthday = currentUser.copy(userBirthday = newBirthday)
