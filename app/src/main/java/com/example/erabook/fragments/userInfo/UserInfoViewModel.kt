@@ -49,10 +49,7 @@ class UserInfoViewModel : ViewModel() {
                                 document.data["userUsername"].toString(),
                                 userBirthday.toDate(),
                                 ArrayList()
-                            ).apply {
-                                this.userUid = document.data["userUid"].toString()
-                            }
-
+                            )
                             _userInfo.postValue(parsedUserData)
                         }
                     }
@@ -105,10 +102,10 @@ class UserInfoViewModel : ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 db.collection("erabook-users")
-                    .whereEqualTo("userEmail",newUserDataRemote.userEmail)
+                    .whereEqualTo("userEmail", newUserDataRemote.userEmail)
                     .get()
                     .addOnSuccessListener { documents ->
-                        if (documents.isEmpty){
+                        if (documents.isEmpty) {
                             db.collection("erabook-users")
                                 .document()
                                 .set(newUserDataRemote, SetOptions.merge())
@@ -118,7 +115,7 @@ class UserInfoViewModel : ViewModel() {
                                 .addOnFailureListener { e ->
                                     println("Error adding document: $e")
                                 }
-                        }else{
+                        } else {
                             println("User with email ${newUserDataRemote.userEmail} already exists in the db!!!")
                         }
 

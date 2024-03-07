@@ -5,22 +5,21 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.bumptech.glide.Glide.init
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 
 private const val RC_SIGN_IN = 9001
+
 class AuthenticationViewModel : ViewModel() {
     private val firebaseAuth = FirebaseAuth.getInstance()
     private val _userLiveData = MutableLiveData<FirebaseUser?>()
     val userLiveData: LiveData<FirebaseUser?> = _userLiveData
     private val _isTaskSuccessful = MutableLiveData<Boolean>()
-    val isTaskSuccessful:LiveData<Boolean?> = _isTaskSuccessful
+    val isTaskSuccessful: LiveData<Boolean?> = _isTaskSuccessful
     private val _exception = MutableLiveData<String>()
     val exception: LiveData<String> = _exception
     private lateinit var mGoogleSignInClient: GoogleSignInClient
@@ -31,26 +30,27 @@ class AuthenticationViewModel : ViewModel() {
         }
     }
 
-    fun signInWithEmailAndPassword(email: String, password:String){
-        firebaseAuth.signInWithEmailAndPassword(email,password)
+    fun signInWithEmailAndPassword(email: String, password: String) {
+        firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
-                if (task.isSuccessful){
+                if (task.isSuccessful) {
                     _isTaskSuccessful.value = true
-                }else{
+                } else {
                     _isTaskSuccessful.value = false
                     _exception.value = task.exception?.message
                 }
             }
     }
 
-    fun initializeGoogleSignInClient(context: Context){
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+    fun googleSignInOptions(context: Context) {
+        val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(context.getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-        mGoogleSignInClient = GoogleSignIn.getClient(context,gso)
+        mGoogleSignInClient = GoogleSignIn.getClient(context, googleSignInOptions)
     }
-    fun signOutAndSignIn(fragment: Fragment){
+
+    fun signOut(fragment: Fragment) {
         mGoogleSignInClient.signOut()
             .addOnCompleteListener {
                 val signInIntent = mGoogleSignInClient.signInIntent
@@ -61,18 +61,23 @@ class AuthenticationViewModel : ViewModel() {
             }
     }
 
-    fun firebaseAuthWithGoogle(idToken: String?, context: Context, successCallback: () -> Unit, errorCallback: () -> Unit){
-        val credential = GoogleAuthProvider.getCredential(idToken,null)
+    fun firebaseAuthWithGoogle(
+        idToken: String?,
+        successCallback: () -> Unit,
+        errorCallback: () -> Unit
+    ) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
         firebaseAuth.signInWithCredential(credential)
             .addOnCompleteListener { task ->
-                if (task.isSuccessful){
+                if (task.isSuccessful) {
                     successCallback()
-                }else{
+                } else {
                     errorCallback()
                 }
 
             }
     }
+
     fun logout() {
         firebaseAuth.signOut()
     }

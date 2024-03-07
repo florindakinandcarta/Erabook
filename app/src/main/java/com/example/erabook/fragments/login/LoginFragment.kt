@@ -44,7 +44,7 @@ class LoginFragment : Fragment() {
                 findNavController().navigate(R.id.loginToProfile)
             }
         }
-        authenticationViewModel.initializeGoogleSignInClient(requireContext())
+        authenticationViewModel.googleSignInOptions(requireContext())
         setupOnClickListeners()
     }
 
@@ -61,7 +61,7 @@ class LoginFragment : Fragment() {
                 startActivity(intent)
             }
             googleButton.setOnClickListener {
-                authenticationViewModel.signOutAndSignIn(this@LoginFragment)
+                authenticationViewModel.signOut(this@LoginFragment)
             }
             loginButton.setOnClickListener {
                 val emailLogIn = emailLoginInput.editText?.text.toString()
@@ -110,7 +110,7 @@ class LoginFragment : Fragment() {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 val account = task.getResult(ApiException::class.java)
-                authenticationViewModel.firebaseAuthWithGoogle(account.idToken, requireContext(),
+                authenticationViewModel.firebaseAuthWithGoogle(account.idToken,
                     {
                         UserDataRemote(
                             userEmail = account?.email,
