@@ -39,6 +39,14 @@ class UserInfoFragment : Fragment() {
                 requireContext().showToast(error)
             }
         }
+        userInfoViewModel.updateMessage.observe(viewLifecycleOwner) { updateMessage ->
+            if (updateMessage != null) {
+                requireContext().showToast(updateMessage)
+                if (updateMessage == R.string.update_message_success){
+                    findNavController().navigate(R.id.editToProfile)
+                }
+            }
+        }
 
         binding.apply {
             updateBirthdayInput.setOnClickListener {
@@ -50,18 +58,16 @@ class UserInfoFragment : Fragment() {
                 dateDialogFragment.show(parentFragmentManager, "DatePicker")
             }
             updateSubmitInfoButton.setOnClickListener {
-                updatedUser.apply {
-                    userName = updateNameInput.editText?.text.toString()
-                    userUsername = updateUsernameInput.editText?.text.toString()
-                    userMobile = updateMobileInput.editText?.text.toString().toIntOrNull() ?: 0
-                }
                 authenticationViewModel.userLiveData.observe(viewLifecycleOwner) { user ->
                     userInfoViewModel.updateUserDataByEmail(
-                        updatedUser,
+                        updatedUser.copy(
+                            userName = updateNameInput.editText?.text.toString(),
+                            userUsername = updateUsernameInput.editText?.text.toString(),
+                            userMobile = updateMobileInput.editText?.text.toString().toIntOrNull() ?: 0
+                        ),
                         user?.email.toString()
                     )
                 }
-
             }
             backUserInfo.setOnClickListener {
                 findNavController().navigate(R.id.editToProfile)

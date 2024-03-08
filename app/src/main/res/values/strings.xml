@@ -130,4 +130,8 @@
     <string name="error_code_message_incorrect">The supplied auth credential is incorrect, malformed or has expired.</string>
     <string name="error_code_message_connection">A network error (such as timeout, interrupted connection or unreachable host) has occurred.</string>
     <string name="default_web_client_id">"1048665387941-uto14qr1gqqm6g7oefdh49png8s136vb.apps.googleusercontent.com"</string>
+    <string name="update_message_success">Data updated successfully!</string>
+    <string name="update_message_error">Error updating documents!</string>
+    <string name="update_message_error_getting_data">Error getting data!</string>
+    <string name="default_error">Something went wrong?!</string>
 </resources>

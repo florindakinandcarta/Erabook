@@ -11,9 +11,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.erabook.AuthenticationViewModel
 import com.example.erabook.R
 import com.example.erabook.databinding.UserProfileBinding
-import com.example.erabook.util.showToast
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 class UserProfileFragment : Fragment() {
     private lateinit var binding: UserProfileBinding
@@ -40,7 +37,7 @@ class UserProfileFragment : Fragment() {
     private fun setOnCLickListener() {
         binding.apply {
             logOut.setOnClickListener {
-                Firebase.auth.signOut()
+                authenticationViewModel.logout()
                 findNavController().navigate(R.id.userProfileToLogin)
             }
             backProfile.setOnClickListener {
@@ -56,25 +53,13 @@ class UserProfileFragment : Fragment() {
     }
 
     private fun userStatus() {
-        authenticationViewModel.userLiveData.observe(viewLifecycleOwner) { user ->
-            if (user == null) {
-                findNavController().navigate(R.id.userProfileToLogin)
-            } else {
-                userInfoViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
-                    if (error != null) {
-                        requireContext().showToast(error)
-                    }
-                }
-                userInfoViewModel.userInfo.observe(viewLifecycleOwner) { userData ->
-                    binding.apply {
-                        profileName.text = userData.userName
-                        emailProfile.text = userData.userEmail
-                        mobileNumber.text = userData.userMobile.toString()
-                    }
-                }
+        userInfoViewModel.userInfo.observe(viewLifecycleOwner) { userData ->
+            binding.apply {
+                profileName.text = userData.userName
+                emailProfile.text = userData.userEmail
+                mobileNumber.text = userData.userMobile.toString()
             }
         }
-
     }
-
 }
+

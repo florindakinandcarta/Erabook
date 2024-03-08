@@ -18,6 +18,9 @@ class UserInfoViewModel : ViewModel() {
     private val db = Firebase.firestore
     private val _documentId = MutableLiveData<String>()
     private val _errorMessage = MutableLiveData<Int>()
+    private val _updateMessage = MutableLiveData<Int>()
+    val updateMessage: LiveData<Int>
+        get() = _updateMessage
 
     val errorMessage: LiveData<Int>
         get() = _errorMessage
@@ -49,10 +52,7 @@ class UserInfoViewModel : ViewModel() {
                                 document.data["userUsername"].toString(),
                                 userBirthday.toDate(),
                                 ArrayList()
-                            ).apply {
-                                this.userUid = document.data["userUid"].toString()
-                            }
-
+                            )
                             _userInfo.postValue(parsedUserData)
                         }
                     }
@@ -88,14 +88,14 @@ class UserInfoViewModel : ViewModel() {
                         }
                         batch.commit().addOnSuccessListener {
                             fetchUserInfo()
-                            println("Data updated successfully")
+                            _updateMessage.postValue(R.string.update_message_success)
                         }
-                            .addOnFailureListener { exception ->
-                                println("Error updating documents: $exception")
+                            .addOnFailureListener {
+                                _updateMessage.postValue(R.string.update_message_error)
                             }
                     }
-                    .addOnFailureListener { exception ->
-                        println("Error getting documents: $exception")
+                    .addOnFailureListener {
+                        _updateMessage.postValue(R.string.update_message_error_getting_data)
                     }
             }
         }
@@ -105,14 +105,35 @@ class UserInfoViewModel : ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 db.collection("erabook-users")
-                    .document()
-                    .set(newUserDataRemote, SetOptions.merge())
+                    .whereEqualTo("userEmail", newUserDataRemote.userEmail)
+                    .get()
+                    .addOnSuccessListener { documents ->
+                        if (documents.isEmpty) {
+                            db.collection("erabook-users")
+                                .document()
+                                .set(newUserDataRemote, SetOptions.merge())
+                                .addOnSuccessListener {
+                                    println("Data added successfully")
+                                }
+                                .addOnFailureListener { e ->
+                                    println("Error adding document: $e")
+                                }
+                        } else {
+                            println("User with email ${newUserDataRemote.userEmail} already exists in the db!!!")
+                        }
+
+                    }
+                    .addOnFailureListener { e ->
+                        println("Error querying the documents: $e")
+
+                    }
             }
         }
     }
-    fun updateUserBirthday(newBirthday: Date){
+
+    fun updateUserBirthday(newBirthday: Date) {
         val currentUser = userInfo.value
-        requireNotNull(currentUser){
+        requireNotNull(currentUser) {
             "User info must not be null"
         }
         val updatedBirthday = currentUser.copy(userBirthday = newBirthday)

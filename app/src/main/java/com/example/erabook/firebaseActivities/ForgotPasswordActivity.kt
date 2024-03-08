@@ -30,6 +30,10 @@ class ForgotPasswordActivity : AppCompatActivity() {
                         }
                     }
             }
+            backForgotPassword.setOnClickListener {
+                super.onBackPressedDispatcher
+                finish()
+            }
         }
     }
 

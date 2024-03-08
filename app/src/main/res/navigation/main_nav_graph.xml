@@ -59,8 +59,8 @@
             android:id="@+id/homeToFocus"
             app:destination="@id/focusTime" />
         <action
-            android:id="@+id/homeToProfile"
-            app:destination="@id/userProfileFragment" />
+            android:id="@+id/homeToLogin"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -211,6 +211,9 @@
         <action
             android:id="@+id/loginToRegister"
             app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/loginToProfile"
+            app:destination="@id/userProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
