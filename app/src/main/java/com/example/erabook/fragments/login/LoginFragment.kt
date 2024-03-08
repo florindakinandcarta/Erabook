@@ -116,8 +116,8 @@ class LoginFragment : Fragment() {
                         findNavController().navigate(R.id.loginToProfile)
                         requireContext().showToast(R.string.login_successful)
                     } else {
-                        authenticationViewModel.exception.let { message ->
-                            when (message.value) {
+                        authenticationViewModel.exception.observe(viewLifecycleOwner) { message ->
+                            when (message) {
                                 getString(R.string.error_code_message_incorrect) -> requireContext().showToast(
                                     R.string.wrong_password_email
                                 )
