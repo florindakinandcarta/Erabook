@@ -118,6 +118,7 @@ class LoginFragment : Fragment() {
                     } else {
                         authenticationViewModel.exception.observe(viewLifecycleOwner) { message ->
                             when (message) {
+                                null -> requireContext().showToast(R.string.default_error)
                                 getString(R.string.error_code_message_incorrect) -> requireContext().showToast(
                                     R.string.wrong_password_email
                                 )

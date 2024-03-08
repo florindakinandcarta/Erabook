@@ -133,4 +133,5 @@
     <string name="update_message_success">Data updated successfully!</string>
     <string name="update_message_error">Error updating documents!</string>
     <string name="update_message_error_getting_data">Error getting data!</string>
+    <string name="default_error">Something went wrong?!</string>
 </resources>

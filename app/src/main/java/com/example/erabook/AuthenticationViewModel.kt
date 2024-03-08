@@ -20,8 +20,8 @@ class AuthenticationViewModel : ViewModel() {
     val userLiveData: LiveData<FirebaseUser?> = _userLiveData
     private val _isTaskSuccessful = MutableLiveData<Boolean>()
     val isTaskSuccessful: LiveData<Boolean?> = _isTaskSuccessful
-    private val _exception = MutableLiveData<String>()
-    val exception: LiveData<String> = _exception
+    private val _exception = MutableLiveData<String?>()
+    val exception: LiveData<String?> = _exception
     private lateinit var mGoogleSignInClient: GoogleSignInClient
 
     init {
