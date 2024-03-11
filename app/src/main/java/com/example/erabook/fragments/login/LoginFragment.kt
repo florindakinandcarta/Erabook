@@ -12,10 +12,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.erabook.AuthenticationViewModel
-import com.example.erabook.MainActivity
+import com.example.erabook.activities.AuthenticationViewModel
+import com.example.erabook.activities.MainActivity
 import com.example.erabook.R
-import com.example.erabook.data.firebasedb.UserDataRemote
+import com.example.erabook.data.models.UserDataRemote
 import com.example.erabook.databinding.FragmentLogInBinding
 import com.example.erabook.firebaseActivities.ForgotPasswordActivity
 import com.example.erabook.util.showToast

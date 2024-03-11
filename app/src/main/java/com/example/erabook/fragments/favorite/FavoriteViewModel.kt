@@ -1,7 +1,7 @@
 package com.example.erabook.fragments.favorite
 
 import androidx.lifecycle.ViewModel
-import com.example.erabook.data.Books
+import com.example.erabook.data.models.Books
 import com.example.erabook.fragments.home.HomeFragment
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

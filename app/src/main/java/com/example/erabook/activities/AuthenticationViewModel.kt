@@ -1,18 +1,17 @@
-package com.example.erabook
+package com.example.erabook.activities
 
 import android.content.Context
 import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.erabook.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-
-private const val RC_SIGN_IN = 9001
 
 class AuthenticationViewModel : ViewModel() {
     private val firebaseAuth = FirebaseAuth.getInstance()

@@ -61,6 +61,9 @@
         <action
             android:id="@+id/homeToLogin"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/homeToDiscover"
+            app:destination="@id/discoverFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -235,4 +238,10 @@
             android:id="@+id/registerSuccessToLogin"
             app:destination="@id/loginFragment" />
     </dialog>
+    <fragment
+        android:id="@+id/discoverFragment"
+        android:name="com.example.erabook.fragments.discoverGoogle.DiscoverFragment"
+        android:label="DiscoverFragment"
+        tools:layout="@layout/fragment_discover"
+        />
 </navigation>

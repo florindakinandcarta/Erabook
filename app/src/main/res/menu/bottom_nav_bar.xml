@@ -18,7 +18,7 @@
         android:title="@string/favorite"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/discover_nav"
+        android:id="@+id/discoverFragment"
         android:icon="@drawable/discover"
         android:title="@string/discover"
         app:showAsAction="ifRoom" />

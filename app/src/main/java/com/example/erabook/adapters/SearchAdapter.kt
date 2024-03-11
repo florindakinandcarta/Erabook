@@ -8,7 +8,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.erabook.R
-import com.example.erabook.data.Books
+import com.example.erabook.data.models.Books
 import com.example.erabook.databinding.ItemSearchBinding
 
 class SearchAdapter : ListAdapter<Books, SearchAdapter.ViewHolder>(HomeAdapterDiffCallBack()) {

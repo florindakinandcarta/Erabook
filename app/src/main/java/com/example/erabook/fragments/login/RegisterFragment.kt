@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.erabook.R
-import com.example.erabook.data.firebasedb.UserDataRemote
+import com.example.erabook.data.models.UserDataRemote
 import com.example.erabook.databinding.FragmentRegisterBinding
 import com.example.erabook.firebaseActivities.RegisterSuccessfulDialogFragment
 import com.example.erabook.util.showToast

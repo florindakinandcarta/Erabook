@@ -1,9 +1,11 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id ("org.jetbrains.kotlin.kapt")
+    kotlin("kapt")
     id ("androidx.navigation.safeargs")
     id("com.google.gms.google-services")
+    id("com.google.dagger.hilt.android")
+    id ("kotlin-parcelize")
 }
 
 android {
@@ -40,6 +42,9 @@ android {
         viewBinding = true
         dataBinding = true
     }
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
@@ -74,6 +79,7 @@ dependencies {
     implementation ("com.airbnb.android:lottie:6.3.0")
     implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
     implementation("com.google.firebase:firebase-firestore")
-
+    implementation("com.google.dagger:hilt-android:2.50")
+    kapt("com.google.dagger:hilt-android-compiler:2.50")
 
 }

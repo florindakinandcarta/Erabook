@@ -1,4 +1,4 @@
-package com.example.erabook.data.firebasedb
+package com.example.erabook.data.models
 
 import com.google.gson.annotations.SerializedName
 import java.util.Date

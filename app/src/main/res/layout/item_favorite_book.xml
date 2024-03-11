@@ -6,7 +6,7 @@
 
         <variable
             name="book"
-            type="com.example.erabook.data.Books" />
+            type="com.example.erabook.data.models.Books" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

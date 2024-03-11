@@ -1,7 +1,7 @@
 package com.example.erabook.adapters
 
 import androidx.recyclerview.widget.DiffUtil
-import com.example.erabook.data.Books
+import com.example.erabook.data.models.Books
 
 class HomeAdapterDiffCallBack: DiffUtil.ItemCallback<Books>() {
     override fun areItemsTheSame(oldItem: Books, newItem: Books): Boolean {
