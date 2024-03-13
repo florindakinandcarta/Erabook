@@ -15,7 +15,7 @@ data class VolumeInfo(
     var pageCount: Int? = null,
     var printType: String? = null,
     var categories: ArrayList<String> = arrayListOf(),
-    var averageRating: Int? = null,
+    var averageRating: Double? = null,
     var ratingsCount: Int? = null,
     var maturityRating: String? = null,
     var allowAnonLogging: Boolean? = null,

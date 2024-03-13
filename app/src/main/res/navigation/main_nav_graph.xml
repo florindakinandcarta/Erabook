@@ -171,14 +171,12 @@
         android:id="@+id/focusTime"
         android:name="com.example.erabook.fragments.focustimer.FocusTimeFragment"
         android:label="FocusTime"
-        tools:layout="@layout/fragment_focus_time"
-        />
+        tools:layout="@layout/fragment_focus_time" />
     <fragment
         android:id="@+id/userProfileFragment"
         android:name="com.example.erabook.fragments.userProfile.UserProfileFragment"
         android:label="UserProfileFragment"
-        tools:layout="@layout/user_profile"
-        >
+        tools:layout="@layout/user_profile">
         <action
             android:id="@+id/profileToHome"
             app:destination="@id/homeFragment" />
@@ -209,8 +207,7 @@
         android:id="@+id/loginFragment"
         android:name="com.example.erabook.fragments.login.LoginFragment"
         android:label="LoginFragment"
-        tools:layout="@layout/fragment_log_in"
-        >
+        tools:layout="@layout/fragment_log_in">
         <action
             android:id="@+id/loginToRegister"
             app:destination="@id/registerFragment" />
@@ -222,8 +219,7 @@
         android:id="@+id/registerFragment"
         android:name="com.example.erabook.fragments.login.RegisterFragment"
         android:label="RegisterFragment"
-        tools:layout="@layout/fragment_register"
-        >
+        tools:layout="@layout/fragment_register">
         <action
             android:id="@+id/registerToLogin"
             app:destination="@id/loginFragment" />
@@ -232,8 +228,7 @@
         android:id="@+id/registerSuccessfulDialogFragment"
         android:name="com.example.erabook.firebaseActivities.RegisterSuccessfulDialogFragment"
         android:label="RegisterSuccessfulDialogFragment"
-        tools:layout="@layout/register_successful"
-        >
+        tools:layout="@layout/register_successful">
         <action
             android:id="@+id/registerSuccessToLogin"
             app:destination="@id/loginFragment" />
@@ -242,6 +237,29 @@
         android:id="@+id/discoverFragment"
         android:name="com.example.erabook.fragments.discoverGoogle.DiscoverFragment"
         android:label="DiscoverFragment"
-        tools:layout="@layout/fragment_discover"
-        />
+        tools:layout="@layout/fragment_discover">
+        <action
+            android:id="@+id/discoverToDetails"
+            app:destination="@id/discoverDetailsFragment" />
+        <argument
+            android:name="bookName"
+            android:defaultValue=" "
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/discoverDetailsFragment"
+        android:name="com.example.erabook.fragments.discoverGoogle.DiscoverDetailsFragment"
+        android:label="DiscoverDetailsFragment"
+        tools:layout="@layout/fragment_book_details">
+        <action
+            android:id="@+id/detailsToDiscover"
+            app:destination="@id/discoverFragment" />
+        <argument
+            android:name="bookName"
+            android:defaultValue=" "
+            app:argType="string"
+            app:nullable="true" />
+
+    </fragment>
 </navigation>

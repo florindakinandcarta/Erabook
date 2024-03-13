@@ -2,6 +2,7 @@
 <resources>
     <dimen name="space8">8dp</dimen>
     <dimen name="space20">20dp</dimen>
+    <dimen name="space30">30dp</dimen>
     <dimen name="space5">5dp</dimen>
     <dimen name="space10">10dp</dimen>
     <dimen name="space16">16dp</dimen>

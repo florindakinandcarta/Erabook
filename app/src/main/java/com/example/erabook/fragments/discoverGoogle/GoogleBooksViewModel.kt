@@ -23,11 +23,11 @@ class GoogleBooksViewModel @Inject constructor(
 
     private val _response_books = MutableLiveData<Resource<GoogleBooks>>()
     val response_books: LiveData<Resource<GoogleBooks>> = _response_books
-    fun fetchBooks() {
+    fun fetchBooks(q: String?, loadMore: Int) {
         _loading_books.value = true
         viewModelScope.launch {
             try {
-                val response = googleBooksApi.getGoogleBooks("florindaha")
+                val response = googleBooksApi.getGoogleBooks(q, maxResults = loadMore + 20)
                 _response_books.value = Resource.Success(response)
             } catch (httpException: HttpException) {
                 val errorResponse = Gson().fromJson(
@@ -36,6 +36,7 @@ class GoogleBooksViewModel @Inject constructor(
                 )
                 _response_books.value = Resource.Error(errorResponse?.message ?: "")
             } catch (e: Exception) {
+                println("this is the error: $e")
                 _response_books.value = Resource.Error()
             } finally {
                 _loading_books.value = false

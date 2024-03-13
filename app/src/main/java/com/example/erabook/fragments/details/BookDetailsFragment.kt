@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.erabook.R
 import com.example.erabook.databinding.FragmentBookDetailsBinding
-import com.example.erabook.util.loadImage
+import com.example.erabook.util.loadImageFromAssets
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class BookDetailsFragment : Fragment() {
@@ -50,7 +50,7 @@ class BookDetailsFragment : Fragment() {
             bookAuthorDetails.text = args.author
             numberOfPages.text = args.pages.toString()
             releaseDateNumber.text = args.year.toString()
-            bookImageDetails.loadImage(args.imageLink)
+            bookImageDetails.loadImageFromAssets(args.imageLink)
             backBookDetails.setOnClickListener {
                 findNavController().navigate(R.id.detailToHome)
             }

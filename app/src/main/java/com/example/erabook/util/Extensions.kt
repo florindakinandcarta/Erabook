@@ -7,12 +7,24 @@ import android.widget.Toast
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 
-@BindingAdapter("loadImage")
-fun ImageView.loadImage(imageLink: String?) {
+@BindingAdapter("loadImageFromAssets")
+fun ImageView.loadImageFromAssets(imageLink: String?) {
     imageLink?.let {
         val absolutePath = "file:///android_asset/$imageLink"
         Glide.with(this)
             .load(absolutePath)
+            .into(this)
+    }
+}
+@BindingAdapter("loadImage")
+fun ImageView.loadImageFromUrl(imageLink: String?) {
+    var imageLinkModified = ""
+    if (imageLink?.startsWith("http://") == true){
+        imageLinkModified = "https://" + imageLink.substring(7)
+    }
+    imageLink?.let {
+        Glide.with(this)
+            .load(imageLinkModified)
             .into(this)
     }
 }

@@ -134,4 +134,6 @@
     <string name="update_message_error">Error updating documents!</string>
     <string name="update_message_error_getting_data">Error getting data!</string>
     <string name="default_error">Something went wrong?!</string>
+    <string name="load_more">Load more…</string>
+    <string name="empty_text"></string>
 </resources>
