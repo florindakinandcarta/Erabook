@@ -136,4 +136,6 @@
     <string name="default_error">Something went wrong?!</string>
     <string name="load_more">Load more…</string>
     <string name="empty_text"></string>
+    <string name="cancelled">Cancelled</string>
+
 </resources>

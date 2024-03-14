@@ -5,14 +5,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.appcompat.widget.SearchView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.erabook.R
 import com.example.erabook.adapters.DiscoverAdapter
 import com.example.erabook.databinding.FragmentDiscoverBinding
 import com.example.erabook.util.showToast
+import com.google.mlkit.vision.barcode.common.Barcode
+import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions
+import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -84,6 +89,62 @@ class DiscoverFragment : Fragment() {
                 }
 
             }
+            qrCodeButton.setOnClickListener {
+                scanBook()
+            }
         }
+    }
+
+    private fun scanBook() {
+        val options = GmsBarcodeScannerOptions.Builder()
+            .setBarcodeFormats(
+                Barcode.FORMAT_EAN_13,
+                Barcode.FORMAT_QR_CODE
+            )
+            .enableAutoZoom()
+            .build()
+        val scanner = GmsBarcodeScanning.getClient(requireContext())
+        scanner.startScan()
+            .addOnSuccessListener { barcode ->
+                val barcodeString = "=isbn:${barcode.rawValue}"
+                googleBooksViewModel.fetchBooksWithISBN(barcodeString)
+                googleBooksViewModel.response_single_book.observe(viewLifecycleOwner) { singleBook ->
+                    when (singleBook) {
+                        is Resource.Error -> {
+                            requireContext().showToast(R.string.error_fetching_data)
+                        }
+
+                        is Resource.Success -> {
+                            val bookItem = bundleOf(Pair("bookName", singleBook.data?.items?.map { it.volumeInfo?.title }))
+                            findNavController().navigate(R.id.discoverToDetails, bookItem)
+                            googleBooksViewModel.loading_books.observe(viewLifecycleOwner) { loader ->
+                                if (loader) {
+                                    binding.apply {
+                                        loadingBooks.visibility = View.VISIBLE
+                                    }
+
+                                } else {
+                                    binding.apply {
+                                        loadingBooks.visibility = View.GONE
+                                        loadMore.visibility = View.VISIBLE
+                                    }
+                                }
+                            }
+
+                        }
+
+                        else -> {
+                            requireContext().showToast(R.string.default_error)
+                        }
+                    }
+                }
+            }
+            .addOnCanceledListener {
+                requireContext().showToast(R.string.cancelled)
+            }
+            .addOnFailureListener { message ->
+                println("Some error happened: $message")
+                requireContext().showToast(R.string.default_error)
+            }
     }
 }
