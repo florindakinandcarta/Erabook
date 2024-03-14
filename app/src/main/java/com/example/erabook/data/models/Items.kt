@@ -5,12 +5,12 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Items(
-    var kind: String? = null,
-    var id: String? = null,
-    var etag: String? = null,
-    var selfLink: String? = null,
-    var volumeInfo: VolumeInfo? = VolumeInfo(),
-    var saleInfo: SaleInfo? = SaleInfo(),
-    var accessInfo: AccessInfo? = AccessInfo(),
-    var searchInfo: SearchInfo? = SearchInfo()
+    val kind: String? = null,
+    val id: String? = null,
+    val etag: String? = null,
+    val selfLink: String? = null,
+    val volumeInfo: VolumeInfo? = VolumeInfo(),
+    val saleInfo: SaleInfo? = SaleInfo(),
+    val accessInfo: AccessInfo? = AccessInfo(),
+    val searchInfo: SearchInfo? = SearchInfo()
 ) : Parcelable

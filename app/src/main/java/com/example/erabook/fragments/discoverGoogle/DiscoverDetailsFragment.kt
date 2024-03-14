@@ -13,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.erabook.R
 import com.example.erabook.databinding.FragmentBookDetailsBinding
 import com.example.erabook.util.loadImageFromUrl
+import com.example.erabook.util.openLinkBrowser
 import com.example.erabook.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,8 +22,6 @@ class DiscoverDetailsFragment : Fragment() {
     private lateinit var binding: FragmentBookDetailsBinding
     private val googleBooksViewModel: GoogleBooksViewModel by viewModels()
     private val args: DiscoverFragmentArgs by navArgs()
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -65,7 +64,7 @@ class DiscoverDetailsFragment : Fragment() {
                         paragraphText.text = volumeInfoList?.volumeInfo?.description
                         bookImageDetails.loadImageFromUrl(volumeInfoList?.volumeInfo?.imageLinks?.thumbnail)
                         buyBook.setOnClickListener {
-                            openLinkBrowser(volumeInfoList?.volumeInfo?.title.toString())
+                            openLinkBrowser(volumeInfoList?.volumeInfo?.title.toString(),requireContext())
                         }
                         shareBook.setOnClickListener {
                             val bookDetailsIntent = Intent(Intent.ACTION_SEND).apply {
@@ -100,11 +99,5 @@ class DiscoverDetailsFragment : Fragment() {
 
             }
         }
-    }
-
-    private fun openLinkBrowser(url: String?) {
-        val intent =
-            Intent(Intent.ACTION_VIEW, Uri.parse("https://www.barnesandnoble.com/s/$url"))
-        startActivity(intent)
     }
 }

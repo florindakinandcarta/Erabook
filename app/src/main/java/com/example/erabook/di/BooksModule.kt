@@ -12,11 +12,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object BooksModule {
+    private const val BASE_URL  = "https://www.googleapis.com/books/v1/"
     @Provides
     @Singleton
     fun getDataFromGoogleApi() : GoogleApi{
         return Retrofit.Builder()
-            .baseUrl("https://www.googleapis.com/books/v1/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(GoogleApi::class.java)

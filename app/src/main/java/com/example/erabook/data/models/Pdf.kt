@@ -5,6 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Pdf(
-    var isAvailable: Boolean? = null,
-    var acsTokenLink: String? = null
+    val isAvailable: Boolean? = null,
+    val acsTokenLink: String? = null
 ) : Parcelable

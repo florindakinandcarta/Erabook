@@ -14,6 +14,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.erabook.R
 import com.example.erabook.databinding.FragmentBookDetailsBinding
 import com.example.erabook.util.loadImageFromAssets
+import com.example.erabook.util.openLinkBrowser
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class BookDetailsFragment : Fragment() {
@@ -56,7 +57,7 @@ class BookDetailsFragment : Fragment() {
             }
 
             buyBook.setOnClickListener {
-                openLinkBrowser(args.link.toString())
+                openLinkBrowser(args.link.toString(),requireContext())
             }
 
             booksDetailViewModel.firstParagraph.observe(viewLifecycleOwner) { paragraph ->
@@ -94,12 +95,6 @@ class BookDetailsFragment : Fragment() {
             }
         }
     }
-
-    private fun openLinkBrowser(url: String) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.barnesandnoble.com/s/$url"))
-        startActivity(intent)
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         (activity as AppCompatActivity).findViewById<BottomNavigationView>(R.id.bottomNavBar).visibility =

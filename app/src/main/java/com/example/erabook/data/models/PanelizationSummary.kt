@@ -5,6 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class PanelizationSummary(
-    var containsEpubBubbles: Boolean? = null,
-    var containsImageBubbles: Boolean? = null
+    val containsEpubBubbles: Boolean? = null,
+    val containsImageBubbles: Boolean? = null
 ) : Parcelable

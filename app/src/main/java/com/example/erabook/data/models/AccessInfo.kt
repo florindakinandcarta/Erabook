@@ -6,14 +6,14 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class AccessInfo(
-    var country: String? = null,
-    var viewability: String? = null,
-    var embeddable: Boolean? = null,
-    var publicDomain: Boolean? = null,
-    var textToSpeechPermission: String? = null,
-    var epub: Epub? = Epub(),
-    var pdf: Pdf? = Pdf(),
-    var webReaderLink: String? = null,
-    var accessViewStatus: String? = null,
-    var quoteSharingAllowed: Boolean? = null
+    val country: String? = null,
+    val viewability: String? = null,
+    val embeddable: Boolean? = null,
+    val publicDomain: Boolean? = null,
+    val textToSpeechPermission: String? = null,
+    val epub: Epub? = Epub(),
+    val pdf: Pdf? = Pdf(),
+    val webReaderLink: String? = null,
+    val accessViewStatus: String? = null,
+    val quoteSharingAllowed: Boolean? = null
 ) : Parcelable
