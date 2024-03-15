@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.erabook.data.googlebooks.GoogleApi
 import com.example.erabook.data.models.ExceptionResponse
 import com.example.erabook.data.models.GoogleBooks
-import com.google.android.play.integrity.internal.q
 import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -28,7 +27,8 @@ class GoogleBooksViewModel @Inject constructor(
         _loading_books.value = true
         viewModelScope.launch {
             try {
-                val response = googleBooksApi.getGoogleBooks(queryBookName, maxResults = loadMore + 20)
+                val response =
+                    googleBooksApi.getGoogleBooks(queryBookName, maxResults = loadMore + 20)
                 _response_books.value = Resource.Success(response)
             } catch (httpException: HttpException) {
                 val errorResponse = Gson().fromJson(

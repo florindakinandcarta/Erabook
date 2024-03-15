@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -20,6 +19,7 @@ class DiscoverFragment : Fragment() {
     private lateinit var binding: FragmentDiscoverBinding
     private val googleBooksViewModel: GoogleBooksViewModel by viewModels()
     private lateinit var discoverAdapter: DiscoverAdapter
+    private val sharedViewModel: SharedGoogleBooksViewModel by viewModels({ requireActivity() })
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,6 +55,7 @@ class DiscoverFragment : Fragment() {
                 }
             })
             googleBooksViewModel.response_books.observe(viewLifecycleOwner) { response ->
+                sharedViewModel.setResponseBooks(response)
                 when (response) {
                     is Resource.Error -> {
                         requireContext().showToast(R.string.error_fetching_data)
