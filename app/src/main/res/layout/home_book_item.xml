@@ -5,7 +5,7 @@
     <data>
         <variable
             name="book"
-            type="com.example.erabook.data.Books" />
+            type="com.example.erabook.data.models.Books" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,7 +22,7 @@
             android:layout_height="80dp"
             android:layout_margin="@dimen/space10"
             android:scaleType="centerCrop"
-            app:loadImage="@{book.imageLink}"
+            app:loadImageFromAssets="@{book.imageLink}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

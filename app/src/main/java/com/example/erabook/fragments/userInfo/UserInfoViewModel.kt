@@ -3,7 +3,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.erabook.R
-import com.example.erabook.data.firebasedb.UserDataRemote
+import com.example.erabook.data.models.UserDataRemote
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore

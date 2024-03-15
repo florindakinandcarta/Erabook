@@ -1,4 +1,4 @@
-package com.example.erabook.data
+package com.example.erabook.data.models
 
 import com.google.gson.annotations.SerializedName
 

@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.erabook.AuthenticationViewModel
+import com.example.erabook.activities.AuthenticationViewModel
 import com.example.erabook.R
-import com.example.erabook.data.firebasedb.UserDataRemote
+import com.example.erabook.data.models.UserDataRemote
 import com.example.erabook.databinding.FragmentUserInfoBinding
 import com.example.erabook.util.showToast
 import java.text.SimpleDateFormat

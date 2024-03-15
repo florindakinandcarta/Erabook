@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.erabook.data.Books
+import com.example.erabook.data.models.Books
 import com.example.erabook.databinding.ItemFavoriteBookBinding
 
 

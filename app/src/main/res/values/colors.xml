@@ -11,4 +11,9 @@
     <color name="bg">#FFB74D</color>
     <color name="bg_green">#9FCF44</color>
     <color name="bg_red">#DA3838</color>
+    <color name="link_color">#0000EE</color>
+    <color name="color_card1">#E8F3D6</color>
+    <color name="color_card2">#FCF9BE</color>
+    <color name="color_card3">#FFDCA9</color>
+    <color name="color_card4">#FAAB78</color>
 </resources>
