@@ -8,8 +8,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.erabook.data.googlebooks.GoogleApi
 import com.example.erabook.data.models.ExceptionResponse
 import com.example.erabook.data.models.GoogleBooks
-import com.example.erabook.data.models.Items
-import com.example.erabook.data.models.VolumeInfo
 import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -28,11 +26,12 @@ class GoogleBooksViewModel @Inject constructor(
 
     private val _response_single_book = MutableLiveData<Resource<GoogleBooks>>()
     val response_single_book: LiveData<Resource<GoogleBooks>> = _response_single_book
-    fun fetchBooks(q: String?, loadMore: Int) {
+    fun fetchBooks(queryBookName: String?, loadMore: Int) {
         _loading_books.value = true
         viewModelScope.launch {
             try {
-                val response = googleBooksApi.getGoogleBooks(q, maxResults = loadMore + 20)
+                val response =
+                    googleBooksApi.getGoogleBooks(queryBookName, maxResults = loadMore + 20)
                 _response_books.value = Resource.Success(response)
             } catch (httpException: HttpException) {
                 val errorResponse = Gson().fromJson(
@@ -41,6 +40,7 @@ class GoogleBooksViewModel @Inject constructor(
                 )
                 _response_books.value = Resource.Error(errorResponse?.message ?: "")
             } catch (e: Exception) {
+                println("this is the error: $e")
                 _response_books.value = Resource.Error()
             } finally {
                 _loading_books.value = false

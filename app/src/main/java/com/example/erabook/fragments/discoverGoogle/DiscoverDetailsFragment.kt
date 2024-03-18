@@ -2,7 +2,6 @@ package com.example.erabook.fragments.discoverGoogle
 
 import Resource
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,16 +12,15 @@ import androidx.navigation.fragment.navArgs
 import com.example.erabook.R
 import com.example.erabook.databinding.FragmentBookDetailsBinding
 import com.example.erabook.util.loadImageFromUrl
+import com.example.erabook.util.openLinkBrowser
 import com.example.erabook.util.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DiscoverDetailsFragment : Fragment() {
     private lateinit var binding: FragmentBookDetailsBinding
-    private val googleBooksViewModel: GoogleBooksViewModel by viewModels()
     private val args: DiscoverFragmentArgs by navArgs()
-
-
+    private val sharedViewModel: SharedGoogleBooksViewModel by viewModels({ requireActivity() })
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,16 +36,14 @@ class DiscoverDetailsFragment : Fragment() {
             backBookDetails.setOnClickListener {
                 requireActivity().onBackPressedDispatcher.onBackPressed()
             }
-            val searchTerm = args.bookName?.replace(" ", "+")
-            googleBooksViewModel.fetchBooks(searchTerm, 0)
-            googleBooksViewModel.response_books.observe(viewLifecycleOwner) { response ->
+            sharedViewModel.response_books.observe(viewLifecycleOwner) { response ->
                 when (response) {
                     is Resource.Error -> {
                         requireContext().showToast(R.string.error_fetching_data)
                     }
 
                     is Resource.Success -> {
-                        googleBooksViewModel.loading_books.observe(viewLifecycleOwner) { loader ->
+                        sharedViewModel.loading_books.observe(viewLifecycleOwner) { loader ->
                             if (loader) {
                                 progressBar.visibility = View.VISIBLE
                             } else {
@@ -65,7 +61,10 @@ class DiscoverDetailsFragment : Fragment() {
                         paragraphText.text = volumeInfoList?.volumeInfo?.description
                         bookImageDetails.loadImageFromUrl(volumeInfoList?.volumeInfo?.imageLinks?.thumbnail)
                         buyBook.setOnClickListener {
-                            openLinkBrowser(volumeInfoList?.volumeInfo?.title.toString())
+                            openLinkBrowser(
+                                volumeInfoList?.volumeInfo?.title.toString(),
+                                requireContext()
+                            )
                         }
                         shareBook.setOnClickListener {
                             val bookDetailsIntent = Intent(Intent.ACTION_SEND).apply {
@@ -100,11 +99,5 @@ class DiscoverDetailsFragment : Fragment() {
 
             }
         }
-    }
-
-    private fun openLinkBrowser(url: String?) {
-        val intent =
-            Intent(Intent.ACTION_VIEW, Uri.parse("https://www.barnesandnoble.com/s/$url"))
-        startActivity(intent)
     }
 }

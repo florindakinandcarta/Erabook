@@ -5,6 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ReadingModes(
-    var text  : Boolean? = null,
-    var image : Boolean? = null
+    val text  : Boolean? = null,
+    val image : Boolean? = null
 ):Parcelable

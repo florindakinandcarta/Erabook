@@ -5,8 +5,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class GoogleBooks(
-    var kind: String? = null,
-    var totalItems: Int? = null,
-    var items: ArrayList<Items> = arrayListOf()
+    val kind: String? = null,
+    val totalItems: Int? = null,
+    val items: ArrayList<Items> = arrayListOf()
 ) : Parcelable
 

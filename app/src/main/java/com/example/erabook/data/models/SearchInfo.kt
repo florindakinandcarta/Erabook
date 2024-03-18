@@ -5,5 +5,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class SearchInfo(
-    var textSnippet: String? = null
+    val textSnippet: String? = null
 ) : Parcelable

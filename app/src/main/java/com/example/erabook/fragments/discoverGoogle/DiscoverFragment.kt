@@ -25,6 +25,7 @@ class DiscoverFragment : Fragment() {
     private lateinit var binding: FragmentDiscoverBinding
     private val googleBooksViewModel: GoogleBooksViewModel by viewModels()
     private lateinit var discoverAdapter: DiscoverAdapter
+    private val sharedViewModel: SharedGoogleBooksViewModel by viewModels({ requireActivity() })
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,6 +61,7 @@ class DiscoverFragment : Fragment() {
                 }
             })
             googleBooksViewModel.response_books.observe(viewLifecycleOwner) { response ->
+                sharedViewModel.setResponseBooks(response)
                 when (response) {
                     is Resource.Error -> {
                         requireContext().showToast(R.string.error_fetching_data)

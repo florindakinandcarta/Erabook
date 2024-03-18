@@ -3,5 +3,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Epub(
-    var isAvailable: Boolean? = null
+    val isAvailable: Boolean? = null
 ) : Parcelable

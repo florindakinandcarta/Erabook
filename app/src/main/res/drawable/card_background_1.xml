@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle" >
     <solid
-        android:color="@color/card1"/>
+        android:color="@color/color_card1"/>
     <size
         android:width="@dimen/rectangleWidth"
         android:height="@dimen/rectangleHeight"/>

@@ -5,6 +5,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class IndustryIdentifiers(
-    var type: String? = null,
-    var identifier: String? = null
+    val type: String? = null,
+    val identifier: String? = null
 ) : Parcelable

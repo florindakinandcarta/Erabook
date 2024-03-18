@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class SaleInfo(
-    var country     : String?  = null,
-    var saleability : String?  = null,
-    var isEbook     : Boolean? = null
+    val country     : String?  = null,
+    val saleability : String?  = null,
+    val isEbook     : Boolean? = null
 ):Parcelable
