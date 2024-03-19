@@ -1,7 +1,6 @@
 package com.example.erabook.fragments.discoverGoogle
 
 import Resource
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +14,7 @@ import com.example.erabook.databinding.FragmentBookDetailsBinding
 import com.example.erabook.util.loadImageFromUrl
 import com.example.erabook.util.openLinkBrowser
 import com.example.erabook.util.showToast
+import com.example.erabook.util.startBookDetailsIntent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -84,28 +84,12 @@ class DiscoverDetailsFragment : Fragment() {
                 )
             }
             shareBook.setOnClickListener {
-                val bookDetailsIntent = Intent(Intent.ACTION_SEND).apply {
-                    type = "text/plain"
-                    putExtra(
-                        Intent.EXTRA_TEXT, getString(
-                            R.string.share_book,
-                            bookItem?.volumeInfo?.title,
-                            bookItem?.volumeInfo?.authors?.get(0)
-                                ?: "Authors not found",
-                            bookItem?.volumeInfo?.pageCount.toString(),
-                            bookItem?.volumeInfo?.publishedDate
-                        )
-                    )
-                    putExtra(
-                        Intent.EXTRA_SUBJECT,
-                        getString(R.string.share_book_subject)
-                    )
-                }
-                val chooserIntent = Intent.createChooser(
-                    bookDetailsIntent,
-                    getString(R.string.send_details)
+                requireActivity().startBookDetailsIntent(
+                    bookItem?.volumeInfo?.title,
+                    bookItem?.volumeInfo?.authors?.get(0),
+                    bookItem?.volumeInfo?.pageCount.toString(),
+                    bookItem?.volumeInfo?.publishedDate
                 )
-                startActivity(chooserIntent)
             }
         }
     }

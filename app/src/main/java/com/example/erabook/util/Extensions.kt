@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.example.erabook.R
 
 @BindingAdapter("loadImageFromAssets")
 fun ImageView.loadImageFromAssets(imageLink: String?) {
@@ -39,4 +40,33 @@ fun openLinkBrowser(url: String?, context: Context) {
     val intent =
         Intent(Intent.ACTION_VIEW, Uri.parse("https://www.barnesandnoble.com/s/$url"))
     startActivity(context, intent, null)
+}
+fun Context.createBookDetailsIntent(title:String?, author: String?, pageCount:String?, publishedDate:String?): Intent {
+    val intent = Intent(Intent.ACTION_SEND)
+        .apply {
+            type = "text/plain"
+            putExtra(
+                Intent.EXTRA_TEXT, getString(
+                    R.string.share_book,
+                    title,
+                    author
+                        ?: "Authors not found",
+                    pageCount,
+                    publishedDate
+                )
+            )
+            putExtra(
+                Intent.EXTRA_SUBJECT,
+                getString(R.string.share_book_subject)
+            )
+        }
+    return intent
+}
+fun Context.startBookDetailsIntent(title:String?, author: String?, pageCount:String?, publishedDate:String?){
+    val bookDetailsIntent = createBookDetailsIntent(title,author,pageCount,publishedDate)
+    val chooserIntent = Intent.createChooser(
+        bookDetailsIntent,
+        getString(R.string.send_details)
+    )
+    startActivity(chooserIntent)
 }
