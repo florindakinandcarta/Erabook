@@ -137,5 +137,7 @@
     <string name="load_more">Load more…</string>
     <string name="empty_text"></string>
     <string name="cancelled">Cancelled</string>
-
+    <string name="wait">Loading…</string>
+    <string name="search_something">Search or scan a book!?</string>
+    <string name="no_data">We don\'t have that book in our database !?</string>
 </resources>

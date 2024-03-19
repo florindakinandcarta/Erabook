@@ -2,7 +2,6 @@ package com.example.erabook.fragments.favorite
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.OrientationEventListener
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -47,22 +46,6 @@ class FavoriteFragment : Fragment() {
                 adapter = favoriteAdapter
                 layoutManager = this@FavoriteFragment.layoutManager
             }
-
-            val orientationEventListener = object : OrientationEventListener(requireContext()) {
-                override fun onOrientationChanged(orientation: Int) {
-                    val newSpanCount = if (orientation in 80..100 || orientation in 260..280) {
-                        4
-                    } else {
-                        2
-                    }
-
-                    if (layoutManager.spanCount != newSpanCount) {
-                        layoutManager.spanCount = newSpanCount
-                        favoriteList.layoutManager = layoutManager
-                    }
-                }
-            }
-            orientationEventListener.enable()
         }
 
         favoriteAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {

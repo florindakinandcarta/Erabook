@@ -14,6 +14,6 @@ interface GoogleApi {
     ): GoogleBooks
     @GET("volumes")
     suspend fun getGoogleBooksWithISBN(
-        @Query("q") q: String?
+        @Query("q") query: String?
     ): GoogleBooks
 }
