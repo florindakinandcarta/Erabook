@@ -84,12 +84,14 @@ class DiscoverDetailsFragment : Fragment() {
                 )
             }
             shareBook.setOnClickListener {
-                requireActivity().startBookDetailsIntent(
-                    bookItem?.volumeInfo?.title,
-                    bookItem?.volumeInfo?.authors?.get(0),
-                    bookItem?.volumeInfo?.pageCount.toString(),
-                    bookItem?.volumeInfo?.publishedDate
-                )
+                bookItem?.volumeInfo?.let {
+                    requireActivity().startBookDetailsIntent(
+                        it.title,
+                        it.authors[0],
+                        it.pageCount.toString(),
+                        it.publishedDate
+                    )
+                }
             }
         }
     }
