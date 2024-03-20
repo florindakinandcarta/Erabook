@@ -35,8 +35,8 @@ class SharedGoogleBooksViewModel @Inject constructor(
     val response_books: LiveData<Resource<GoogleBooks>?> = _response_books
     private val _loading_books = MutableLiveData<Boolean>()
     val loading_books: LiveData<Boolean> = _loading_books
-    private val _message = MutableLiveData<Boolean>()
-    val message: LiveData<Boolean> = _message
+    private val _isSaved = MutableLiveData<Boolean>()
+    val isSaved: LiveData<Boolean> = _isSaved
 
     fun fetchBooks(queryBookName: String?, loadMore: Int) {
         _loading_books.value = true
@@ -111,13 +111,13 @@ class SharedGoogleBooksViewModel @Inject constructor(
                         )
                     }
                     batch.commit().addOnSuccessListener {
-                        _message.value = true
+                        _isSaved.value = true
                     }
                         .addOnFailureListener {
-                          _message.value = false
+                          _isSaved.value = false
                         }
                 } catch (e: Exception) {
-                    _message.value = false
+                    _isSaved.value = false
                     println("Something happened here: $e")
                 }
             }

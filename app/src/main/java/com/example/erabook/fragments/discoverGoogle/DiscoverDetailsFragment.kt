@@ -88,7 +88,7 @@ class DiscoverDetailsFragment : Fragment() {
             authenticationViewModel.userLiveData.observe(viewLifecycleOwner) { user ->
                 favoriteBook.setOnClickListener {
                     sharedViewModel.saveBookToDB(bookItem,user?.email.toString())
-                    sharedViewModel.message.observe(viewLifecycleOwner){value ->
+                    sharedViewModel.isSaved.observe(viewLifecycleOwner){ value ->
                         if (value){
                             favoriteBook.setImageResource(R.drawable.favorite)
                             requireActivity().showToast(R.string.update_message_success)
