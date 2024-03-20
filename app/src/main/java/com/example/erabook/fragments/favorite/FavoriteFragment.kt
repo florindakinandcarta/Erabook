@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.erabook.activities.AuthenticationViewModel
+import com.example.erabook.R
 import com.example.erabook.adapters.FavoriteAdapter
 import com.example.erabook.databinding.FragmentFavoriteBinding
+import com.example.erabook.util.showToast
+import com.google.firebase.auth.FirebaseAuth
 
 
 class FavoriteFragment : Fragment() {
@@ -17,12 +19,7 @@ class FavoriteFragment : Fragment() {
     private lateinit var favoriteAdapter: FavoriteAdapter
     private val favoriteViewModel: FavoriteViewModel by viewModels()
     private lateinit var layoutManager: GridLayoutManager
-    private val authenticationViewModel: AuthenticationViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        favoriteAdapter = FavoriteAdapter()
-    }
+    private val firebaseAuth = FirebaseAuth.getInstance()
 
 
     override fun onCreateView(
@@ -39,8 +36,19 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        authenticationViewModel.userLiveData.observe(viewLifecycleOwner) { user ->
-            favoriteViewModel.fetchFavoriteBooks(user?.email.toString())
+        favoriteAdapter = FavoriteAdapter { position ->
+            favoriteViewModel.removeFavoriteBook(
+                firebaseAuth.currentUser?.email.toString(),
+                position
+            )
+        }
+        favoriteViewModel.fetchFavoriteBooks(firebaseAuth.currentUser?.email.toString())
+        favoriteViewModel.isRemoved.observe(viewLifecycleOwner) { isRemoved ->
+            if (isRemoved) {
+                requireActivity().showToast(R.string.favorite_removed)
+            } else {
+                requireActivity().showToast(R.string.default_error)
+            }
         }
 
         layoutManager = GridLayoutManager(requireContext(), 2)
