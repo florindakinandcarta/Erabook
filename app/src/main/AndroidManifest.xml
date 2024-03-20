@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Erabook"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="barcode_ui"/>
         <activity
             android:name=".firebaseActivities.ForgotPasswordActivity"
             android:exported="false" />

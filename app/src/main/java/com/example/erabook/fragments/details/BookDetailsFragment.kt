@@ -1,7 +1,5 @@
 package com.example.erabook.fragments.details
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +13,7 @@ import com.example.erabook.R
 import com.example.erabook.databinding.FragmentBookDetailsBinding
 import com.example.erabook.util.loadImageFromAssets
 import com.example.erabook.util.openLinkBrowser
+import com.example.erabook.util.startBookDetailsIntent
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class BookDetailsFragment : Fragment() {
@@ -74,24 +73,13 @@ class BookDetailsFragment : Fragment() {
             }
 
             shareBook.setOnClickListener {
-                val bookDetailsIntent = Intent(Intent.ACTION_SEND).apply {
-                    type = "text/plain"
-                    putExtra(
-                        Intent.EXTRA_TEXT, getString(
-                            R.string.share_book,
-                            args.title,
-                            args.author,
-                            args.pages.toString(),
-                            args.year.toString()
-                        )
-                    )
-                    putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_book_subject))
-                }
-                val chooserIntent = Intent.createChooser(
-                    bookDetailsIntent,
-                    getString(R.string.send_details)
+                requireActivity().startBookDetailsIntent(
+                    args.title,
+                    args.author,
+                    args.pages.toString(),
+                    args.year.toString()
                 )
-                startActivity(chooserIntent)
+
             }
         }
     }

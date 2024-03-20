@@ -1,7 +1,6 @@
 package com.example.erabook.fragments.discoverGoogle
 
 import Resource
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,10 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.erabook.R
+import com.example.erabook.data.models.Items
 import com.example.erabook.databinding.FragmentBookDetailsBinding
 import com.example.erabook.util.loadImageFromUrl
 import com.example.erabook.util.openLinkBrowser
 import com.example.erabook.util.showToast
+import com.example.erabook.util.startBookDetailsIntent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,7 +42,6 @@ class DiscoverDetailsFragment : Fragment() {
                     is Resource.Error -> {
                         requireContext().showToast(R.string.error_fetching_data)
                     }
-
                     is Resource.Success -> {
                         sharedViewModel.loading_books.observe(viewLifecycleOwner) { loader ->
                             if (loader) {
@@ -50,45 +50,13 @@ class DiscoverDetailsFragment : Fragment() {
                                 progressBar.visibility = View.GONE
                             }
                         }
-                        val volumeInfoList = response.data?.items?.find {
-                            it.volumeInfo?.title == args.bookName
-                        }
-                        bookNameDetails.text = volumeInfoList?.volumeInfo?.title
-                        bookAuthorDetails.text =
-                            volumeInfoList?.volumeInfo?.authors?.get(0) ?: "Authors not found"
-                        releaseDateNumber.text = volumeInfoList?.volumeInfo?.publishedDate
-                        numberOfPages.text = volumeInfoList?.volumeInfo?.pageCount.toString()
-                        paragraphText.text = volumeInfoList?.volumeInfo?.description
-                        bookImageDetails.loadImageFromUrl(volumeInfoList?.volumeInfo?.imageLinks?.thumbnail)
-                        buyBook.setOnClickListener {
-                            openLinkBrowser(
-                                volumeInfoList?.volumeInfo?.title.toString(),
-                                requireContext()
-                            )
-                        }
-                        shareBook.setOnClickListener {
-                            val bookDetailsIntent = Intent(Intent.ACTION_SEND).apply {
-                                type = "text/plain"
-                                putExtra(
-                                    Intent.EXTRA_TEXT, getString(
-                                        R.string.share_book,
-                                        volumeInfoList?.volumeInfo?.title,
-                                        volumeInfoList?.volumeInfo?.authors?.get(0)
-                                            ?: "Authors not found",
-                                        volumeInfoList?.volumeInfo?.pageCount.toString(),
-                                        volumeInfoList?.volumeInfo?.publishedDate
-                                    )
-                                )
-                                putExtra(
-                                    Intent.EXTRA_SUBJECT,
-                                    getString(R.string.share_book_subject)
-                                )
+                        if (args.bookName.isNullOrEmpty()) {
+                            bind(response.data?.items?.get(0))
+                        } else {
+                            val volumeInfoList = response.data?.items?.find {
+                                it.volumeInfo?.title == args.bookName
                             }
-                            val chooserIntent = Intent.createChooser(
-                                bookDetailsIntent,
-                                getString(R.string.send_details)
-                            )
-                            startActivity(chooserIntent)
+                            bind(volumeInfoList)
                         }
                     }
 
@@ -96,7 +64,34 @@ class DiscoverDetailsFragment : Fragment() {
                         requireContext().showToast(R.string.default_error)
                     }
                 }
+            }
+        }
+    }
 
+    private fun bind(bookItem: Items?) {
+        binding.apply {
+            bookNameDetails.text = bookItem?.volumeInfo?.title
+            bookAuthorDetails.text =
+                bookItem?.volumeInfo?.authors?.get(0) ?: "Authors not found"
+            releaseDateNumber.text = bookItem?.volumeInfo?.publishedDate
+            numberOfPages.text = bookItem?.volumeInfo?.pageCount.toString()
+            paragraphText.text = bookItem?.volumeInfo?.description
+            bookImageDetails.loadImageFromUrl(bookItem?.volumeInfo?.imageLinks?.thumbnail)
+            buyBook.setOnClickListener {
+                openLinkBrowser(
+                    bookItem?.volumeInfo?.title.toString(),
+                    requireContext()
+                )
+            }
+            shareBook.setOnClickListener {
+                bookItem?.volumeInfo?.let {
+                    requireActivity().startBookDetailsIntent(
+                        it.title,
+                        it.authors[0],
+                        it.pageCount.toString(),
+                        it.publishedDate
+                    )
+                }
             }
         }
     }

@@ -243,9 +243,10 @@
             app:destination="@id/discoverDetailsFragment" />
         <argument
             android:name="bookName"
-            android:defaultValue=" "
             app:argType="string"
-            app:nullable="true" />
+            android:defaultValue="@null"
+            app:nullable="true"
+            />
     </fragment>
     <fragment
         android:id="@+id/discoverDetailsFragment"
@@ -257,8 +258,8 @@
             app:destination="@id/discoverFragment" />
         <argument
             android:name="bookName"
-            android:defaultValue=" "
             app:argType="string"
+            android:defaultValue="@null"
             app:nullable="true" />
 
     </fragment>

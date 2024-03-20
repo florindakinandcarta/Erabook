@@ -81,5 +81,6 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.dagger:hilt-android:2.50")
     kapt("com.google.dagger:hilt-android-compiler:2.50")
+    implementation ("com.google.android.gms:play-services-code-scanner:16.1.0")
 
 }
