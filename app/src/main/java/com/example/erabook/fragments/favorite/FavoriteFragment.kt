@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.erabook.activities.AuthenticationViewModel
 import com.example.erabook.adapters.FavoriteAdapter
 import com.example.erabook.databinding.FragmentFavoriteBinding
 
@@ -17,6 +17,7 @@ class FavoriteFragment : Fragment() {
     private lateinit var favoriteAdapter: FavoriteAdapter
     private val favoriteViewModel: FavoriteViewModel by viewModels()
     private lateinit var layoutManager: GridLayoutManager
+    private val authenticationViewModel: AuthenticationViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +39,9 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        authenticationViewModel.userLiveData.observe(viewLifecycleOwner) { user ->
+            favoriteViewModel.fetchFavoriteBooks(user?.email.toString())
+        }
 
         layoutManager = GridLayoutManager(requireContext(), 2)
 
@@ -47,29 +51,24 @@ class FavoriteFragment : Fragment() {
                 layoutManager = this@FavoriteFragment.layoutManager
             }
         }
-
-        favoriteAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
-            override fun onItemRangeRemoved(positionStart: Int, itemCount: Int) {
-                favoriteViewModel.saveFavorites(favoriteAdapter.currentList)
+        favoriteViewModel.listOfBooks.observe(viewLifecycleOwner) { listOfBooks ->
+            favoriteAdapter.submitList(listOfBooks)
+            if (listOfBooks?.isEmpty() == false) {
+                binding.progressBar.visibility = View.GONE
             }
-        })
-
-        favoriteAdapter.submitList(favoriteViewModel.loadFavorites())
-
-        if (favoriteAdapter.currentList.isEmpty()) {
-            binding.favoriteInfo.visibility = View.VISIBLE
-        } else {
-            binding.favoriteInfo.visibility = View.GONE
+        }
+        favoriteViewModel.loading.observe(viewLifecycleOwner) { loading ->
+            if (loading) {
+                binding.apply {
+                    favoriteInfo.visibility = View.GONE
+                    progressBar.visibility = View.VISIBLE
+                }
+            } else {
+                binding.apply {
+                    favoriteInfo.visibility = View.VISIBLE
+                }
+            }
         }
 
-
     }
-
-    override fun onResume() {
-        super.onResume()
-        favoriteAdapter.submitList(favoriteViewModel.loadFavorites())
-
-    }
-
-
 }

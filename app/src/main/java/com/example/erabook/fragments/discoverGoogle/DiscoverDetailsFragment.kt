@@ -91,7 +91,7 @@ class DiscoverDetailsFragment : Fragment() {
                     sharedViewModel.message.observe(viewLifecycleOwner){value ->
                         if (value){
                             favoriteBook.setImageResource(R.drawable.favorite)
-                            requireActivity().showToast(R.string.update_message_success)
+                            requireActivity().showToast(R.string.favorite_added)
                         }else{
                             requireActivity().showToast(R.string.update_message_error)
                         }

@@ -34,9 +34,7 @@
                 android:contentDescription="@string/desc_img"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:loadImageFromAssets="@{book.imageLink}" />
-
+                app:layout_constraintTop_toTopOf="parent"/>
             <TextView
                 android:id="@+id/bookTitle"
                 android:layout_width="0dp"
@@ -45,7 +43,6 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:padding="@dimen/space5"
-                android:text="@{book.title}"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +55,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space8"
                 android:padding="@dimen/space5"
-                android:text="@{book.author}"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
