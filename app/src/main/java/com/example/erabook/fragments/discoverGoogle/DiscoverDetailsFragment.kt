@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.erabook.R
+import com.example.erabook.activities.AuthenticationViewModel
 import com.example.erabook.data.models.Items
 import com.example.erabook.databinding.FragmentBookDetailsBinding
 import com.example.erabook.util.loadImageFromUrl
@@ -21,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class DiscoverDetailsFragment : Fragment() {
     private lateinit var binding: FragmentBookDetailsBinding
     private val args: DiscoverFragmentArgs by navArgs()
+    private val authenticationViewModel: AuthenticationViewModel by viewModels()
     private val sharedViewModel: SharedGoogleBooksViewModel by viewModels({ requireActivity() })
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -82,6 +84,19 @@ class DiscoverDetailsFragment : Fragment() {
                     bookItem?.volumeInfo?.title.toString(),
                     requireContext()
                 )
+            }
+            authenticationViewModel.userLiveData.observe(viewLifecycleOwner) { user ->
+                favoriteBook.setOnClickListener {
+                    sharedViewModel.saveBookToDB(bookItem,user?.email.toString())
+                    sharedViewModel.message.observe(viewLifecycleOwner){value ->
+                        if (value){
+                            favoriteBook.setImageResource(R.drawable.favorite)
+                            requireActivity().showToast(R.string.update_message_success)
+                        }else{
+                            requireActivity().showToast(R.string.update_message_error)
+                        }
+                    }
+                }
             }
             shareBook.setOnClickListener {
                 bookItem?.volumeInfo?.let {

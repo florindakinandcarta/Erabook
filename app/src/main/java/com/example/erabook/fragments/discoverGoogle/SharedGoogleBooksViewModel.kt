@@ -9,9 +9,17 @@ import androidx.lifecycle.viewModelScope
 import com.example.erabook.data.googlebooks.GoogleApi
 import com.example.erabook.data.models.ExceptionResponse
 import com.example.erabook.data.models.GoogleBooks
+import com.example.erabook.data.models.Items
+import com.example.erabook.data.models.VolumeInfo
+import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import javax.inject.Inject
 
@@ -22,10 +30,13 @@ class SharedGoogleBooksViewModel @Inject constructor(
     private val googleBooksApi: GoogleApi
 ) : ViewModel() {
 
+    private val db = Firebase.firestore
     private val _response_books = MutableLiveData<Resource<GoogleBooks>?>()
     val response_books: LiveData<Resource<GoogleBooks>?> = _response_books
     private val _loading_books = MutableLiveData<Boolean>()
     val loading_books: LiveData<Boolean> = _loading_books
+    private val _message = MutableLiveData<Boolean>()
+    val message: LiveData<Boolean> = _message
 
     fun fetchBooks(queryBookName: String?, loadMore: Int) {
         _loading_books.value = true
@@ -66,8 +77,49 @@ class SharedGoogleBooksViewModel @Inject constructor(
                 _response_books.value = Resource.Error(errorResponse?.message ?: "")
             } catch (e: Exception) {
                 _response_books.value = Resource.Error()
-            }finally {
+            } finally {
                 _loading_books.value = false
+            }
+        }
+    }
+    fun saveBookToDB(bookItem: Items?, userEmail: String) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                try {
+                    val userQuerySnapshot = db.collection("erabook-users")
+                        .whereEqualTo("userEmail", userEmail)
+                        .get()
+                        .await()
+                    val batch = db.batch()
+                    for (document in userQuerySnapshot.documents) {
+                        val documentRef =
+                            db.collection("erabook-users").document(document.id)
+                        val updatedUsersFavoriteBooks = mutableListOf<Map<String, VolumeInfo?>>()
+                        val currentFavoriteBooks =
+                            document.get("favoriteBooks") as? List<Map<String, VolumeInfo?>>
+                        if (currentFavoriteBooks != null) {
+                            updatedUsersFavoriteBooks.addAll(currentFavoriteBooks)
+                        }
+                        updatedUsersFavoriteBooks.add(mapOf("volumeInfo" to bookItem?.volumeInfo))
+                        val userUpdatedData = mapOf<String, Any>(
+                            "favoriteBooks" to updatedUsersFavoriteBooks
+                        )
+                        batch.set(
+                            documentRef,
+                            userUpdatedData,
+                            SetOptions.merge()
+                        )
+                    }
+                    batch.commit().addOnSuccessListener {
+                        _message.value = true
+                    }
+                        .addOnFailureListener {
+                          _message.value = false
+                        }
+                } catch (e: Exception) {
+                    _message.value = false
+                    println("Something happened here: $e")
+                }
             }
         }
     }
