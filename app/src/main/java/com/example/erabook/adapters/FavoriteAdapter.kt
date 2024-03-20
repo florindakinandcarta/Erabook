@@ -10,7 +10,7 @@ import com.example.erabook.databinding.ItemFavoriteBookBinding
 import com.example.erabook.util.loadImageFromUrl
 
 
-class FavoriteAdapter :
+class FavoriteAdapter(private val itemClickListener: (Int) -> Unit) :
     ListAdapter<VolumeInfo, FavoriteAdapter.ViewHolder>(FavoriteAdapterDiffCallBack()) {
 
 
@@ -19,12 +19,11 @@ class FavoriteAdapter :
         fun bind(books: VolumeInfo) {
             binding.apply {
                 bookTitle.text = books.title
-                println(books.title)
                 bookAuthor.text = books.authors.get(0)
-                bookImage.loadImageFromUrl(books.imageLinks?.thumbnail)
                 favoriteBookItem.setOnClickListener {
                     removeItem(adapterPosition)
                 }
+                bookImage.loadImageFromUrl(books.imageLinks?.thumbnail)
                 this.executePendingBindings()
             }
         }
@@ -46,6 +45,7 @@ class FavoriteAdapter :
     fun removeItem(position: Int) {
         submitList(currentList.toMutableList().apply {
             removeAt(position)
+            itemClickListener(position)
         })
     }
 }
@@ -55,7 +55,7 @@ class FavoriteAdapterDiffCallBack : DiffUtil.ItemCallback<VolumeInfo>() {
         return oldItem == newItem
     }
 
-    override fun areContentsTheSame(oldItem: VolumeInfo, newItem:VolumeInfo): Boolean {
+    override fun areContentsTheSame(oldItem: VolumeInfo, newItem: VolumeInfo): Boolean {
         return oldItem == newItem
     }
 }
