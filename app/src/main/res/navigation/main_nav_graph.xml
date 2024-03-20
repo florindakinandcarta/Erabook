@@ -224,15 +224,6 @@
             android:id="@+id/registerToLogin"
             app:destination="@id/loginFragment" />
     </fragment>
-    <dialog
-        android:id="@+id/registerSuccessfulDialogFragment"
-        android:name="com.example.erabook.firebaseActivities.RegisterSuccessfulDialogFragment"
-        android:label="RegisterSuccessfulDialogFragment"
-        tools:layout="@layout/register_successful">
-        <action
-            android:id="@+id/registerSuccessToLogin"
-            app:destination="@id/loginFragment" />
-    </dialog>
     <fragment
         android:id="@+id/discoverFragment"
         android:name="com.example.erabook.fragments.discoverGoogle.DiscoverFragment"

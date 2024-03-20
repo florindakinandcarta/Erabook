@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.erabook.R
 import com.example.erabook.data.models.UserDataRemote
 import com.example.erabook.databinding.FragmentRegisterBinding
-import com.example.erabook.firebaseActivities.RegisterSuccessfulDialogFragment
 import com.example.erabook.util.showToast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -85,8 +84,11 @@ class RegisterFragment : Fragment() {
                             ).let {
                                 userInfoViewModel.addUserData(it)
                             }
-                            val dialog = RegisterSuccessfulDialogFragment()
-                            dialog.showsDialog
+                            emailInput.editText?.setText("")
+                            passwordInput.editText?.setText("")
+                            usernameInput.editText?.setText("")
+                            confirmPasswordInput.editText?.setText("")
+                            requireActivity().showToast(R.string.signup_succ)
                         } else if (password.length < 6) {
                             requireContext().showToast(R.string.password_to_short)
                         } else {
