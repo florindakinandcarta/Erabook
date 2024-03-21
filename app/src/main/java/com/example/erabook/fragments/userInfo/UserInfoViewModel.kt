@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.erabook.R
 import com.example.erabook.data.models.UserDataRemote
 import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -16,6 +17,7 @@ import java.util.Date
 class UserInfoViewModel : ViewModel() {
     private val _userInfo = MutableLiveData<UserDataRemote>()
     private val db = Firebase.firestore
+    private val firebaseAuth = FirebaseAuth.getInstance()
     private val _documentId = MutableLiveData<String>()
     private val _errorMessage = MutableLiveData<Int>()
     private val _updateMessage = MutableLiveData<Int>()
@@ -43,17 +45,19 @@ class UserInfoViewModel : ViewModel() {
                             val userBirthdayTimestamp = document.data["userBirthday"] as? Timestamp
                             val userBirthday = userBirthdayTimestamp ?: Timestamp.now()
 //                    val userLocation = parseCoordinates(userData["user-location"] as Map<*, *>?)
-                            val parsedUserData = UserDataRemote(
-                                document.data["userUid"].toString(),
-                                document.data["userName"].toString(),
-                                document.data["userEmail"].toString(),
-                                (document.data["userMobile"] as? Long)?.toInt() ?: 0,
-                                "",
-                                document.data["userUsername"].toString(),
-                                userBirthday.toDate(),
-                                ArrayList()
-                            )
-                            _userInfo.postValue(parsedUserData)
+                            if (document.data["userEmail"].toString() == firebaseAuth.currentUser?.email.toString()) {
+                                val parsedUserData = UserDataRemote(
+                                    document.data["userUid"].toString(),
+                                    document.data["userName"].toString(),
+                                    document.data["userEmail"].toString(),
+                                    (document.data["userMobile"] as? Long)?.toInt() ?: 0,
+                                    "",
+                                    document.data["userUsername"].toString(),
+                                    userBirthday.toDate(),
+                                    ArrayList()
+                                )
+                                _userInfo.postValue(parsedUserData)
+                            }
                         }
                     }
                     .addOnFailureListener { exception ->
