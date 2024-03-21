@@ -178,9 +178,6 @@
         android:label="UserProfileFragment"
         tools:layout="@layout/user_profile">
         <action
-            android:id="@+id/profileToHome"
-            app:destination="@id/homeFragment" />
-        <action
             android:id="@+id/userProfileToEdit"
             app:destination="@id/userInfoFragment" />
         <action

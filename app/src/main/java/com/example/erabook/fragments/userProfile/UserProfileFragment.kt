@@ -40,9 +40,6 @@ class UserProfileFragment : Fragment() {
                 authenticationViewModel.logout()
                 findNavController().navigate(R.id.userProfileToLogin)
             }
-            backProfile.setOnClickListener {
-                findNavController().navigate(R.id.profileToHome)
-            }
             editProfile.setOnClickListener {
                 findNavController().navigate(R.id.userProfileToEdit)
             }

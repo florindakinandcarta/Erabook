@@ -37,6 +37,8 @@ class SharedGoogleBooksViewModel @Inject constructor(
     val loading_books: LiveData<Boolean> = _loading_books
     private val _isSaved = MutableLiveData<Boolean>()
     val isSaved: LiveData<Boolean> = _isSaved
+    private val _isResponseZero = MutableLiveData<Boolean>()
+    val isResponseZero: LiveData<Boolean> = _isResponseZero
 
     fun fetchBooks(queryBookName: String?, loadMore: Int) {
         _loading_books.value = true
@@ -61,11 +63,13 @@ class SharedGoogleBooksViewModel @Inject constructor(
 
     fun fetchBooksWithISBN(isbnValue: String) {
         _loading_books.value = true
+        _isResponseZero.value = false
         viewModelScope.launch {
             try {
                 val response = googleBooksApi.getGoogleBooksWithISBN(isbnValue)
                 if (response.totalItems == 0) {
                     _response_books.value = Resource.Error("No items found for ISBN: $isbnValue")
+                    _isResponseZero.value = true
                 } else {
                     _response_books.value = Resource.Success(response)
                 }

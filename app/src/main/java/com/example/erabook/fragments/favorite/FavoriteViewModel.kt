@@ -47,19 +47,12 @@ class FavoriteViewModel : ViewModel() {
                                 pageCount = volumeInfoMap?.get("pageCount") as? Int,
                                 categories = (volumeInfoMap?.get("categories") as? ArrayList<String>)
                                     ?: ArrayList(),
-                                maturityRating = volumeInfoMap?.get("maturityRating") as? String,
-                                allowAnonLogging = volumeInfoMap?.get("allowAnonLogging") as? Boolean,
-                                contentVersion = volumeInfoMap?.get("contentVersion") as? String,
-                                language = volumeInfoMap?.get("language") as? String,
-                                previewLink = volumeInfoMap?.get("previewLink") as? String,
                                 imageLinks = (volumeInfoMap?.get("imageLinks") as? Map<String, Any>)?.let { imageLinksMap ->
                                     ImageLinks(
                                         smallThumbnail = imageLinksMap["smallThumbnail"] as? String,
                                         thumbnail = imageLinksMap["thumbnail"] as? String
                                     )
                                 },
-                                infoLink = volumeInfoMap?.get("infoLink") as? String,
-                                canonicalVolumeLink = volumeInfoMap?.get("canonicalVolumeLink") as? String
                             )
                         }
                         _listOfBooks.postValue(volumeInfoList)
