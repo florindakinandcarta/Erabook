@@ -63,6 +63,15 @@ class FavoriteFragment : Fragment() {
             favoriteAdapter.submitList(listOfBooks)
             if (listOfBooks?.isEmpty() == false) {
                 binding.progressBar.visibility = View.GONE
+            }else if (firebaseAuth.currentUser == null){
+                binding.apply {
+                    loginInfo.visibility = View.VISIBLE
+                    progressBar.visibility = View.GONE
+                    favoriteInfo.visibility = View.GONE
+                }
+            }else if (listOfBooks?.isEmpty() == true){
+                binding.favoriteInfo.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.GONE
             }
         }
         favoriteViewModel.loading.observe(viewLifecycleOwner) { loading ->

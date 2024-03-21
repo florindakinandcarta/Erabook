@@ -94,7 +94,8 @@
     <string name="focus_time">Focus Time</string>
     <string name="book_list_to_single_book_transition_image">book_list_to_single_book_transition_image</string>
     <string name="genre_word">Genre</string>
-    <string name="favorite_info">You don\'t have any books marked as favorite, go to Home and mark some!</string>
+    <string name="favorite_info">You don\'t have any books marked as favorite, go to Discover and mark some!</string>
+    <string name="login_info">Log in first to mark some favorite books!</string>
     <string name="share_book">Hey check out this book %1$s. It\'s written by %2$s and has %3$s pages,it was released in: %4$s. </string>
     <string name="share_book_subject">Book details</string>
     <string name="send_details">Send book details via: </string>

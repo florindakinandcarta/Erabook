@@ -60,6 +60,16 @@ class DiscoverFragment : Fragment() {
                     return false
                 }
             })
+            sharedViewModel.isResponseZero.observe(viewLifecycleOwner){isResponseZero ->
+                if (isResponseZero){
+                    discoverAdapter.submitList(emptyList())
+                    binding.apply {
+                        loadMore.visibility = View.GONE
+                        searchSomething.visibility = View.VISIBLE
+                        searchBarGoogle.setQuery("",false)
+                    }
+                }
+            }
             sharedViewModel.response_books.observe(viewLifecycleOwner) { response ->
                 when (response) {
                     is Resource.Error -> {
