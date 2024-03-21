@@ -13,6 +13,7 @@ import com.example.erabook.activities.AuthenticationViewModel
 import com.example.erabook.data.models.Items
 import com.example.erabook.databinding.FragmentBookDetailsBinding
 import com.example.erabook.util.loadImageFromUrl
+import com.example.erabook.util.openLinkBookDownload
 import com.example.erabook.util.openLinkBrowser
 import com.example.erabook.util.showToast
 import com.example.erabook.util.startBookDetailsIntent
@@ -85,6 +86,20 @@ class DiscoverDetailsFragment : Fragment() {
                     requireContext()
                 )
             }
+            when (bookItem?.accessInfo?.viewability) {
+                "ALL_PAGES" -> {
+                    if (bookItem.accessInfo.pdf?.isAvailable == true) {
+                        buyBook.visibility = View.GONE
+                        readBook.visibility = View.VISIBLE
+                        readBook.setOnClickListener {
+                            openLinkBookDownload(
+                                bookItem.accessInfo.pdf.downloadLink,
+                                requireContext()
+                            )
+                        }
+                    }
+                }
+            }
             authenticationViewModel.userLiveData.observe(viewLifecycleOwner) { user ->
                 favoriteBook.setOnClickListener {
                     sharedViewModel.saveBookToDB(bookItem,user?.email.toString())
@@ -92,7 +107,7 @@ class DiscoverDetailsFragment : Fragment() {
                         if (value){
                             favoriteBook.setImageResource(R.drawable.favorite)
                             requireActivity().showToast(R.string.favorite_added)
-                        }else{
+                        } else {
                             requireActivity().showToast(R.string.update_message_error)
                         }
                     }

@@ -143,6 +143,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/paragraphText" />
+        <Button
+            android:id="@+id/readBook"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_margin="@dimen/space10"
+            android:text="@string/read_book"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:circularflow_radiusInDP="22"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/paragraphText" />
 
 
         <TextView
