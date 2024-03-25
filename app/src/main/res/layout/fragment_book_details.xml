@@ -94,7 +94,29 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/bookAuthorDetails"
             app:layout_constraintTop_toBottomOf="@+id/releaseDateDetails" />
-
+        <TextView
+            android:id="@+id/isDownloadable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space8"
+            android:text="@string/download"
+            android:textSize="14sp"
+            android:layout_marginTop="@dimen/space16"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/bookAuthorDetails"
+            app:layout_constraintTop_toBottomOf="@+id/numberOfPagesText" />
+        <ImageButton
+            android:id="@+id/isDownloadableButton"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@null"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/desc_img"
+            android:src="@drawable/download"
+            app:layout_constraintStart_toEndOf="@id/isDownloadable"
+            app:layout_constraintTop_toTopOf="@id/isDownloadable"
+            app:layout_constraintBottom_toBottomOf="@id/isDownloadable"
+            />
         <TextView
             android:id="@+id/numberOfPages"
             android:layout_width="wrap_content"
@@ -143,7 +165,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/paragraphText" />
-
 
         <TextView
             android:id="@+id/aboutBook"

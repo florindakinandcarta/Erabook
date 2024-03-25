@@ -41,6 +41,11 @@ fun openLinkBrowser(url: String?, context: Context) {
         Intent(Intent.ACTION_VIEW, Uri.parse("https://www.barnesandnoble.com/s/$url"))
     startActivity(context, intent, null)
 }
+fun openLinkBookDownload(url: String?, context: Context) {
+    val intent =
+        Intent(Intent.ACTION_VIEW, Uri.parse(url))
+    startActivity(context, intent, null)
+}
 fun Context.createBookDetailsIntent(title:String?, author: String?, pageCount:String?, publishedDate:String?): Intent {
     val intent = Intent(Intent.ACTION_SEND)
         .apply {
