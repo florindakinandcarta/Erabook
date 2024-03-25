@@ -2,22 +2,28 @@ package com.example.erabook.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.erabook.data.Books
+import com.example.erabook.data.models.VolumeInfo
 import com.example.erabook.databinding.ItemFavoriteBookBinding
+import com.example.erabook.util.loadImageFromUrl
 
 
-class FavoriteAdapter : ListAdapter<Books, FavoriteAdapter.ViewHolder>(HomeAdapterDiffCallBack()) {
+class FavoriteAdapter(private val itemClickListener: (Int) -> Unit) :
+    ListAdapter<VolumeInfo, FavoriteAdapter.ViewHolder>(FavoriteAdapterDiffCallBack()) {
+
 
     inner class ViewHolder(private val binding: ItemFavoriteBookBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(books: Books) {
+        fun bind(books: VolumeInfo) {
             binding.apply {
-                book = books
+                bookTitle.text = books.title
+                bookAuthor.text = books.authors.get(0)
                 favoriteBookItem.setOnClickListener {
                     removeItem(adapterPosition)
                 }
+                bookImage.loadImageFromUrl(books.imageLinks?.thumbnail)
                 this.executePendingBindings()
             }
         }
@@ -39,6 +45,17 @@ class FavoriteAdapter : ListAdapter<Books, FavoriteAdapter.ViewHolder>(HomeAdapt
     fun removeItem(position: Int) {
         submitList(currentList.toMutableList().apply {
             removeAt(position)
+            itemClickListener(position)
         })
+    }
+}
+
+class FavoriteAdapterDiffCallBack : DiffUtil.ItemCallback<VolumeInfo>() {
+    override fun areItemsTheSame(oldItem: VolumeInfo, newItem: VolumeInfo): Boolean {
+        return oldItem == newItem
+    }
+
+    override fun areContentsTheSame(oldItem: VolumeInfo, newItem: VolumeInfo): Boolean {
+        return oldItem == newItem
     }
 }

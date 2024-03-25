@@ -3,33 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/primary">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/you_can_do_it"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
         android:text="@string/you_can_do_it"
-        android:textColor="@color/white"
+        android:textSize="@dimen/textLarge"
+        app:layout_constraintBottom_toTopOf="@id/timerAnimation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/timerAnimation"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/timerAnimation"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space20"
         app:layout_constraintBottom_toTopOf="@+id/spinner_pick_time"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/you_can_do_it"
-        app:lottie_loop="true"
         app:lottie_autoPlay="true"
+        app:lottie_loop="true"
         app:lottie_url="https://lottie.host/4afe1639-1485-434a-804b-f64503a13c09/GsPGXhOakj.json" />
 
 
@@ -40,10 +37,10 @@
         android:background="@drawable/spiner_bg_outline"
         android:popupBackground="@drawable/spiner_bg_outline"
         android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toTopOf="@id/count_down_timer"
         app:layout_constraintEnd_toEndOf="@+id/timerAnimation"
         app:layout_constraintStart_toStartOf="@+id/timerAnimation"
         app:layout_constraintTop_toBottomOf="@id/timerAnimation"
-        app:layout_constraintBottom_toTopOf="@id/count_down_timer"
         tools:listitem="@layout/item_focus_spinner" />
 
     <TextView
@@ -52,11 +49,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/space20"
         android:text="@string/timer_zero"
-        android:textSize="48sp"
-        app:layout_constraintTop_toBottomOf="@id/spinner_pick_time"
+        android:textSize="@dimen/textXXL"
         app:layout_constraintBottom_toTopOf="@+id/give_up"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinner_pick_time" />
+
     <Button
         android:id="@+id/start"
         android:layout_width="wrap_content"
@@ -64,10 +62,9 @@
         android:layout_marginBottom="@dimen/space20"
         android:backgroundTint="@color/bg_green"
         android:text="@string/start_button"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/give_up"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/give_up"
@@ -76,9 +73,7 @@
         android:layout_marginBottom="@dimen/space20"
         android:backgroundTint="@color/bg_red"
         android:text="@string/give_up_button"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/start"
-        />
+        app:layout_constraintStart_toEndOf="@+id/start" />
 </androidx.constraintlayout.widget.ConstraintLayout>

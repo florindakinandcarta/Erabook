@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/googleImage"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_margin="@dimen/space5"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/google_image_icon"
+        app:layout_constraintBottom_toBottomOf="@id/searchCard"
+        app:layout_constraintEnd_toStartOf="@+id/searchCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/searchCard" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/searchCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toStartOf="@+id/qr_code_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/googleImage"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchBarGoogle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:imeOptions="actionDone"
+            app:iconifiedByDefault="false"
+            app:queryHint="Search books in the internet" />
+    </com.google.android.material.card.MaterialCardView>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/qr_code_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="@dimen/space5"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/qr_code_scanner"
+        app:layout_constraintBottom_toBottomOf="@id/searchCard"
+        app:layout_constraintStart_toEndOf="@id/searchCard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/searchCard" />
+
+    <ProgressBar
+        android:id="@+id/loadingBooks"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchCard" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchListGoogle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/space10"
+        android:gravity="center_horizontal"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/loadMore"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchCard"
+        app:layout_constraintVertical_bias="0.0"
+        app:spanCount="2" />
+
+    <TextView
+        android:id="@+id/searchSomething"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:padding="@dimen/space5"
+        android:text="@string/search_something"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchCard" />
+    <TextView
+        android:id="@+id/loadMore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:padding="@dimen/space5"
+        android:text="@string/load_more"
+        android:textAlignment="center"
+        android:textColor="@color/link_color"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchListGoogle" />
+</androidx.constraintlayout.widget.ConstraintLayout>

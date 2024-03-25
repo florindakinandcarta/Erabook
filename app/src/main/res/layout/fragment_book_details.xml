@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -23,6 +22,16 @@
             android:src="@drawable/arrow_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <ImageButton
+            android:id="@+id/favoriteBook"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_margin="@dimen/space20"
+            android:background="@null"
+            android:contentDescription="@string/desc_img"
+            android:src="@drawable/favorite_outlined"
+            app:layout_constraintEnd_toStartOf="@id/shareBook"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/shareBook"
@@ -41,11 +50,9 @@
             android:layout_height="320dp"
             android:layout_marginTop="@dimen/space20"
             android:contentDescription="@string/desc_img"
-            android:src="@drawable/book_icon"
-            app:layout_constraintStart_toStartOf="@id/backBookDetails"
-            app:layout_constraintTop_toBottomOf="@id/backBookDetails"
             app:layout_constraintEnd_toStartOf="@+id/bookNameDetails"
-            />
+            app:layout_constraintStart_toStartOf="@id/backBookDetails"
+            app:layout_constraintTop_toBottomOf="@id/backBookDetails" />
 
         <TextView
             android:id="@+id/bookNameDetails"
@@ -53,8 +60,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space5"
             android:layout_marginTop="@dimen/space5"
-            android:padding="10dp"
-            android:text="@string/book_title"
+            android:padding="@dimen/space10"
+            android:text="@string/empty_text"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,9 +75,9 @@
             android:layout_marginStart="@dimen/space5"
             android:layout_marginTop="@dimen/space5"
             android:padding="@dimen/space8"
-            android:text="@string/book_author"
+            android:text="@string/empty_text"
             android:textColor="@color/primary"
-            android:textSize="14sp"
+            android:textSize="@dimen/textMedium"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/bookNameDetails"
@@ -87,13 +94,35 @@
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/bookAuthorDetails"
             app:layout_constraintTop_toBottomOf="@+id/releaseDateDetails" />
-
+        <TextView
+            android:id="@+id/isDownloadable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space8"
+            android:text="@string/download"
+            android:textSize="14sp"
+            android:layout_marginTop="@dimen/space16"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/bookAuthorDetails"
+            app:layout_constraintTop_toBottomOf="@+id/numberOfPagesText" />
+        <ImageButton
+            android:id="@+id/isDownloadableButton"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@null"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/desc_img"
+            android:src="@drawable/download"
+            app:layout_constraintStart_toEndOf="@id/isDownloadable"
+            app:layout_constraintTop_toTopOf="@id/isDownloadable"
+            app:layout_constraintBottom_toBottomOf="@id/isDownloadable"
+            />
         <TextView
             android:id="@+id/numberOfPages"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/pages_number"
-            android:textSize="14sp"
+            android:text="@string/empty_text"
+            android:textSize="@dimen/textSmall"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/numberOfPagesText"
             app:layout_constraintStart_toEndOf="@+id/numberOfPagesText"
@@ -112,19 +141,21 @@
 
         <TextView
             android:id="@+id/releaseDateNumber"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2020"
-            android:textSize="14sp"
+            android:layout_marginEnd="@dimen/space5"
+            android:text="@string/empty_text"
+            android:textSize="@dimen/textSmall"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/releaseDateDetails"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/releaseDateDetails"
             app:layout_constraintTop_toTopOf="@id/releaseDateDetails" />
 
 
         <Button
             android:id="@+id/buyBook"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_margin="@dimen/space10"
             android:text="@string/buy_book"
@@ -135,14 +166,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/paragraphText" />
 
-
         <TextView
             android:id="@+id/aboutBook"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space5"
             android:text="@string/about_book"
-            android:textSize="20sp"
+            android:textSize="@dimen/textXMedium"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@id/bookImageDetails"
             app:layout_constraintTop_toBottomOf="@id/bookImageDetails" />
@@ -150,11 +180,11 @@
 
         <TextView
             android:id="@+id/paragraphText"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/space10"
             android:padding="@dimen/space10"
-            android:textSize="14sp"
+            android:textSize="@dimen/textMedium"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

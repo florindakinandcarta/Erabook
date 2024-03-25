@@ -1,7 +1,5 @@
 package com.example.erabook.fragments.details
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +11,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.erabook.R
 import com.example.erabook.databinding.FragmentBookDetailsBinding
-import com.example.erabook.util.loadImage
+import com.example.erabook.util.loadImageFromAssets
+import com.example.erabook.util.openLinkBrowser
+import com.example.erabook.util.startBookDetailsIntent
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class BookDetailsFragment : Fragment() {
@@ -50,13 +50,13 @@ class BookDetailsFragment : Fragment() {
             bookAuthorDetails.text = args.author
             numberOfPages.text = args.pages.toString()
             releaseDateNumber.text = args.year.toString()
-            bookImageDetails.loadImage(args.imageLink)
+            bookImageDetails.loadImageFromAssets(args.imageLink)
             backBookDetails.setOnClickListener {
                 findNavController().navigate(R.id.detailToHome)
             }
 
             buyBook.setOnClickListener {
-                openLinkBrowser(args.link.toString())
+                openLinkBrowser(args.link.toString(),requireContext())
             }
 
             booksDetailViewModel.firstParagraph.observe(viewLifecycleOwner) { paragraph ->
@@ -73,33 +73,16 @@ class BookDetailsFragment : Fragment() {
             }
 
             shareBook.setOnClickListener {
-                val bookDetailsIntent = Intent(Intent.ACTION_SEND).apply {
-                    type = "text/plain"
-                    putExtra(
-                        Intent.EXTRA_TEXT, getString(
-                            R.string.share_book,
-                            args.title,
-                            args.author,
-                            args.pages.toString(),
-                            args.year.toString()
-                        )
-                    )
-                    putExtra(Intent.EXTRA_SUBJECT, getString(R.string.share_book_subject))
-                }
-                val chooserIntent = Intent.createChooser(
-                    bookDetailsIntent,
-                    getString(R.string.send_details)
+                requireActivity().startBookDetailsIntent(
+                    args.title,
+                    args.author,
+                    args.pages.toString(),
+                    args.year.toString()
                 )
-                startActivity(chooserIntent)
+
             }
         }
     }
-
-    private fun openLinkBrowser(url: String) {
-        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.barnesandnoble.com/s/$url"))
-        startActivity(intent)
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         (activity as AppCompatActivity).findViewById<BottomNavigationView>(R.id.bottomNavBar).visibility =

@@ -9,13 +9,12 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_margin="@dimen/space20"
-        android:contentDescription="@string/desc_img"
         android:background="@null"
+        android:contentDescription="@string/desc_img"
         android:src="@drawable/arrow_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/searchCard"
         app:layout_constraintBottom_toBottomOf="@id/searchCard"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/searchCard" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/searchCard"
@@ -40,7 +39,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchList"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="@dimen/space10"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

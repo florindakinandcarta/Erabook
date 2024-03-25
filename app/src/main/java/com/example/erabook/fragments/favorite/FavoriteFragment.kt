@@ -2,15 +2,16 @@ package com.example.erabook.fragments.favorite
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.OrientationEventListener
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.example.erabook.R
 import com.example.erabook.adapters.FavoriteAdapter
 import com.example.erabook.databinding.FragmentFavoriteBinding
+import com.example.erabook.util.showToast
+import com.google.firebase.auth.FirebaseAuth
 
 
 class FavoriteFragment : Fragment() {
@@ -18,11 +19,7 @@ class FavoriteFragment : Fragment() {
     private lateinit var favoriteAdapter: FavoriteAdapter
     private val favoriteViewModel: FavoriteViewModel by viewModels()
     private lateinit var layoutManager: GridLayoutManager
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        favoriteAdapter = FavoriteAdapter()
-    }
+    private val firebaseAuth = FirebaseAuth.getInstance()
 
 
     override fun onCreateView(
@@ -39,6 +36,20 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        favoriteAdapter = FavoriteAdapter { position ->
+            favoriteViewModel.removeFavoriteBook(
+                firebaseAuth.currentUser?.email.toString(),
+                position
+            )
+        }
+        favoriteViewModel.fetchFavoriteBooks(firebaseAuth.currentUser?.email.toString())
+        favoriteViewModel.isRemoved.observe(viewLifecycleOwner) { isRemoved ->
+            if (isRemoved) {
+                requireActivity().showToast(R.string.favorite_removed)
+            } else {
+                requireActivity().showToast(R.string.default_error)
+            }
+        }
 
         layoutManager = GridLayoutManager(requireContext(), 2)
 
@@ -47,46 +58,34 @@ class FavoriteFragment : Fragment() {
                 adapter = favoriteAdapter
                 layoutManager = this@FavoriteFragment.layoutManager
             }
-
-            val orientationEventListener = object : OrientationEventListener(requireContext()) {
-                override fun onOrientationChanged(orientation: Int) {
-                    val newSpanCount = if (orientation in 80..100 || orientation in 260..280) {
-                        4
-                    } else {
-                        2
-                    }
-
-                    if (layoutManager.spanCount != newSpanCount) {
-                        layoutManager.spanCount = newSpanCount
-                        favoriteList.layoutManager = layoutManager
-                    }
+        }
+        favoriteViewModel.listOfBooks.observe(viewLifecycleOwner) { listOfBooks ->
+            favoriteAdapter.submitList(listOfBooks)
+            if (listOfBooks?.isEmpty() == false) {
+                binding.progressBar.visibility = View.GONE
+            }else if (firebaseAuth.currentUser == null){
+                binding.apply {
+                    loginInfo.visibility = View.VISIBLE
+                    progressBar.visibility = View.GONE
+                    favoriteInfo.visibility = View.GONE
+                }
+            }else if (listOfBooks?.isEmpty() == true){
+                binding.favoriteInfo.visibility = View.VISIBLE
+                binding.progressBar.visibility = View.GONE
+            }
+        }
+        favoriteViewModel.loading.observe(viewLifecycleOwner) { loading ->
+            if (loading) {
+                binding.apply {
+                    favoriteInfo.visibility = View.GONE
+                    progressBar.visibility = View.VISIBLE
+                }
+            } else {
+                binding.apply {
+                    favoriteInfo.visibility = View.VISIBLE
                 }
             }
-            orientationEventListener.enable()
         }
 
-        favoriteAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
-            override fun onItemRangeRemoved(positionStart: Int, itemCount: Int) {
-                favoriteViewModel.saveFavorites(favoriteAdapter.currentList)
-            }
-        })
-
-        favoriteAdapter.submitList(favoriteViewModel.loadFavorites())
-
-        if (favoriteAdapter.currentList.isEmpty()) {
-            binding.favoriteInfo.visibility = View.VISIBLE
-        } else {
-            binding.favoriteInfo.visibility = View.GONE
-        }
-
-
     }
-
-    override fun onResume() {
-        super.onResume()
-        favoriteAdapter.submitList(favoriteViewModel.loadFavorites())
-
-    }
-
-
 }

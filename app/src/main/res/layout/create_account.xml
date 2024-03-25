@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <ImageButton
-        android:id="@+id/back"
+        android:id="@+id/backRegister"
         android:layout_width="34dp"
         android:layout_height="34dp"
         android:layout_margin="20dp"
@@ -21,15 +21,15 @@
         android:layout_height="wrap_content"
         android:progress="100"
         app:indicatorColor="@color/primary"
-        app:layout_constraintBottom_toBottomOf="@id/back"
+        app:layout_constraintBottom_toBottomOf="@id/backRegister"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/back"
-        app:layout_constraintTop_toTopOf="@id/back"
+        app:layout_constraintStart_toEndOf="@id/backRegister"
+        app:layout_constraintTop_toTopOf="@id/backRegister"
         app:trackColor="@color/greybg"
         app:trackCornerRadius="16dp" />
 
     <TextView
-        android:id="@+id/acc_q"
+        android:id="@+id/create_acc_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="20dp"
@@ -50,7 +50,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/acc_q" />
+        app:layout_constraintTop_toBottomOf="@+id/create_acc_title" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username_input"
@@ -132,9 +132,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
+        android:layout_marginTop="56dp"
         android:buttonTint="@color/primary"
         android:text="@string/remember"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/confirm_password_input" />
 

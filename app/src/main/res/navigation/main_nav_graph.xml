@@ -56,11 +56,14 @@
             android:id="@+id/homeToSearch"
             app:destination="@id/searchFragment" />
         <action
-            android:id="@+id/homeToLogin"
-            app:destination="@id/userSignInFragment" />
-        <action
             android:id="@+id/homeToFocus"
             app:destination="@id/focusTime" />
+        <action
+            android:id="@+id/homeToLogin"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/homeToDiscover"
+            app:destination="@id/discoverFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -165,15 +168,87 @@
             app:destination="@id/homeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/userSignInFragment"
-        android:name="com.example.erabook.fragments.userlogin.UserSignInFragment"
-        android:label="UserSignInFragment"
-        tools:layout="@layout/fragment_sign_in"
-        />
-    <fragment
         android:id="@+id/focusTime"
         android:name="com.example.erabook.fragments.focustimer.FocusTimeFragment"
         android:label="FocusTime"
-        tools:layout="@layout/fragment_focus_time"
-        />
+        tools:layout="@layout/fragment_focus_time" />
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.example.erabook.fragments.userProfile.UserProfileFragment"
+        android:label="UserProfileFragment"
+        tools:layout="@layout/user_profile">
+        <action
+            android:id="@+id/userProfileToEdit"
+            app:destination="@id/userInfoFragment" />
+        <action
+            android:id="@+id/userProfileToLogin"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userInfoFragment"
+        android:name="com.example.erabook.fragments.userInfo.UserInfoFragment"
+        android:label="UserInfoFragment"
+        tools:layout="@layout/fragment_user_info">
+        <action
+            android:id="@+id/editToProfile"
+            app:destination="@id/userProfileFragment" />
+        <action
+            android:id="@+id/userIntoToDatePicker"
+            app:destination="@id/datePickerFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/datePickerFragment"
+        android:name="com.example.erabook.fragments.userInfo.DatePickerFragment"
+        android:label="DatePickerFragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.erabook.fragments.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_log_in">
+        <action
+            android:id="@+id/loginToRegister"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/loginToProfile"
+            app:destination="@id/userProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.erabook.fragments.login.RegisterFragment"
+        android:label="RegisterFragment"
+        tools:layout="@layout/fragment_register">
+        <action
+            android:id="@+id/registerToLogin"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/discoverFragment"
+        android:name="com.example.erabook.fragments.discoverGoogle.DiscoverFragment"
+        android:label="DiscoverFragment"
+        tools:layout="@layout/fragment_discover">
+        <action
+            android:id="@+id/discoverToDetails"
+            app:destination="@id/discoverDetailsFragment" />
+        <argument
+            android:name="bookName"
+            app:argType="string"
+            android:defaultValue="@null"
+            app:nullable="true"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/discoverDetailsFragment"
+        android:name="com.example.erabook.fragments.discoverGoogle.DiscoverDetailsFragment"
+        android:label="DiscoverDetailsFragment"
+        tools:layout="@layout/fragment_book_details">
+        <action
+            android:id="@+id/detailsToDiscover"
+            app:destination="@id/discoverFragment" />
+        <argument
+            android:name="bookName"
+            app:argType="string"
+            android:defaultValue="@null"
+            app:nullable="true" />
+
+    </fragment>
 </navigation>

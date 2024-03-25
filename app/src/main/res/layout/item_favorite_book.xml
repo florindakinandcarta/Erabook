@@ -6,16 +6,17 @@
 
         <variable
             name="book"
-            type="com.example.erabook.data.Books" />
+            type="com.example.erabook.data.models.Books" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/signup_successful"
+        android:id="@+id/favorite_item"
         android:layout_width="150dp"
         android:layout_height="250dp"
         app:cardCornerRadius="14dp"
         app:cardElevation="2dp"
         app:cardUseCompatPadding="true"
+        style="@style/CardView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -33,9 +34,7 @@
                 android:contentDescription="@string/desc_img"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:loadImage="@{book.imageLink}" />
-
+                app:layout_constraintTop_toTopOf="parent"/>
             <TextView
                 android:id="@+id/bookTitle"
                 android:layout_width="0dp"
@@ -44,7 +43,6 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:padding="@dimen/space5"
-                android:text="@{book.title}"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +55,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space8"
                 android:padding="@dimen/space5"
-                android:text="@{book.author}"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -72,9 +69,9 @@
                 android:layout_marginEnd="@dimen/space20"
                 android:layout_marginBottom="@dimen/space20"
                 android:background="@null"
+                android:contentDescription="favorite_item"
                 android:scaleType="centerCrop"
                 android:src="@drawable/favorite"
-                android:contentDescription="favorite_item"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

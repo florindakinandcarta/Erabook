@@ -2,12 +2,17 @@
 <resources>
     <dimen name="space8">8dp</dimen>
     <dimen name="space20">20dp</dimen>
+    <dimen name="space30">30dp</dimen>
     <dimen name="space5">5dp</dimen>
     <dimen name="space10">10dp</dimen>
     <dimen name="space16">16dp</dimen>
-
-
-
-
-
+    <dimen name="cornerRadiusRectangle">14dp</dimen>
+    <dimen name="rectangleWidth">200dp</dimen>
+    <dimen name="rectangleHeight">100dp</dimen>
+    <dimen name="textSmall">12sp</dimen>
+    <dimen name="textMedium">14sp</dimen>
+    <dimen name="textXMedium">20sp</dimen>
+    <dimen name="textLarge">24sp</dimen>
+    <dimen name="textXL">34sp</dimen>
+    <dimen name="textXXL">48sp</dimen>
 </resources>
