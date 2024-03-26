@@ -91,21 +91,21 @@ class DiscoverDetailsFragment : Fragment() {
                 "ALL_PAGES" -> {
                     bookItem.accessInfo.pdf?.let { pdf ->
                         if (pdf.isAvailable == true) {
-                            isDownloadableButton.setBackgroundResource(R.drawable.download)
-                            isDownloadableButton.setOnClickListener {
+                            downloadableButton.setBackgroundResource(R.drawable.download)
+                            downloadableButton.setOnClickListener {
                                 openLinkBookDownload(
                                     pdf.downloadLink,
                                     requireContext()
                                 )
                             }
                         } else if (pdf.isAvailable == false) {
-                            isDownloadableButton.setBackgroundResource(R.drawable.no_download)
+                            downloadableButton.setBackgroundResource(R.drawable.no_download)
                         }
                     }
                 }
 
                 else -> {
-                    isDownloadableButton.setBackgroundResource(R.drawable.no_download)
+                    downloadableButton.setBackgroundResource(R.drawable.no_download)
                 }
             }
 
