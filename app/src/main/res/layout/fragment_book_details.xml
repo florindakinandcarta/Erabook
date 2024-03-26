@@ -112,7 +112,6 @@
             android:background="@null"
             android:scaleType="centerCrop"
             android:contentDescription="@string/desc_img"
-            android:src="@drawable/download"
             app:layout_constraintStart_toEndOf="@id/isDownloadable"
             app:layout_constraintTop_toTopOf="@id/isDownloadable"
             app:layout_constraintBottom_toBottomOf="@id/isDownloadable"
