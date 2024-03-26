@@ -145,5 +145,10 @@
     <string name="no_data">We don\'t have that book in our database !?</string>
     <string name="favorite_added">Favorite book added!</string>
     <string name="favorite_removed">Book is removed from favorites successfully!</string>
-
+    <string name="recommended_for_you">Recommended for you</string>
+    <string name="top_100">Top 100</string>
+    <string name="new_york_best_sellers">New York Best Sellers</string>
+    <string name="my_genres">My Genres</string>
+    <string name="statistics">Statistics</string>
+    <string name="clicked">Clicked</string>
 </resources>
