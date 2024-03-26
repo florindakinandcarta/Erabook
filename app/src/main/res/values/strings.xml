@@ -88,6 +88,7 @@
     <string name="purchase_number">50M+</string>
     <string name="purchases">purchases</string>
     <string name="buy_book">Buy Book</string>
+    <string name="download">Download: </string>
     <string name="read_book">Read Book</string>
     <string name="about_book">About this book</string>
     <string name="about_book_desc">There\'s no description for this book!!!</string>

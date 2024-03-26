@@ -45,6 +45,7 @@ class DiscoverDetailsFragment : Fragment() {
                     is Resource.Error -> {
                         requireContext().showToast(R.string.error_fetching_data)
                     }
+
                     is Resource.Success -> {
                         sharedViewModel.loading_books.observe(viewLifecycleOwner) { loader ->
                             if (loader) {
@@ -90,40 +91,45 @@ class DiscoverDetailsFragment : Fragment() {
                 "ALL_PAGES" -> {
                     bookItem.accessInfo.pdf?.let { pdf ->
                         if (pdf.isAvailable == true) {
-                            isDownloadableButton.setOnClickListener {
+                            downloadableButton.setBackgroundResource(R.drawable.download)
+                            downloadableButton.setOnClickListener {
                                 openLinkBookDownload(
                                     pdf.downloadLink,
                                     requireContext()
                                 )
                             }
-                        } else {
-                            isDownloadableButton.setImageResource(R.drawable.no_download)
+                        } else if (pdf.isAvailable == false) {
+                            downloadableButton.setBackgroundResource(R.drawable.no_download)
                         }
                     }
+                }
 
-                    authenticationViewModel.userLiveData.observe(viewLifecycleOwner) { user ->
-                        favoriteBook.setOnClickListener {
-                            sharedViewModel.saveBookToDB(bookItem, user?.email.toString())
-                            sharedViewModel.isSaved.observe(viewLifecycleOwner) { value ->
-                                if (value) {
-                                    favoriteBook.setImageResource(R.drawable.favorite)
-                                    requireActivity().showToast(R.string.favorite_added)
-                                } else {
-                                    requireActivity().showToast(R.string.update_message_error)
-                                }
-                            }
+                else -> {
+                    downloadableButton.setBackgroundResource(R.drawable.no_download)
+                }
+            }
+
+            authenticationViewModel.userLiveData.observe(viewLifecycleOwner) { user ->
+                favoriteBook.setOnClickListener {
+                    sharedViewModel.saveBookToDB(bookItem, user?.email.toString())
+                    sharedViewModel.isSaved.observe(viewLifecycleOwner) { value ->
+                        if (value) {
+                            favoriteBook.setImageResource(R.drawable.favorite)
+                            requireActivity().showToast(R.string.favorite_added)
+                        } else {
+                            requireActivity().showToast(R.string.update_message_error)
                         }
                     }
-                    shareBook.setOnClickListener {
-                        bookItem.volumeInfo?.let {
-                            requireActivity().startBookDetailsIntent(
-                                it.title,
-                                it.authors[0],
-                                it.pageCount.toString(),
-                                it.publishedDate
-                            )
-                        }
-                    }
+                }
+            }
+            shareBook.setOnClickListener {
+                bookItem?.volumeInfo?.let {
+                    requireActivity().startBookDetailsIntent(
+                        it.title,
+                        it.authors[0],
+                        it.pageCount.toString(),
+                        it.publishedDate
+                    )
                 }
             }
         }
