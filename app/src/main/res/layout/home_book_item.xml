@@ -2,12 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-        <variable
-            name="book"
-            type="com.example.erabook.data.models.Books" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/listConstraint"
         android:layout_width="match_parent"
@@ -22,7 +16,6 @@
             android:layout_height="80dp"
             android:layout_margin="@dimen/space10"
             android:scaleType="centerCrop"
-            app:loadImageFromAssets="@{book.imageLink}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +27,6 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:singleLine="false"
-            android:text="@{book.title}"
             android:textSize="12sp"
             android:textStyle="bold"
             android:layout_marginStart="@dimen/space10"
@@ -53,7 +45,6 @@
             android:ellipsize="end"
             android:maxLines="2"
             android:singleLine="false"
-            android:text="@{book.author}"
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/bookTitle"

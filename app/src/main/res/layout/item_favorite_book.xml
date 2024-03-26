@@ -2,12 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-        <variable
-            name="book"
-            type="com.example.erabook.data.models.Books" />
-    </data>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/favorite_item"
