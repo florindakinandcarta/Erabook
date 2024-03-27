@@ -62,23 +62,23 @@ class FavoriteFragment : Fragment() {
         favoriteViewModel.listOfBooks.observe(viewLifecycleOwner) { listOfBooks ->
             favoriteAdapter.submitList(listOfBooks)
             if (listOfBooks?.isEmpty() == false) {
-                binding.progressBar.visibility = View.GONE
+                binding.bookAnimation.visibility = View.GONE
             }else if (firebaseAuth.currentUser == null){
                 binding.apply {
                     loginInfo.visibility = View.VISIBLE
-                    progressBar.visibility = View.GONE
+                    bookAnimation.visibility = View.GONE
                     favoriteInfo.visibility = View.GONE
                 }
             }else if (listOfBooks?.isEmpty() == true){
                 binding.favoriteInfo.visibility = View.VISIBLE
-                binding.progressBar.visibility = View.GONE
+                binding.bookAnimation.visibility = View.GONE
             }
         }
         favoriteViewModel.loading.observe(viewLifecycleOwner) { loading ->
             if (loading) {
                 binding.apply {
                     favoriteInfo.visibility = View.GONE
-                    progressBar.visibility = View.VISIBLE
+                    bookAnimation.visibility = View.VISIBLE
                 }
             } else {
                 binding.apply {
