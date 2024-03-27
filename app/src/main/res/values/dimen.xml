@@ -15,4 +15,5 @@
     <dimen name="textLarge">24sp</dimen>
     <dimen name="textXL">34sp</dimen>
     <dimen name="textXXL">48sp</dimen>
+    <dimen name="tab_max_width">120dp</dimen>
 </resources>
