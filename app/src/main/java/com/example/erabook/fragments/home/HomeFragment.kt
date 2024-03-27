@@ -9,14 +9,14 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.erabook.adapters.PagerAdapter
 import com.example.erabook.databinding.FragmentHomeBinding
 import com.example.erabook.util.TAB_NAMES
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var viewPager: ViewPager2
     private lateinit var demoCollectionPagerAdapter: PagerAdapter
+    private lateinit var viewPager: ViewPager2
 
 
     override fun onCreateView(
@@ -36,11 +36,10 @@ class HomeFragment : Fragment() {
         demoCollectionPagerAdapter = PagerAdapter(this)
         viewPager = binding.pager
         viewPager.adapter = demoCollectionPagerAdapter
+        viewPager.isUserInputEnabled = false
         val tabLayout = binding.tabLayout
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = getString(TAB_NAMES[position].tabName)
         }.attach()
-        tabLayout.tabMode = TabLayout.MODE_SCROLLABLE
     }
-
 }

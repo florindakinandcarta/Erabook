@@ -151,4 +151,10 @@
     <string name="my_genres">My Genres</string>
     <string name="statistics">Statistics</string>
     <string name="clicked">Clicked</string>
+    <string name="paper_back_nonfiction">Paper Back Nonfiction</string>
+    <string name="series_books">Series Books</string>
+    <string name="trade_fiction_paperback"> Trade Fiction Paperback</string>
+    <string name="advice_hot_to_and_miscellaneous">Advice How-To and miscellaneous</string>
+    <string name="paperback_graphic_books">Paperback Graphic Books</string>
+    <string name="rank">Rank: </string>
 </resources>

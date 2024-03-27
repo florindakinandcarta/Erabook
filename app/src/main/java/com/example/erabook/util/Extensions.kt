@@ -11,15 +11,15 @@ import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.example.erabook.R
 
-@BindingAdapter("loadImageFromAssets")
-fun ImageView.loadImageFromAssets(imageLink: String?) {
-    imageLink?.let {
-        val absolutePath = "file:///android_asset/$imageLink"
+@BindingAdapter("loadImageFromUrlNYT")
+fun ImageView.loadImage(imageUrl: String?) {
+    imageUrl?.let {
         Glide.with(this)
-            .load(absolutePath)
+            .load(it)
             .into(this)
     }
 }
+
 @BindingAdapter("loadImage")
 fun ImageView.loadImageFromUrl(imageLink: String?) {
     var imageLinkModified = ""
@@ -46,7 +46,13 @@ fun openLinkBookDownload(url: String?, context: Context) {
         Intent(Intent.ACTION_VIEW, Uri.parse(url))
     startActivity(context, intent, null)
 }
-fun Context.createBookDetailsIntent(title:String?, author: String?, pageCount:String?, publishedDate:String?): Intent {
+
+fun Context.createBookDetailsIntent(
+    title: String?,
+    author: String?,
+    pageCount: String?,
+    publishedDate: String?
+): Intent {
     val intent = Intent(Intent.ACTION_SEND)
         .apply {
             type = "text/plain"
@@ -67,8 +73,13 @@ fun Context.createBookDetailsIntent(title:String?, author: String?, pageCount:St
         }
     return intent
 }
-fun Context.startBookDetailsIntent(title:String?, author: String?, pageCount:String?, publishedDate:String?){
-    val bookDetailsIntent = createBookDetailsIntent(title,author,pageCount,publishedDate)
+fun Context.startBookDetailsIntent(
+    title: String?,
+    author: String?,
+    pageCount: String?,
+    publishedDate: String?
+) {
+    val bookDetailsIntent = createBookDetailsIntent(title, author, pageCount, publishedDate)
     val chooserIntent = Intent.createChooser(
         bookDetailsIntent,
         getString(R.string.send_details)
