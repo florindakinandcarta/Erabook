@@ -8,5 +8,5 @@ data class Results(
     @SerializedName("published_date_description" ) val publishedDateDescription : String?          = null,
     @SerializedName("previous_published_date"    ) val previousPublishedDate    : String?          = null,
     @SerializedName("next_published_date"        ) val nextPublishedDate        : String?          = null,
-    @SerializedName("lists"                      ) val lists                    : ArrayList<Lists> = arrayListOf()
+    @SerializedName("lists"                      ) val lists                    : ArrayList<Lists>? = null
 )

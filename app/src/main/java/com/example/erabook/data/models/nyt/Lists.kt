@@ -11,5 +11,5 @@ data class Lists(
     @SerializedName("list_image"        ) val listImage       : String?          = null,
     @SerializedName("list_image_width"  ) val listImageWidth  : String?          = null,
     @SerializedName("list_image_height" ) val listImageHeight : String?          = null,
-    @SerializedName("books"             ) val books           : ArrayList<Books> = arrayListOf()
+    @SerializedName("books"             ) val books           : ArrayList<Books>? = null
 )

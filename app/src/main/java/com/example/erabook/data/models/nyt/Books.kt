@@ -28,5 +28,5 @@ data class Books(
     @SerializedName("title"                ) val title              : String?             = null,
     @SerializedName("updated_date"         ) val updatedDate        : String?             = null,
     @SerializedName("weeks_on_list"        ) val weeksOnList        : String?                = null,
-    @SerializedName("buy_links"            ) val buyLinks           : ArrayList<BuyLinks> = arrayListOf()
+    @SerializedName("buy_links"            ) val buyLinks           : ArrayList<BuyLinks>? = null
 )

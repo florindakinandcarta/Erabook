@@ -157,4 +157,9 @@
     <string name="advice_hot_to_and_miscellaneous">Advice How-To and miscellaneous</string>
     <string name="paperback_graphic_books">Paperback Graphic Books</string>
     <string name="rank">Rank: </string>
+    <string name="paperback_cat">Paperback Nonfiction</string>
+    <string name="series_cat">Series Books</string>
+    <string name="trade_cat">Trade Fiction Paperback</string>
+    <string name="advice_cat">Advice How-To and Miscellaneous</string>
+    <string name="graphics_cat">Graphic Books and Manga</string>
 </resources>

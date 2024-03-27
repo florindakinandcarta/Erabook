@@ -4,6 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.erabook.R
+import com.example.erabook.data.TabNames
 import com.example.erabook.databinding.FragmentObjectBinding
 import com.example.erabook.fragments.home.tabFragments.NYTFragment
 import com.example.erabook.util.ARG_TAB_NAME
@@ -32,7 +33,7 @@ class ObjectFragment : Fragment() {
             val fragment = when (tabName) {
 //                "RECOMMENDED_FOR_YOU" ->
 //                "TOP_100" ->
-                "NEW_YORK_BEST_SELLERS" -> NYTFragment()
+                TabNames.NEW_YORK_BEST_SELLERS.toString() -> NYTFragment()
 //                "MY_GENRES" ->
 //                "STATISTICS" ->
                 else -> {
