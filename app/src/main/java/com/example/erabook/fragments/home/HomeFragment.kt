@@ -36,7 +36,6 @@ class HomeFragment : Fragment() {
         demoCollectionPagerAdapter = PagerAdapter(this)
         viewPager = binding.pager
         viewPager.adapter = demoCollectionPagerAdapter
-        viewPager.isUserInputEnabled = false
         val tabLayout = binding.tabLayout
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = getString(TAB_NAMES[position].tabName)
