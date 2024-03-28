@@ -41,7 +41,7 @@ class DiscoverFragment : Fragment() {
                 adapter = discoverAdapter
             }
             searchSomething.visibility = View.VISIBLE
-            loadingBooks.visibility = View.GONE
+            bookAnimation.visibility = View.GONE
 
             searchBarGoogle.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
@@ -50,7 +50,7 @@ class DiscoverFragment : Fragment() {
                     loadMore.setOnClickListener {
                         sharedViewModel.fetchBooks(searchTerm, 20)
                     }
-                    loadingBooks.visibility = View.VISIBLE
+                    bookAnimation.visibility = View.VISIBLE
                     searchSomething.visibility = View.GONE
                     searchBarGoogle.clearFocus()
                     return true
@@ -79,7 +79,7 @@ class DiscoverFragment : Fragment() {
                     is Resource.Success -> {
                         val volumeInfoList = response.data?.items?.map { it.volumeInfo }
                         volumeInfoList?.let { discoverAdapter.submitList(it) }
-                        loadingBooks.visibility = View.GONE
+                        bookAnimation.visibility = View.GONE
                         loadMore.visibility = View.VISIBLE
                         searchSomething.visibility = View.GONE
                     }
