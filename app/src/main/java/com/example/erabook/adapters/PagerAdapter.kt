@@ -8,9 +8,7 @@ import com.example.erabook.util.ARG_TAB_NAME
 import com.example.erabook.util.TAB_NAMES
 
 class PagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
-    override fun getItemCount(): Int {
-        return TAB_NAMES.size
-    }
+    override fun getItemCount(): Int = TAB_NAMES.size
     override fun createFragment(position: Int): Fragment {
         val fragment = ObjectFragment()
         fragment.arguments = Bundle().apply {

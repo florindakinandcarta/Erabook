@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="book"
+            type="com.example.erabook.data.models.nyt.Books" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space5">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/nytBookImage"
+            loadImageFromUrlNYT="@{book.bookImage}"
+            android:layout_width="100dp"
+            android:layout_height="140dp"
+            android:layout_margin="@dimen/space10"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toTopOf="@id/nytBookTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/nytBookTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space5"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:padding="@dimen/space5"
+            android:text="@{book.title}"
+            android:textAlignment="center"
+            android:textSize="@dimen/textMedium"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/nytRankText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nytBookImage" />
+
+        <TextView
+            android:id="@+id/nytRank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space5"
+            android:layout_marginTop="@dimen/space5"
+            android:layout_marginBottom="@dimen/space5"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{book.rank}"
+            android:textAlignment="center"
+            android:textSize="@dimen/textSmall"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/nytRankText"
+            app:layout_constraintStart_toEndOf="@id/nytRankText"
+            app:layout_constraintTop_toTopOf="@id/nytRankText" />
+
+        <TextView
+            android:id="@+id/nytRankText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space5"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:padding="@dimen/space5"
+            android:text="@string/rank"
+            android:textAlignment="center"
+            android:textSize="@dimen/textSmall"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
