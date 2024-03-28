@@ -1,7 +1,6 @@
 package com.example.erabook.adapters
 
 import android.content.Context
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,31 +15,24 @@ class FocusMinutesAdapter(context: Context) : ArrayAdapter<FocusMinutes>(
 ) {
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view: View =
-            convertView ?: layoutInflater.inflate(R.layout.item_focus_spinner, parent, false)
-
-        getItem(position)?.let { focusMinutes ->
-            setFocusMinutes(view, focusMinutes)
+        val view: View
+        if (position == 0) {
+            view = convertView ?: layoutInflater.inflate(R.layout.item_focus_header, parent, false)
+        } else {
+            view =
+                convertView ?: layoutInflater.inflate(R.layout.item_focus_spinner, parent, false)
+            getItem(position)?.let { focusMinutes ->
+                setFocusMinutes(view, focusMinutes)
+            }
         }
-
         return view
     }
 
     override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view: View
-        if (position == 0) {
-            view = layoutInflater.inflate(R.layout.item_focus_header, parent, false)
-            view.setOnClickListener {
-                val root = parent.rootView
-                root.dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK))
-                root.dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK))
-            }
-        } else {
-            view = layoutInflater.inflate(R.layout.item_focus_spinner, parent, false)
+        val view: View = layoutInflater.inflate(R.layout.item_focus_spinner, parent, false)
 
-            getItem(position)?.let { focusMinutes ->
-                setFocusMinutes(view, focusMinutes)
-            }
+        getItem(position)?.let { focusMinutes ->
+            setFocusMinutes(view, focusMinutes)
         }
         return view
     }
@@ -59,7 +51,8 @@ class FocusMinutesAdapter(context: Context) : ArrayAdapter<FocusMinutes>(
 
 
     private fun setFocusMinutes(view: View, focusMinutes: FocusMinutes) {
-        view.findViewById<TextView>(R.id.minutes).text = focusMinutes.minutes.toString()
+        view.findViewById<TextView>(R.id.minutes).text =
+            String.format("%d %s", focusMinutes.minutes, context.getString(R.string.minutes))
 
     }
 }
