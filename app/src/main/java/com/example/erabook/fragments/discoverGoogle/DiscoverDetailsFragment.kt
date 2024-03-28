@@ -47,11 +47,11 @@ class DiscoverDetailsFragment : Fragment() {
                     }
 
                     is Resource.Success -> {
-                        sharedViewModel.loading_books.observe(viewLifecycleOwner) { loader ->
-                            if (loader) {
-                                progressBar.visibility = View.VISIBLE
+                        sharedViewModel.loading_books.observe(viewLifecycleOwner) { loading ->
+                            if (loading) {
+                                loader.visibility = View.VISIBLE
                             } else {
-                                progressBar.visibility = View.GONE
+                                loader.visibility = View.GONE
                             }
                         }
                         if (args.bookName.isNullOrEmpty()) {
