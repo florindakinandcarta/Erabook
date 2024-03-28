@@ -113,7 +113,7 @@
     <string name="start_button">Start</string>
     <string name="give_up_button">Give Up</string>
     <string name="random_number">4.6</string>
-    <string name="pick_focus_time">Chose a time to focus</string>
+    <string name="pick_focus_time">Chose a time to focus! </string>
     <string name="hold_button">"Long hold the button to stop the timer."</string>
     <string name="pick_time">"Pick a time please!"</string>
     <string name="email_sent">Email sent, please check your inbox!</string>
@@ -149,6 +149,7 @@
     <string name="top_100">Top 100</string>
     <string name="new_york_best_sellers">New York Best Sellers</string>
     <string name="my_genres">My Genres</string>
+    <string name="minutes"> minutes</string>
     <string name="statistics">Statistics</string>
     <string name="clicked">Clicked</string>
     <string name="paper_back_nonfiction">Paper Back Nonfiction</string>
