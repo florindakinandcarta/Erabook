@@ -52,7 +52,7 @@
         app:layout_constraintTop_toTopOf="@id/searchCard" />
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/bookAnimation"
+        android:id="@+id/loader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
