@@ -4,6 +4,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -76,6 +77,7 @@ class CameraFragment : Fragment() {
         binding.apply {
             imageCaptureButton.setOnClickListener {
                 takePhoto()
+                requireContext().showToast(R.string.wait)
             }
         }
     }
@@ -104,7 +106,7 @@ class CameraFragment : Fragment() {
                     viewLifecycleOwner, CameraSelector.DEFAULT_BACK_CAMERA, preview, imageCapture
                 )
             } catch (e: Exception) {
-                println("Use case binding failed: $e")
+                Log.d("Binding error", "Use case binding failed: $e")
             }
         }, ContextCompat.getMainExecutor(requireContext()))
 
@@ -127,7 +129,8 @@ class CameraFragment : Fragment() {
                 }
 
                 override fun onError(exception: ImageCaptureException) {
-                    println("Photo capture failed: ${exception.message}")
+                    requireContext().showToast(R.string.default_error)
+                    Log.d("Error capture", "Photo capture failed: ${exception.message}")
                 }
             }
         )
@@ -145,7 +148,8 @@ class CameraFragment : Fragment() {
                     }
                 }
                 .addOnFailureListener { e ->
-                    println("Barcode scanning failed: ${e.message}")
+                    requireContext().showToast(R.string.scanning_failed)
+                    Log.d("Barcode fail.", "Barcode scanning failed: ${e.message}")
                 }
         }
     }

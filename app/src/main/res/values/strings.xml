@@ -164,4 +164,5 @@
     <string name="trade_cat">Trade Fiction Paperback</string>
     <string name="advice_cat">Advice How-To and Miscellaneous</string>
     <string name="graphics_cat">Graphic Books and Manga</string>
+    <string name="scanning_failed">Barcode scanning failed!!!</string>
 </resources>
