@@ -141,6 +141,7 @@
     <string name="empty_text"></string>
     <string name="cancelled">Cancelled</string>
     <string name="wait">Loading…</string>
+    <string name="camera_denied">Camera permission denied!</string>
     <string name="search_something">Search or scan a book!?</string>
     <string name="no_data">We don\'t have that book in our database !?</string>
     <string name="favorite_added">Favorite book added!</string>
@@ -163,4 +164,5 @@
     <string name="trade_cat">Trade Fiction Paperback</string>
     <string name="advice_cat">Advice How-To and Miscellaneous</string>
     <string name="graphics_cat">Graphic Books and Manga</string>
+    <string name="scanning_failed">Barcode scanning failed!!!</string>
 </resources>

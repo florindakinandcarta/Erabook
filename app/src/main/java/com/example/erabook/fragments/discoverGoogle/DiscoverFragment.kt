@@ -8,13 +8,11 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.erabook.R
 import com.example.erabook.adapters.DiscoverAdapter
 import com.example.erabook.databinding.FragmentDiscoverBinding
 import com.example.erabook.util.showToast
-import com.google.mlkit.vision.barcode.common.Barcode
-import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions
-import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,7 +20,6 @@ class DiscoverFragment : Fragment() {
     private lateinit var binding: FragmentDiscoverBinding
     private lateinit var discoverAdapter: DiscoverAdapter
     private val sharedViewModel: SharedGoogleBooksViewModel by viewModels({ requireActivity() })
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -60,13 +57,13 @@ class DiscoverFragment : Fragment() {
                     return false
                 }
             })
-            sharedViewModel.isResponseZero.observe(viewLifecycleOwner){isResponseZero ->
-                if (isResponseZero){
+            sharedViewModel.isResponseZero.observe(viewLifecycleOwner) { isResponseZero ->
+                if (isResponseZero) {
                     discoverAdapter.submitList(emptyList())
                     binding.apply {
                         loadMore.visibility = View.GONE
                         searchSomething.visibility = View.VISIBLE
-                        searchBarGoogle.setQuery("",false)
+                        searchBarGoogle.setQuery("", false)
                     }
                 }
             }
@@ -91,30 +88,8 @@ class DiscoverFragment : Fragment() {
 
             }
             qrCodeButton.setOnClickListener {
-                scanBook()
+                findNavController().navigate(R.id.discoverToCamera)
             }
         }
-    }
-
-    private fun scanBook() {
-        val options = GmsBarcodeScannerOptions.Builder()
-            .setBarcodeFormats(
-                Barcode.FORMAT_EAN_13,
-                Barcode.FORMAT_QR_CODE
-            )
-            .enableAutoZoom()
-            .build()
-        val scanner = GmsBarcodeScanning.getClient(requireContext())
-        scanner.startScan()
-            .addOnSuccessListener { barcode ->
-                val barcodeString = "=isbn:${barcode.rawValue}"
-                sharedViewModel.fetchBooksWithISBN(barcodeString)
-            }
-            .addOnCanceledListener {
-                requireContext().showToast(R.string.cancelled)
-            }
-            .addOnFailureListener { message ->
-                requireContext().showToast(R.string.default_error)
-            }
     }
 }

@@ -2,10 +2,13 @@ package com.example.erabook.util
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.support.annotation.StringRes
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.camera.core.ImageProxy
 import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -85,4 +88,11 @@ fun Context.startBookDetailsIntent(
         getString(R.string.send_details)
     )
     startActivity(chooserIntent)
+}
+fun ImageProxy.convertImageProxyToBitmap(): Bitmap {
+    val buffer = planes[0].buffer
+    buffer.rewind()
+    val bytes = ByteArray(buffer.capacity())
+    buffer.get(bytes)
+    return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
 }
