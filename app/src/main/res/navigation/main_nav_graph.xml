@@ -96,6 +96,9 @@
             android:defaultValue="@null"
             app:nullable="true"
             />
+        <action
+            android:id="@+id/discoverToCamera"
+            app:destination="@id/cameraFragment" />
     </fragment>
     <fragment
         android:id="@+id/discoverDetailsFragment"
@@ -112,4 +115,10 @@
             app:nullable="true" />
 
     </fragment>
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.example.erabook.fragments.discoverGoogle.CameraFragment"
+        android:label="CameraFragment"
+        tools:layout="@layout/fragment_camera"
+        />
 </navigation>

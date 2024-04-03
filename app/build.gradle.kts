@@ -83,6 +83,12 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.dagger:hilt-android:2.50")
     kapt("com.google.dagger:hilt-android-compiler:2.50")
-    implementation ("com.google.android.gms:play-services-code-scanner:16.1.0")
+    implementation ("com.google.mlkit:barcode-scanning:17.2.0")
 
+    implementation ("androidx.camera:camera-core:1.3.2")
+    implementation ("androidx.camera:camera-camera2:1.3.2")
+    implementation ("androidx.camera:camera-lifecycle:1.3.2")
+    implementation ("androidx.camera:camera-video:1.3.2")
+    implementation ("androidx.camera:camera-view:1.3.2")
+    implementation ("androidx.camera:camera-extensions:1.3.2")
 }
