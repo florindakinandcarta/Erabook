@@ -38,12 +38,11 @@ class NYTAdapter : ListAdapter<Lists, NYTAdapter.NYTViewHolder>(NYTAdapterDiffCa
         fun bind(item: Lists) {
             binding.apply {
                 childTitle.text = item.listName
+                val listName = bundleOf(Pair("listName", item.listName))
                 childTitle.setOnClickListener {
-                    val listName = bundleOf(Pair("listName", item.listName))
                     childTitle.findNavController().navigate(R.id.homeToNYTGenre,listName)
                 }
                 more.setOnClickListener {
-                    val listName = bundleOf(Pair("listName", item.listName))
                     more.findNavController().navigate(R.id.homeToNYTGenre,listName)
                 }
                 nytChildAdapter.submitList(item.books)
