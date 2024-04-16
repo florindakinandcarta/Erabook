@@ -143,6 +143,7 @@
     <string name="load_more">Load more…</string>
     <string name="empty_text"></string>
     <string name="cancelled">Cancelled</string>
+    <string name="location_denied">Location permission denied!</string>
     <string name="wait">Loading…</string>
     <string name="connectivity_unavailable">You\'re not connected to the Internet!</string>
     <string name="discover_fragment">DiscoverFragment</string>

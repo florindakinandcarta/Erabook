@@ -94,4 +94,6 @@ dependencies {
     implementation ("androidx.camera:camera-extensions:1.3.2")
     implementation("id.zelory:compressor:3.0.1")
     implementation("com.google.firebase:firebase-storage")
+
+    implementation ("org.osmdroid:osmdroid-android:6.1.14")
 }
