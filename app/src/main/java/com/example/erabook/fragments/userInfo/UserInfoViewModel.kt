@@ -1,3 +1,4 @@
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,9 +10,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+import id.zelory.compressor.Compressor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.io.File
 import java.util.Date
 
 class UserInfoViewModel : ViewModel() {
@@ -21,6 +25,8 @@ class UserInfoViewModel : ViewModel() {
     private val _documentId = MutableLiveData<String>()
     private val _errorMessage = MutableLiveData<Int>()
     private val _updateMessage = MutableLiveData<Int>()
+    private val storage = Firebase.storage
+    private var storageRef = storage.reference
     val updateMessage: LiveData<Int>
         get() = _updateMessage
 
@@ -51,7 +57,7 @@ class UserInfoViewModel : ViewModel() {
                                     document.data["userName"].toString(),
                                     document.data["userEmail"].toString(),
                                     (document.data["userMobile"] as? Long)?.toInt() ?: 0,
-                                    "",
+                                    document.data["userProfileImg"].toString(),
                                     document.data["userUsername"].toString(),
                                     userBirthday.toDate(),
                                     ArrayList()
@@ -86,7 +92,8 @@ class UserInfoViewModel : ViewModel() {
                                     "userName" to updatedUserData.userName,
                                     "userUsername" to updatedUserData.userUsername,
                                     "userMobile" to updatedUserData.userMobile,
-                                    "userBirthday" to updatedUserData.userBirthday
+                                    "userBirthday" to updatedUserData.userBirthday,
+                                    "userProfileImg" to updatedUserData.userProfileImg,
                                 )
                             )
                         }
@@ -143,7 +150,36 @@ class UserInfoViewModel : ViewModel() {
         val updatedBirthday = currentUser.copy(userBirthday = newBirthday)
         _userInfo.postValue(updatedBirthday)
     }
-    //TODO(getUserLocation)
+    fun compressImage(context: Context, originalImage: File, fileName: String) {
+        viewModelScope.launch {
+            val compressedImageFile = Compressor.compress(context, originalImage)
+            val compressedImageBytes = compressedImageFile.readBytes()
+            uploadProfileImage(compressedImageBytes, fileName)
+        }
+    }
+    private fun uploadProfileImage(profileImageBytes: ByteArray, fileName: String) {
+        val imageRef = storageRef.child("profileImages/$fileName")
+        val uploadTask = imageRef.putBytes(profileImageBytes)
+        uploadTask.addOnFailureListener {
+            _updateMessage.postValue(R.string.update_message_error)
+        }.addOnSuccessListener {
+            imageRef.downloadUrl.addOnSuccessListener { uri ->
+                val updatedUserData = userInfo.value?.copy(
+                    userProfileImg = uri.toString()
+                )
+                firebaseAuth.currentUser?.email?.let { userEmail ->
+                    updatedUserData?.let { userData ->
+                        updateUserDataByEmail(
+                            userData,
+                            userEmail
+                        )
+                    }
+                }
+            }
+            _updateMessage.postValue(R.string.profile_successful)
+        }
+}
+//TODO(getUserLocation)
 //    private fun parseCoordinates(coordinatesMap: Map<*, *>?): Coordinates? {
 //        return if (coordinatesMap != null) {
 //            Coordinates(coordinatesMap["lat"] as Double?, coordinatesMap["lon"] as Double?)
