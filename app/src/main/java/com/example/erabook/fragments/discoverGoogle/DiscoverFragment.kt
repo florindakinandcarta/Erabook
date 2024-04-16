@@ -8,12 +8,16 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.erabook.R
 import com.example.erabook.adapters.DiscoverAdapter
 import com.example.erabook.databinding.FragmentDiscoverBinding
 import com.example.erabook.util.showToast
+import com.rommansabbir.networkx.extension.isInternetConnectedFlow
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DiscoverFragment : Fragment() {
@@ -39,53 +43,64 @@ class DiscoverFragment : Fragment() {
             }
             searchSomething.visibility = View.VISIBLE
             loader.visibility = View.GONE
+            lifecycleScope.launch {
+                isInternetConnectedFlow.collectLatest {
+                    when(it){
+                        true -> {
+                            searchBarGoogle.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                                override fun onQueryTextSubmit(query: String?): Boolean {
+                                    val searchTerm = query?.replace(" ", "+")
+                                    sharedViewModel.fetchBooks(searchTerm, 0)
+                                    loadMore.setOnClickListener {
+                                        sharedViewModel.fetchBooks(searchTerm, 20)
+                                    }
+                                    loader.visibility = View.VISIBLE
+                                    searchSomething.visibility = View.GONE
+                                    searchBarGoogle.clearFocus()
+                                    return true
+                                }
 
-            searchBarGoogle.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    val searchTerm = query?.replace(" ", "+")
-                    sharedViewModel.fetchBooks(searchTerm, 0)
-                    loadMore.setOnClickListener {
-                        sharedViewModel.fetchBooks(searchTerm, 20)
+                                override fun onQueryTextChange(newText: String?): Boolean {
+                                    return false
+                                }
+                            })
+                            sharedViewModel.isResponseZero.observe(viewLifecycleOwner) { isResponseZero ->
+                                if (isResponseZero) {
+                                    discoverAdapter.submitList(emptyList())
+                                    binding.apply {
+                                        loadMore.visibility = View.GONE
+                                        searchSomething.visibility = View.VISIBLE
+                                        searchBarGoogle.setQuery("", false)
+                                    }
+                                }
+                            }
+                            sharedViewModel.response_books.observe(viewLifecycleOwner) { response ->
+                                when (response) {
+                                    is Resource.Error -> {
+                                        requireContext().showToast(R.string.error_fetching_data)
+                                    }
+
+                                    is Resource.Success -> {
+                                        val volumeInfoList = response.data?.items?.map { it.volumeInfo }
+                                        volumeInfoList?.let { discoverAdapter.submitList(it) }
+                                        loader.visibility = View.GONE
+                                        loadMore.visibility = View.VISIBLE
+                                        searchSomething.visibility = View.GONE
+                                    }
+
+                                    else -> {
+                                        requireContext().showToast(R.string.default_error)
+                                    }
+                                }
+
+                            }
+                        }
+                        else -> {
+                            binding.checkConnection.visibility = View.VISIBLE
+                            binding.searchSomething.visibility = View.GONE
+                        }
                     }
-                    loader.visibility = View.VISIBLE
-                    searchSomething.visibility = View.GONE
-                    searchBarGoogle.clearFocus()
-                    return true
                 }
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    return false
-                }
-            })
-            sharedViewModel.isResponseZero.observe(viewLifecycleOwner) { isResponseZero ->
-                if (isResponseZero) {
-                    discoverAdapter.submitList(emptyList())
-                    binding.apply {
-                        loadMore.visibility = View.GONE
-                        searchSomething.visibility = View.VISIBLE
-                        searchBarGoogle.setQuery("", false)
-                    }
-                }
-            }
-            sharedViewModel.response_books.observe(viewLifecycleOwner) { response ->
-                when (response) {
-                    is Resource.Error -> {
-                        requireContext().showToast(R.string.error_fetching_data)
-                    }
-
-                    is Resource.Success -> {
-                        val volumeInfoList = response.data?.items?.map { it.volumeInfo }
-                        volumeInfoList?.let { discoverAdapter.submitList(it) }
-                        loader.visibility = View.GONE
-                        loadMore.visibility = View.VISIBLE
-                        searchSomething.visibility = View.GONE
-                    }
-
-                    else -> {
-                        requireContext().showToast(R.string.default_error)
-                    }
-                }
-
             }
             qrCodeButton.setOnClickListener {
                 findNavController().navigate(R.id.discoverToCamera)

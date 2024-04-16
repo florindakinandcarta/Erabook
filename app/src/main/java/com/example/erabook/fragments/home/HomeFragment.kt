@@ -40,5 +40,13 @@ class HomeFragment : Fragment() {
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = getString(TAB_NAMES[position].tabName)
         }.attach()
+        tabLayout.post {
+            for (i in 0 until 2){
+                val tab = (tabLayout.getChildAt(0) as ViewGroup).getChildAt(i)
+                val params = tab.layoutParams as ViewGroup.MarginLayoutParams
+                params.width = tabLayout.width / 2
+                tab.layoutParams = params
+            }
+        }
     }
 }

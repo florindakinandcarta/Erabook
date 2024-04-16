@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.erabook.R
 import com.example.erabook.databinding.FragmentCameraBinding
+import com.example.erabook.util.REQUESTED_PERMISSIONS
 import com.example.erabook.util.convertImageProxyToBitmap
 import com.example.erabook.util.showToast
 import com.google.mlkit.vision.barcode.BarcodeScanner
@@ -37,17 +38,6 @@ class CameraFragment : Fragment() {
     private lateinit var cameraExecutor: ExecutorService
     private val sharedViewModel: SharedGoogleBooksViewModel by viewModels({ requireActivity() })
     private lateinit var barcodeScanner: BarcodeScanner
-
-
-    companion object {
-        private val REQUESTED_PERMISSIONS = mutableListOf(
-            "android.permission.CAMERA"
-        ).apply {
-            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
-                add("android.permission.WRITE_EXTERNAL_STORAGE")
-            }
-        }.toTypedArray()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -114,7 +104,6 @@ class CameraFragment : Fragment() {
 
     private fun requestCameraPermissions() {
         activityResultLauncher.launch(REQUESTED_PERMISSIONS)
-
     }
 
     private fun takePhoto() {

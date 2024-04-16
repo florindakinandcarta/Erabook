@@ -7,13 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.erabook.BuildConfig
 import com.example.erabook.R
 import com.example.erabook.adapters.NYTAdapter
 import com.example.erabook.databinding.FragmentNytBinding
 import com.example.erabook.fragments.home.HomeViewModel
 import com.example.erabook.util.showToast
+import com.rommansabbir.networkx.extension.isInternetConnectedFlow
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class NYTFragment : Fragment() {
@@ -35,23 +39,34 @@ class NYTFragment : Fragment() {
         binding.parentList.apply {
             adapter = nytAdapter
         }
-        homeViewModel.callNYT(BuildConfig.NYT_API_KEY)
-        homeViewModel.nyt.observe(viewLifecycleOwner)
-        { response ->
-            when (response) {
-                is Resource.Error -> {
-                    binding.bookAnimation.visibility = View.VISIBLE
-                    requireContext().showToast(R.string.error_fetching_data)
-                }
+        lifecycleScope.launch {
+            isInternetConnectedFlow.collectLatest {
+                when (it) {
+                    true -> {
+                        homeViewModel.callNYT(BuildConfig.NYT_API_KEY)
+                        homeViewModel.nyt.observe(viewLifecycleOwner) { response ->
+                            when (response) {
+                                is Resource.Error -> {
+                                    binding.bookAnimation.visibility = View.VISIBLE
+                                    requireContext().showToast(R.string.error_fetching_data)
+                                }
 
-                is Resource.Success -> {
-                    binding.bookAnimation.visibility = View.GONE
-                    nytAdapter.submitList(response.data?.results?.lists)
-                }
+                                is Resource.Success -> {
+                                    binding.bookAnimation.visibility = View.GONE
+                                    nytAdapter.submitList(response.data?.results?.lists)
+                                }
 
-                else -> {
-                    binding.bookAnimation.visibility = View.VISIBLE
-                    requireContext().showToast(R.string.default_error)
+                                else -> {
+                                    binding.bookAnimation.visibility = View.VISIBLE
+                                    requireContext().showToast(R.string.default_error)
+                                }
+                            }
+                        }
+                    }
+                    else -> {
+                        binding.bookAnimation.visibility = View.GONE
+                        requireContext().showToast(R.string.check_network_connection)
+                    }
                 }
             }
         }
