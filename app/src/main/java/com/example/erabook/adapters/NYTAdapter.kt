@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.erabook.data.models.nyt.Lists
 import com.example.erabook.databinding.ItemNytRecycleViewBinding
+import com.example.erabook.fragments.home.tabFragments.nyt.NYTItemClickListener
 
-class NYTAdapter : ListAdapter<Lists, NYTAdapter.NYTViewHolder>(NYTAdapterDiffCallBack()) {
+class NYTAdapter(private val clickListener: NYTItemClickListener? = null) : ListAdapter<Lists, NYTAdapter.NYTViewHolder>(NYTAdapterDiffCallBack()) {
     private lateinit var nytChildAdapter: NYTChildAdapter
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NYTViewHolder {
         return NYTViewHolder(
@@ -36,6 +37,11 @@ class NYTAdapter : ListAdapter<Lists, NYTAdapter.NYTViewHolder>(NYTAdapterDiffCa
         fun bind(item: Lists) {
             binding.apply {
                 childTitle.text = item.listName
+                childTitle.setOnClickListener {
+                    if (adapterPosition != RecyclerView.NO_POSITION){
+                        clickListener?.onNYTItemClick(getItem(adapterPosition).listName)
+                    }
+                }
                 nytChildAdapter.submitList(item.books)
             }
         }
