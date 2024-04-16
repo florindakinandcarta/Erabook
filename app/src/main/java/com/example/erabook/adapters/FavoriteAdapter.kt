@@ -14,7 +14,7 @@ import com.example.erabook.util.loadImageFromUrl
 
 
 class FavoriteAdapter(private val itemClickListener: (Int) -> Unit) :
-    ListAdapter<VolumeInfo, FavoriteAdapter.ViewHolder>(com.example.erabook.adapters.FavoriteAdapterDiffCallBack()) {
+    ListAdapter<VolumeInfo, FavoriteAdapter.ViewHolder>(FavoriteAdapterDiffCallBack()) {
 
 
     inner class ViewHolder(private val binding: ItemFavoriteBookBinding) :
