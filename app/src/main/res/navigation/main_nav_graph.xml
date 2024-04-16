@@ -27,7 +27,19 @@
         android:id="@+id/favoriteFragment"
         android:name="com.example.erabook.fragments.favorite.FavoriteFragment"
         android:label="FavoriteFragment"
-        tools:layout="@layout/fragment_favorite"/>
+        tools:layout="@layout/fragment_favorite">
+        <argument
+            android:name="favoriteBook"
+            app:argType="com.example.erabook.data.models.VolumeInfo"
+            android:defaultValue="@null"
+            app:nullable="true"
+            />
+        <action
+            android:id="@+id/favoriteToDetails"
+            app:destination="@+id/favoriteDetailsFragment"
+            app:enterAnim="@anim/container_transform_enter"
+            app:popExitAnim="@anim/container_transform_exit" />
+    </fragment>
     <fragment
         android:id="@+id/focusTime"
         android:name="com.example.erabook.fragments.focustimer.FocusTimeFragment"
@@ -89,7 +101,9 @@
         tools:layout="@layout/fragment_discover">
         <action
             android:id="@+id/discoverToDetails"
-            app:destination="@id/discoverDetailsFragment" />
+            app:destination="@id/discoverDetailsFragment"
+            app:enterAnim="@anim/container_transform_enter"
+            app:popExitAnim="@anim/container_transform_exit" />
         <argument
             android:name="bookName"
             app:argType="string"
@@ -98,7 +112,8 @@
             />
         <action
             android:id="@+id/discoverToCamera"
-            app:destination="@id/cameraFragment" />
+            app:destination="@id/cameraFragment"
+           />
     </fragment>
     <fragment
         android:id="@+id/discoverDetailsFragment"
@@ -113,7 +128,6 @@
             app:argType="string"
             android:defaultValue="@null"
             app:nullable="true" />
-
     </fragment>
     <fragment
         android:id="@+id/cameraFragment"
@@ -121,4 +135,16 @@
         android:label="CameraFragment"
         tools:layout="@layout/fragment_camera"
         />
+    <fragment
+        android:id="@+id/favoriteDetailsFragment"
+        android:name="com.example.erabook.fragments.favorite.FavoriteDetailsFragment"
+        tools:layout="@layout/fragment_book_details"
+        android:label="FavoriteDetailsFragment" >
+        <argument
+            android:name="favoriteBook"
+            app:argType="com.example.erabook.data.models.VolumeInfo"
+            android:defaultValue="@null"
+            app:nullable="true"
+            />
+    </fragment>
 </navigation>

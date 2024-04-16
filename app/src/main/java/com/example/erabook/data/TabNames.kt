@@ -5,9 +5,6 @@ data class TabNamesItem(
     val tabName: Int,
 )
 enum class TabNames {
-    RECOMMENDED_FOR_YOU,
-    TOP_100,
+    FOR_YOU,
     NEW_YORK_BEST_SELLERS,
-    MY_GENRES,
-    STATISTICS
 }

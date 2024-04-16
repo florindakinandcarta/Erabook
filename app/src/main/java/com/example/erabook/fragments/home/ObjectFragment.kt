@@ -31,11 +31,8 @@ class ObjectFragment : Fragment() {
         arguments?.let { args ->
             tabName = args.getString(ARG_TAB_NAME) ?: ""
             val fragment = when (tabName) {
-//                "RECOMMENDED_FOR_YOU" ->
-//                "TOP_100" ->
+//                "FOR_YOU" ->
                 TabNames.NEW_YORK_BEST_SELLERS.toString() -> NYTFragment()
-//                "MY_GENRES" ->
-//                "STATISTICS" ->
                 else -> {
                     ObjectFragment()}
             }

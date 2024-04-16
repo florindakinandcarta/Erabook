@@ -7,12 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.erabook.activities.AuthenticationViewModel
 import com.example.erabook.R
 import com.example.erabook.data.models.UserDataRemote
 import com.example.erabook.databinding.FragmentUserInfoBinding
 import com.example.erabook.util.showToast
+import com.rommansabbir.networkx.extension.isInternetConnectedFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 
 class UserInfoFragment : Fragment() {
@@ -31,6 +35,17 @@ class UserInfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        lifecycleScope.launch {
+            isInternetConnectedFlow.collectLatest {
+                when (it) {
+                    true -> {
+                    }
+                    else -> {
+                        requireContext().showToast(R.string.update_connection)
+                    }
+                }
+            }
+        }
         userInfoViewModel.userInfo.observe(viewLifecycleOwner) { userUpdated ->
             this.updatedUser = userUpdated
         }
