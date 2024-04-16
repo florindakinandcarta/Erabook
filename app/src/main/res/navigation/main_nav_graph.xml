@@ -22,6 +22,15 @@
         <action
             android:id="@+id/homeToDiscover"
             app:destination="@id/discoverFragment" />
+        <action
+            android:id="@+id/homeToNYTGenre"
+            app:destination="@id/NYTGenre" />
+        <argument
+            android:name="listName"
+            app:argType="string"
+            android:defaultValue="@null"
+            app:nullable="true"
+            />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -143,6 +152,19 @@
         <argument
             android:name="favoriteBook"
             app:argType="com.example.erabook.data.models.VolumeInfo"
+            android:defaultValue="@null"
+            app:nullable="true"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/NYTGenre"
+        android:name="com.example.erabook.fragments.home.tabFragments.nyt.NYTGenre"
+        android:label="NYTGenre"
+        tools:layout="@layout/fragment_nyt_genre"
+        >
+        <argument
+            android:name="listName"
+            app:argType="string"
             android:defaultValue="@null"
             app:nullable="true"
             />

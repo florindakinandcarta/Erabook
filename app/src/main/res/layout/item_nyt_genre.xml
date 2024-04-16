@@ -10,14 +10,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space5"
+        >
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/bookImage"
             android:layout_width="80dp"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             loadImageFromUrlNYT="@{book.bookImage}"
-            android:layout_margin="@dimen/space20"
+            android:layout_margin="@dimen/space10"
             android:contentDescription="@string/desc_img"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -39,16 +41,16 @@
 
         <TextView
             android:id="@+id/bookDesc"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space8"
+            android:layout_marginEnd="@dimen/space8"
             android:padding="@dimen/space5"
             android:textSize="@dimen/textSmall"
             android:ellipsize="end"
-            android:maxLines="2"
             android:text="@{book.description}"
             app:layout_constraintTop_toBottomOf="@id/bookTitle"
-            app:layout_constraintBottom_toBottomOf="@id/bookImage"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/bookImage"
             app:layout_constraintEnd_toEndOf="parent" />
 

@@ -1,17 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/backFragmentGenre"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_margin="@dimen/space20"
+        android:background="@null"
+        android:contentDescription="@string/desc_img"
+        android:focusable="false"
+        android:src="@drawable/arrow_back"
+        app:layout_constraintBottom_toTopOf="@id/genreList"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/genreTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space5"
+        android:layout_marginStart="@dimen/space5"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="@dimen/space10"
+        android:textAlignment="center"
+        android:textSize="@dimen/textXMedium"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/backFragmentGenre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/backFragmentGenre"
+        app:layout_constraintTop_toTopOf="@id/backFragmentGenre" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/genreList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/space10"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/space5"
+        android:layout_marginBottom="@dimen/space5"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/backFragmentGenre" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/pages_flipping" />
 </androidx.constraintlayout.widget.ConstraintLayout>

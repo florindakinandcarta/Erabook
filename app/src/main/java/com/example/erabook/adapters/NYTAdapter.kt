@@ -2,15 +2,16 @@ package com.example.erabook.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.erabook.R
 import com.example.erabook.data.models.nyt.Lists
 import com.example.erabook.databinding.ItemNytRecycleViewBinding
-import com.example.erabook.fragments.home.tabFragments.nyt.NYTItemClickListener
 
-class NYTAdapter(private val clickListener: NYTItemClickListener? = null) : ListAdapter<Lists, NYTAdapter.NYTViewHolder>(NYTAdapterDiffCallBack()) {
+class NYTAdapter : ListAdapter<Lists, NYTAdapter.NYTViewHolder>(NYTAdapterDiffCallBack()) {
     private lateinit var nytChildAdapter: NYTChildAdapter
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NYTViewHolder {
         return NYTViewHolder(
@@ -38,9 +39,12 @@ class NYTAdapter(private val clickListener: NYTItemClickListener? = null) : List
             binding.apply {
                 childTitle.text = item.listName
                 childTitle.setOnClickListener {
-                    if (adapterPosition != RecyclerView.NO_POSITION){
-                        clickListener?.onNYTItemClick(getItem(adapterPosition).listName)
-                    }
+                    val listName = bundleOf(Pair("listName", item.listName))
+                    childTitle.findNavController().navigate(R.id.homeToNYTGenre,listName)
+                }
+                more.setOnClickListener {
+                    val listName = bundleOf(Pair("listName", item.listName))
+                    more.findNavController().navigate(R.id.homeToNYTGenre,listName)
                 }
                 nytChildAdapter.submitList(item.books)
             }
