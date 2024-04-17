@@ -24,7 +24,7 @@
             app:destination="@id/discoverFragment" />
         <action
             android:id="@+id/homeToNYTGenre"
-            app:destination="@id/NYTGenre" />
+            app:destination="@id/" />
         <argument
             android:name="listName"
             app:argType="string"

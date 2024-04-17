@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ImageButton
-        android:id="@+id/backFragmentGenre"
+        android:id="@+id/backButton"
         android:layout_width="34dp"
         android:layout_height="34dp"
-        android:layout_margin="@dimen/space16"
+        android:layout_margin="@dimen/space20"
         android:background="@null"
         android:contentDescription="@string/desc_img"
         android:focusable="false"
@@ -15,34 +16,34 @@
         app:layout_constraintBottom_toTopOf="@id/genreList"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/genreTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/space5"
-        android:layout_marginStart="@dimen/space5"
+        android:layout_marginHorizontal="@dimen/space5"
         android:ellipsize="end"
         android:maxLines="1"
         android:padding="@dimen/space10"
         android:textAlignment="center"
         android:textSize="@dimen/textXMedium"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/backFragmentGenre"
+        app:layout_constraintBottom_toBottomOf="@id/backButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/backFragmentGenre"
-        app:layout_constraintTop_toTopOf="@id/backFragmentGenre" />
+        app:layout_constraintStart_toEndOf="@+id/backButton"
+        app:layout_constraintTop_toTopOf="@id/backButton" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/genreList"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/space5"
-        android:layout_marginBottom="@dimen/space5"
+        android:layout_marginVertical="@dimen/space5"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/backFragmentGenre" />
+        app:layout_constraintTop_toBottomOf="@id/backButton" />
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/loader"
         android:layout_width="wrap_content"
