@@ -1,4 +1,4 @@
-package com.example.erabook.fragments.home.tabFragments
+package com.example.erabook.fragments.home.tabFragments.nyt
 
 import Resource
 import android.os.Bundle

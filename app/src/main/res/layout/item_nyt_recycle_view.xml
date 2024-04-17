@@ -16,8 +16,8 @@
         app:layout_constraintTop_toTopOf="parent" />
     <ImageButton
         android:id="@+id/more"
-        android:layout_width="14dp"
-        android:layout_height="14dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_margin="@dimen/space20"
         android:background="@null"
         android:contentDescription="@string/desc_img"

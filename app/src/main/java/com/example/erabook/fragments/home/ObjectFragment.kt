@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.erabook.R
 import com.example.erabook.data.TabNames
 import com.example.erabook.databinding.FragmentObjectBinding
-import com.example.erabook.fragments.home.tabFragments.NYTFragment
+import com.example.erabook.fragments.home.tabFragments.nyt.NYTFragment
 import com.example.erabook.util.ARG_TAB_NAME
 import com.google.android.material.tabs.TabLayout
 
