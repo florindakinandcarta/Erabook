@@ -39,6 +39,9 @@ class HomeFragment : Fragment() {
         binding.parentList.apply {
             adapter = nytAdapter
         }
+        loadData()
+    }
+    private fun loadData(){
         lifecycleScope.launch {
             isInternetConnectedFlow
                 .debounce(500L)
