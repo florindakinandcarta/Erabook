@@ -62,7 +62,7 @@ class HomeFragment : Fragment() {
                         }
                     } else {
                         binding.bookAnimation.visibility = View.GONE
-                        binding.checkConnection.visibility = View.VISIBLE
+                        requireContext().showToast(R.string.check_network_connection)
                     }
                 }
         }

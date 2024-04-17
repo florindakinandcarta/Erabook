@@ -1,4 +1,4 @@
-package com.example.erabook.fragments.home.tabFragments.nyt
+package com.example.erabook.fragments.home
 
 import Resource
 import android.os.Bundle
@@ -13,7 +13,6 @@ import com.example.erabook.BuildConfig
 import com.example.erabook.R
 import com.example.erabook.adapters.NYTChildGenreAdapter
 import com.example.erabook.databinding.FragmentNytGenreBinding
-import com.example.erabook.fragments.home.HomeViewModel
 import com.example.erabook.util.showToast
 import com.rommansabbir.networkx.extension.isInternetConnectedFlow
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,9 +44,11 @@ class NYTGenreFragment : Fragment() {
         binding.backButton.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
+        binding.genreTitle.text = args.listName
         loadData()
     }
-    private fun loadData(){
+
+    private fun loadData() {
         lifecycleScope.launch {
             isInternetConnectedFlow.collectLatest {
                 when (it) {
@@ -79,6 +80,7 @@ class NYTGenreFragment : Fragment() {
                             }
                         }
                     }
+
                     else -> {
                         binding.loader.visibility = View.GONE
                         requireContext().showToast(R.string.check_network_connection)
