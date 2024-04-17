@@ -40,36 +40,40 @@ class DiscoverDetailsFragment : Fragment() {
             backBookDetails.setOnClickListener {
                 requireActivity().onBackPressedDispatcher.onBackPressed()
             }
-            sharedViewModel.response_books.observe(viewLifecycleOwner) { response ->
-                when (response) {
-                    is Resource.Error -> {
-                        requireContext().showToast(R.string.error_fetching_data)
-                    }
+        }
+        loadData()
+    }
+    private fun loadData() {
+        sharedViewModel.response_books.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is Resource.Error -> {
+                    requireContext().showToast(R.string.error_fetching_data)
+                }
 
-                    is Resource.Success -> {
-                        sharedViewModel.loading_books.observe(viewLifecycleOwner) { loading ->
-                            if (loading) {
-                                loader.visibility = View.VISIBLE
-                            } else {
-                                loader.visibility = View.GONE
-                            }
-                        }
-                        if (args.bookName.isNullOrEmpty()) {
-                            bind(response.data?.items?.get(0))
+                is Resource.Success -> {
+                    sharedViewModel.loading_books.observe(viewLifecycleOwner) { loading ->
+                        if (loading) {
+                            binding.loader.visibility = View.VISIBLE
                         } else {
-                            val volumeInfoList = response.data?.items?.find {
-                                it.volumeInfo?.title == args.bookName
-                            }
-                            bind(volumeInfoList)
+                            binding.loader.visibility = View.GONE
                         }
                     }
-
-                    else -> {
-                        requireContext().showToast(R.string.default_error)
+                    if (args.bookName.isNullOrEmpty()) {
+                        bind(response.data?.items?.get(0))
+                    } else {
+                        val volumeInfoList = response.data?.items?.find {
+                            it.volumeInfo?.title == args.bookName
+                        }
+                        bind(volumeInfoList)
                     }
+                }
+
+                else -> {
+                    requireContext().showToast(R.string.default_error)
                 }
             }
         }
+
     }
 
     private fun bind(bookItem: Items?) {

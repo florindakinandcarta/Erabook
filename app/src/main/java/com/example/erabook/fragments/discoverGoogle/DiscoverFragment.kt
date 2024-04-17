@@ -43,11 +43,21 @@ class DiscoverFragment : Fragment() {
             }
             searchSomething.visibility = View.VISIBLE
             loader.visibility = View.GONE
-            lifecycleScope.launch {
-                isInternetConnectedFlow.collectLatest {
-                    when(it){
-                        true -> {
-                            searchBarGoogle.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            qrCodeButton.setOnClickListener {
+                findNavController().navigate(R.id.discoverToCamera)
+            }
+        }
+        loadData()
+    }
+
+    private fun loadData() {
+        lifecycleScope.launch {
+            isInternetConnectedFlow.collectLatest {
+                when (it) {
+                    true -> {
+                        binding.apply {
+                            searchBarGoogle.setOnQueryTextListener(object :
+                                SearchView.OnQueryTextListener {
                                 override fun onQueryTextSubmit(query: String?): Boolean {
                                     val searchTerm = query?.replace(" ", "+")
                                     sharedViewModel.fetchBooks(searchTerm, 0)
@@ -81,7 +91,8 @@ class DiscoverFragment : Fragment() {
                                     }
 
                                     is Resource.Success -> {
-                                        val volumeInfoList = response.data?.items?.map { it.volumeInfo }
+                                        val volumeInfoList =
+                                            response.data?.items?.map { it.volumeInfo }
                                         volumeInfoList?.let { discoverAdapter.submitList(it) }
                                         loader.visibility = View.GONE
                                         loadMore.visibility = View.VISIBLE
@@ -95,15 +106,12 @@ class DiscoverFragment : Fragment() {
 
                             }
                         }
-                        else -> {
-                            binding.checkConnection.visibility = View.VISIBLE
-                            binding.searchSomething.visibility = View.GONE
-                        }
+                    }
+                    else -> {
+                        binding.checkConnection.visibility = View.VISIBLE
+                        binding.searchSomething.visibility = View.GONE
                     }
                 }
-            }
-            qrCodeButton.setOnClickListener {
-                findNavController().navigate(R.id.discoverToCamera)
             }
         }
     }

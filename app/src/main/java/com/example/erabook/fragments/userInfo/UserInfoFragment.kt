@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.erabook.activities.AuthenticationViewModel
 import com.example.erabook.R
+import com.example.erabook.activities.AuthenticationViewModel
 import com.example.erabook.data.models.UserDataRemote
 import com.example.erabook.databinding.FragmentUserInfoBinding
 import com.example.erabook.util.showToast
@@ -40,29 +40,18 @@ class UserInfoFragment : Fragment() {
                 when (it) {
                     true -> {
                     }
+
                     else -> {
                         requireContext().showToast(R.string.update_connection)
                     }
                 }
             }
         }
-        userInfoViewModel.userInfo.observe(viewLifecycleOwner) { userUpdated ->
-            this.updatedUser = userUpdated
-        }
-        userInfoViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
-            if (error != null) {
-                requireContext().showToast(error)
-            }
-        }
-        userInfoViewModel.updateMessage.observe(viewLifecycleOwner) { updateMessage ->
-            if (updateMessage != null) {
-                requireContext().showToast(updateMessage)
-                if (updateMessage == R.string.update_message_success){
-                    findNavController().navigate(R.id.editToProfile)
-                }
-            }
-        }
+        setupOnClickListeners()
+        loadData()
+    }
 
+    private fun setupOnClickListeners() {
         binding.apply {
             updateBirthdayInput.setOnClickListener {
                 val dateDialogFragment = DatePickerFragment { selectedDate ->
@@ -78,7 +67,8 @@ class UserInfoFragment : Fragment() {
                         updatedUser.copy(
                             userName = updateNameInput.editText?.text.toString(),
                             userUsername = updateUsernameInput.editText?.text.toString(),
-                            userMobile = updateMobileInput.editText?.text.toString().toIntOrNull() ?: 0
+                            userMobile = updateMobileInput.editText?.text.toString().toIntOrNull()
+                                ?: 0
                         ),
                         user?.email.toString()
                     )
@@ -88,5 +78,25 @@ class UserInfoFragment : Fragment() {
                 findNavController().navigate(R.id.editToProfile)
             }
         }
+    }
+
+    private fun loadData() {
+        userInfoViewModel.userInfo.observe(viewLifecycleOwner) { userUpdated ->
+            this.updatedUser = userUpdated
+        }
+        userInfoViewModel.errorMessage.observe(viewLifecycleOwner) { error ->
+            if (error != null) {
+                requireContext().showToast(error)
+            }
+        }
+        userInfoViewModel.updateMessage.observe(viewLifecycleOwner) { updateMessage ->
+            if (updateMessage != null) {
+                requireContext().showToast(updateMessage)
+                if (updateMessage == R.string.update_message_success) {
+                    findNavController().navigate(R.id.editToProfile)
+                }
+            }
+        }
+
     }
 }
