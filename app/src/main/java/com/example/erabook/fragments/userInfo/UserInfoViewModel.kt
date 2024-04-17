@@ -24,11 +24,14 @@ class UserInfoViewModel : ViewModel() {
     private val firebaseAuth = FirebaseAuth.getInstance()
     private val _documentId = MutableLiveData<String>()
     private val _errorMessage = MutableLiveData<Int>()
-    private val _updateMessage = MutableLiveData<Int>()
+    private val _updateMessage = MutableLiveData<Boolean>()
+    private val _updatePicture = MutableLiveData<Boolean>()
     private val storage = Firebase.storage
     private var storageRef = storage.reference
-    val updateMessage: LiveData<Int>
+    val updateMessage: LiveData<Boolean>
         get() = _updateMessage
+    val updatePicture: LiveData<Boolean>
+        get() = _updatePicture
 
     val errorMessage: LiveData<Int>
         get() = _errorMessage
@@ -99,14 +102,14 @@ class UserInfoViewModel : ViewModel() {
                         }
                         batch.commit().addOnSuccessListener {
                             fetchUserInfo()
-                            _updateMessage.postValue(R.string.update_message_success)
+                            _updateMessage.postValue(true)
                         }
                             .addOnFailureListener {
-                                _updateMessage.postValue(R.string.update_message_error)
+                                _updateMessage.postValue(false)
                             }
                     }
                     .addOnFailureListener {
-                        _updateMessage.postValue(R.string.update_message_error_getting_data)
+                        _updateMessage.postValue(false)
                     }
             }
         }
@@ -161,7 +164,7 @@ class UserInfoViewModel : ViewModel() {
         val imageRef = storageRef.child("profileImages/$fileName")
         val uploadTask = imageRef.putBytes(profileImageBytes)
         uploadTask.addOnFailureListener {
-            _updateMessage.postValue(R.string.update_message_error)
+            _updatePicture.postValue(false)
         }.addOnSuccessListener {
             imageRef.downloadUrl.addOnSuccessListener { uri ->
                 val updatedUserData = userInfo.value?.copy(
@@ -176,7 +179,7 @@ class UserInfoViewModel : ViewModel() {
                     }
                 }
             }
-            _updateMessage.postValue(R.string.profile_successful)
+            _updatePicture.postValue(true)
         }
 }
 //TODO(getUserLocation)

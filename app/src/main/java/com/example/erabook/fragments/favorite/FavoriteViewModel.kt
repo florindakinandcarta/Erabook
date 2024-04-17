@@ -36,7 +36,7 @@ class FavoriteViewModel : ViewModel() {
                         val document = querySnapshot.documents[0]
                         val booksList = document["favoriteBooks"] as List<Map<String, Any>>?
 
-                        val volumeInfoList = booksList?.mapNotNull { bookMap ->
+                        val volumeInfoList = booksList?.map { bookMap ->
                             val volumeInfoMap = bookMap["volumeInfo"] as? Map<String, Any>
                             VolumeInfo(
                                 title = volumeInfoMap?.get("title") as? String,
