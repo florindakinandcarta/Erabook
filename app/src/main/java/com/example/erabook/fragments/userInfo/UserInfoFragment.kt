@@ -90,12 +90,20 @@ class UserInfoFragment : Fragment() {
             }
         }
         userInfoViewModel.updateMessage.observe(viewLifecycleOwner) { updateMessage ->
-            if (updateMessage != null) {
-                requireContext().showToast(updateMessage)
-                if (updateMessage == R.string.update_message_success) {
+            if (updateMessage != true ) {
+                requireContext().showToast(R.string.update_message_error)
+            }else{
+                    requireContext().showToast(R.string.update_message_success)
                     findNavController().navigate(R.id.editToProfile)
                 }
             }
+        userInfoViewModel.updatePicture.observe(viewLifecycleOwner){updatePicture ->
+            if (updatePicture != true){
+                requireContext().showToast(R.string.update_message_error)
+            }else{
+                requireContext().showToast(R.string.profile_successful)
+            }
+
         }
 
     }

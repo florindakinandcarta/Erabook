@@ -51,6 +51,7 @@ class HomeFragment : Fragment() {
                         homeViewModel.nyt.observe(viewLifecycleOwner) { response ->
                             when (response) {
                                 is Resource.Error -> {
+                                    binding.bookAnimation.visibility = View.GONE
                                     requireContext().showToast(R.string.error_fetching_data)
                                 }
                                 is Resource.Success -> {
