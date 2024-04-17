@@ -55,9 +55,6 @@ class UserProfileFragment : Fragment() {
                 )
             }
         }
-        userInfoViewModel.updateMessage.observe(viewLifecycleOwner){message ->
-            requireContext().showToast(message)
-        }
         setOnCLickListener()
         updateUI()
     }

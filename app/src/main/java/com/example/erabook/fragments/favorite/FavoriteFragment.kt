@@ -42,6 +42,18 @@ class FavoriteFragment : Fragment() {
                 position
             )
         }
+        layoutManager = GridLayoutManager(requireContext(), 2)
+        loadData()
+
+        binding.apply {
+            favoriteList.apply {
+                adapter = favoriteAdapter
+                layoutManager = this@FavoriteFragment.layoutManager
+            }
+        }
+    }
+
+    private fun loadData() {
         favoriteViewModel.fetchFavoriteBooks(firebaseAuth.currentUser?.email.toString())
         favoriteViewModel.isRemoved.observe(viewLifecycleOwner) { isRemoved ->
             if (isRemoved) {
@@ -50,26 +62,17 @@ class FavoriteFragment : Fragment() {
                 requireActivity().showToast(R.string.default_error)
             }
         }
-
-        layoutManager = GridLayoutManager(requireContext(), 2)
-
-        binding.apply {
-            favoriteList.apply {
-                adapter = favoriteAdapter
-                layoutManager = this@FavoriteFragment.layoutManager
-            }
-        }
         favoriteViewModel.listOfBooks.observe(viewLifecycleOwner) { listOfBooks ->
             favoriteAdapter.submitList(listOfBooks)
             if (listOfBooks?.isEmpty() == false) {
                 binding.loader.visibility = View.GONE
-            }else if (firebaseAuth.currentUser == null){
+            } else if (firebaseAuth.currentUser == null) {
                 binding.apply {
                     loginInfo.visibility = View.VISIBLE
                     loader.visibility = View.GONE
                     favoriteInfo.visibility = View.GONE
                 }
-            }else if (listOfBooks?.isEmpty() == true){
+            } else if (listOfBooks?.isEmpty() == true) {
                 binding.favoriteInfo.visibility = View.VISIBLE
                 binding.loader.visibility = View.GONE
             }
@@ -86,6 +89,5 @@ class FavoriteFragment : Fragment() {
                 }
             }
         }
-
     }
 }

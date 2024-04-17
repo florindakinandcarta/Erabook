@@ -24,7 +24,7 @@
             app:destination="@id/discoverFragment" />
         <action
             android:id="@+id/homeToNYTGenre"
-            app:destination="@id/NYTGenre" />
+            app:destination="@id/NYTGenreFragment" />
         <argument
             android:name="listName"
             app:argType="string"
@@ -157,8 +157,8 @@
             />
     </fragment>
     <fragment
-        android:id="@+id/NYTGenre"
-        android:name="com.example.erabook.fragments.home.HomeFragment"
+        android:id="@+id/NYTGenreFragment"
+        android:name="com.example.erabook.fragments.home.NYTGenreFragment"
         android:label="NYTGenre"
         tools:layout="@layout/fragment_nyt_genre"
         >
