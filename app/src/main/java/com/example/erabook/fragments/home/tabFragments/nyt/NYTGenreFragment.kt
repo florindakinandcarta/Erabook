@@ -21,11 +21,11 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class NYTGenre : Fragment() {
+class NYTGenreFragment : Fragment() {
     private lateinit var binding: FragmentNytGenreBinding
     private lateinit var nytGenreAdapter: NYTChildGenreAdapter
     private val homeViewModel: HomeViewModel by viewModels()
-    private val args: NYTGenreArgs by navArgs()
+    private val args: NYTGenreFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,9 +42,12 @@ class NYTGenre : Fragment() {
         binding.genreList.apply {
             adapter = nytGenreAdapter
         }
-        binding.backFragmentGenre.setOnClickListener {
+        binding.backButton.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
         }
+        loadData()
+    }
+    private fun loadData(){
         lifecycleScope.launch {
             isInternetConnectedFlow.collectLatest {
                 when (it) {

@@ -158,7 +158,7 @@
     </fragment>
     <fragment
         android:id="@+id/NYTGenre"
-        android:name="com.example.erabook.fragments.home.tabFragments.nyt.NYTGenre"
+        android:name="com.example.erabook.fragments.home.tabFragments.nyt.NYTGenreFragment"
         android:label="NYTGenre"
         tools:layout="@layout/fragment_nyt_genre"
         >
