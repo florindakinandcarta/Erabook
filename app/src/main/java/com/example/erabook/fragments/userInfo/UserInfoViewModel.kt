@@ -53,12 +53,12 @@ class UserInfoViewModel : ViewModel() {
                             _documentId.postValue(document.id)
                             val userBirthdayTimestamp = document.data["userBirthday"] as? Timestamp
                             val userBirthday = userBirthdayTimestamp ?: Timestamp.now()
-//                    val userLocation = parseCoordinates(userData["user-location"] as Map<*, *>?)
                             if (document.data["userEmail"].toString() == firebaseAuth.currentUser?.email.toString()) {
                                 val parsedUserData = UserDataRemote(
                                     document.data["userUid"].toString(),
                                     document.data["userName"].toString(),
                                     document.data["userEmail"].toString(),
+                                    document.data["userLocation"].toString(),
                                     (document.data["userMobile"] as? Long)?.toInt() ?: 0,
                                     document.data["userProfileImg"].toString(),
                                     document.data["userUsername"].toString(),
@@ -97,6 +97,7 @@ class UserInfoViewModel : ViewModel() {
                                     "userMobile" to updatedUserData.userMobile,
                                     "userBirthday" to updatedUserData.userBirthday,
                                     "userProfileImg" to updatedUserData.userProfileImg,
+                                    "userLocation" to updatedUserData.userLocation
                                 )
                             )
                         }

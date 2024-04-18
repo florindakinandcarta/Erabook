@@ -79,8 +79,8 @@ class UserProfileFragment : Fragment() {
                     requestCameraPermissions()
                 }
             }
-            locationNext.setOnClickListener {
-                findNavController().navigate(R.id.userToLocation)
+            locationButton.setOnClickListener {
+                findNavController().navigate(R.id.userProfileToLocation)
             }
         }
     }
