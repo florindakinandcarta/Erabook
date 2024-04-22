@@ -12,11 +12,11 @@ import com.example.erabook.BuildConfig
 import com.example.erabook.R
 import com.example.erabook.adapters.NYTAdapter
 import com.example.erabook.databinding.FragmentHomeBinding
+import com.example.erabook.util.CachingNYT
 import com.example.erabook.util.showToast
 import com.rommansabbir.networkx.extension.isInternetConnectedFlow
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -44,10 +44,9 @@ class HomeFragment : Fragment() {
     private fun loadData(){
         lifecycleScope.launch {
             isInternetConnectedFlow
-                .debounce(500L)
                 .collectLatest {
                     if (it) {
-                        homeViewModel.callNYT(BuildConfig.NYT_API_KEY)
+                        homeViewModel.callNYT(BuildConfig.NYT_API_KEY,requireContext())
                         homeViewModel.nyt.observe(viewLifecycleOwner) { response ->
                             when (response) {
                                 is Resource.Error -> {
@@ -65,8 +64,9 @@ class HomeFragment : Fragment() {
                             }
                         }
                     } else {
+                        val offlineData = CachingNYT.getCachedNYTBooks(requireContext())
+                        nytAdapter.submitList(offlineData?.results?.lists)
                         binding.bookAnimation.visibility = View.GONE
-                        requireContext().showToast(R.string.check_network_connection)
                     }
                 }
         }

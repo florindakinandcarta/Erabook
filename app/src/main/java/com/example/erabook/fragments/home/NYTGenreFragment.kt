@@ -13,6 +13,7 @@ import com.example.erabook.BuildConfig
 import com.example.erabook.R
 import com.example.erabook.adapters.NYTChildGenreAdapter
 import com.example.erabook.databinding.FragmentNytGenreBinding
+import com.example.erabook.util.CachingNYT
 import com.example.erabook.util.showToast
 import com.rommansabbir.networkx.extension.isInternetConnectedFlow
 import dagger.hilt.android.AndroidEntryPoint
@@ -54,7 +55,7 @@ class NYTGenreFragment : Fragment() {
                 when (it) {
                     true -> {
                         binding.genreTitle.text = args.listName
-                        homeViewModel.callNYT(BuildConfig.NYT_API_KEY)
+                        homeViewModel.callNYT(BuildConfig.NYT_API_KEY,requireContext())
                         homeViewModel.nyt.observe(viewLifecycleOwner) { response ->
                             when (response) {
                                 is Resource.Error -> {
@@ -82,8 +83,15 @@ class NYTGenreFragment : Fragment() {
                     }
 
                     else -> {
+                        val offlineData = CachingNYT.getCachedNYTBooks(requireContext())
+                        val filteredList =
+                            offlineData?.results?.lists?.filter { list ->
+                                list.listName == args.listName
+                            }
+                        filteredList?.forEach { list ->
+                            nytGenreAdapter.submitList(list.books)
+                        }
                         binding.loader.visibility = View.GONE
-                        requireContext().showToast(R.string.check_network_connection)
                     }
                 }
             }
