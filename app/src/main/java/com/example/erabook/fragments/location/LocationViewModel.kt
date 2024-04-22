@@ -19,7 +19,7 @@ import javax.inject.Inject
 class LocationViewModel @Inject constructor(private val osmService: OSMService) : ViewModel() {
     private val _osm = MutableLiveData<OSM?>()
     val osm: LiveData<OSM?> = _osm
-    fun getLocationPlace(latitude: Double, longitude:Double){
+    fun getLocationPlace(latitude: Double?, longitude:Double?){
         viewModelScope.launch {
             try {
                 withContext(Dispatchers.IO){

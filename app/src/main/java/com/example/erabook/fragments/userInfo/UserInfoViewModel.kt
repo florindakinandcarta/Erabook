@@ -22,12 +22,12 @@ class UserInfoViewModel : ViewModel() {
     private val _userInfo = MutableLiveData<UserDataRemote>()
     private val db = Firebase.firestore
     private val firebaseAuth = FirebaseAuth.getInstance()
-    private val _documentId = MutableLiveData<String>()
     private val _errorMessage = MutableLiveData<Int>()
     private val _updateMessage = MutableLiveData<Boolean>()
     private val _updatePicture = MutableLiveData<Boolean>()
     private val storage = Firebase.storage
-    private var storageRef = storage.reference
+    private val storageRef = storage.reference
+    private val _locationList = MutableLiveData<Map<String,String>?>()
     val updateMessage: LiveData<Boolean>
         get() = _updateMessage
     val updatePicture: LiveData<Boolean>
@@ -39,8 +39,11 @@ class UserInfoViewModel : ViewModel() {
     val userInfo: LiveData<UserDataRemote>
         get() = _userInfo
 
+    val locationList: LiveData<Map<String, String>?>
+        get() = _locationList
     init {
         fetchUserInfo()
+        fetchUsersLocation()
     }
 
     private fun fetchUserInfo() {
@@ -50,10 +53,10 @@ class UserInfoViewModel : ViewModel() {
                     .get()
                     .addOnSuccessListener { result ->
                         for (document in result) {
-                            _documentId.postValue(document.id)
-                            val userBirthdayTimestamp = document.data["userBirthday"] as? Timestamp
-                            val userBirthday = userBirthdayTimestamp ?: Timestamp.now()
                             if (document.data["userEmail"].toString() == firebaseAuth.currentUser?.email.toString()) {
+                                val userBirthdayTimestamp =
+                                    document.data["userBirthday"] as? Timestamp
+                                val userBirthday = userBirthdayTimestamp ?: Timestamp.now()
                                 val parsedUserData = UserDataRemote(
                                     document.data["userUid"].toString(),
                                     document.data["userName"].toString(),
@@ -72,6 +75,24 @@ class UserInfoViewModel : ViewModel() {
                     .addOnFailureListener { exception ->
                         _errorMessage.postValue(R.string.error_fetching_data)
                         println("Error getting documents $exception")
+                    }
+            }
+        }
+    }
+
+    private fun fetchUsersLocation() {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                val locationMap = mutableMapOf<String, String>()
+                db.collection("erabook-users")
+                    .get()
+                    .addOnSuccessListener { result ->
+                        for (document in result) {
+                          val userName = document.data["userName"].toString()
+                          val userLocation = document.data["userLocation"].toString()
+                            locationMap[userName] = userLocation
+                        }
+                        _locationList.postValue(locationMap)
                     }
             }
         }
@@ -182,7 +203,7 @@ class UserInfoViewModel : ViewModel() {
             }
             _updatePicture.postValue(true)
         }
-}
+    }
 //TODO(getUserLocation)
 //    private fun parseCoordinates(coordinatesMap: Map<*, *>?): Coordinates? {
 //        return if (coordinatesMap != null) {

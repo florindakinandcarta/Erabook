@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -23,6 +24,10 @@ import org.osmdroid.events.MapListener
 import org.osmdroid.events.ScrollEvent
 import org.osmdroid.events.ZoomEvent
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
+import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.overlay.ItemizedIconOverlay
+import org.osmdroid.views.overlay.ItemizedOverlayWithFocus
+import org.osmdroid.views.overlay.OverlayItem
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
@@ -33,6 +38,7 @@ class LocationFragment : Fragment(), MapListener, LocationListener {
     private lateinit var controller: IMapController
     private lateinit var updatedUser: UserDataRemote
     private val userInfoViewModel: UserInfoViewModel by viewModels()
+    private val locationViewModel: LocationViewModel by viewModels()
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
             if (permissions.all { it.value }) {
@@ -97,29 +103,36 @@ class LocationFragment : Fragment(), MapListener, LocationListener {
 //        }))
 //    }
 
-//        private fun addItemOnTheMap(title: String?,location: String?,latitude: Double, longitude: Double){
-//            val items = ArrayList<OverlayItem>()
-//            val singlePoint = OverlayItem(title,location,GeoPoint(latitude,longitude))
-//            singlePoint.setMarker(
-//            getDrawable(requireContext(),R.drawable.location)
-//            )
-//            items.add(singlePoint)
-//                var overlay = ItemizedOverlayWithFocus(
-//                    items,
-//                    object : ItemizedIconOverlay.OnItemGestureListener<OverlayItem> {
-//                        override fun onItemSingleTapUp(index: Int, item: OverlayItem): Boolean {
-//                            return true
-//                        }
-//
-//                        override fun onItemLongPress(index: Int, item: OverlayItem): Boolean {
-//                            return false
-//                        }
-//                    },
-//                    context
-//                )
-//                overlay.setFocusItemsOnTap(true)
-//                binding.osmmap.overlays.add(overlay)
-//        }
+    private fun addItemOnTheMap(
+        title: String?,
+        location: String?,
+        latitude: Double?,
+        longitude: Double?
+    ) {
+        val items = ArrayList<OverlayItem>()
+        val geoPoint =
+            if (latitude != null && longitude != null) GeoPoint(latitude, longitude) else null
+        val singlePoint = OverlayItem(title, location, geoPoint)
+        singlePoint.setMarker(
+            getDrawable(requireContext(), R.drawable.location)
+        )
+        items.add(singlePoint)
+        var overlay = ItemizedOverlayWithFocus(
+            items,
+            object : ItemizedIconOverlay.OnItemGestureListener<OverlayItem> {
+                override fun onItemSingleTapUp(index: Int, item: OverlayItem): Boolean {
+                    return true
+                }
+
+                override fun onItemLongPress(index: Int, item: OverlayItem): Boolean {
+                    return false
+                }
+            },
+            context
+        )
+        overlay.setFocusItemsOnTap(true)
+        binding.osmmap.overlays.add(overlay)
+    }
 
     private fun initMap() {
         mMyLocationNewOverlay.enableMyLocation()
@@ -142,6 +155,7 @@ class LocationFragment : Fragment(), MapListener, LocationListener {
                 user.userEmail.toString()
             )
         }
+        getUsersLocations()
     }
 
     private fun requestLocationPermission() {
@@ -164,6 +178,31 @@ class LocationFragment : Fragment(), MapListener, LocationListener {
                         "android.permission.ACCESS_COARSE_LOCATION"
                     )
                 )
+            }
+        }
+    }
+
+    private fun getUsersLocations() {
+        userInfoViewModel.locationList.observe(viewLifecycleOwner) { locationMap ->
+            val cityNamesMap = mutableMapOf<Pair<Double, Double>, String?>()
+            if (locationMap != null) {
+                for ((userName, userLocation) in locationMap) {
+                    val values = userLocation.split(",".toRegex())
+                    val latitude = values[0].toDoubleOrNull()
+                    val longitude = values[1].toDoubleOrNull()
+                    println("h $latitude e $longitude")
+                    if (latitude != null && longitude != null) {
+                        cityNamesMap[Pair(latitude, longitude)] = null
+                        locationViewModel.getLocationPlace(latitude, longitude)
+                    }
+                    locationViewModel.osm.observe(viewLifecycleOwner) { osm ->
+                        val cityName = osm?.name
+                        cityNamesMap.forEach { (latLng, _) ->
+                            cityNamesMap[latLng] = cityName
+                            addItemOnTheMap(userName, cityName, latitude, longitude)
+                        }
+                    }
+                }
             }
         }
     }
