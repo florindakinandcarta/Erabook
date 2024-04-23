@@ -1,4 +1,4 @@
-package com.example.erabook.fragments.login
+package com.example.erabook.fragments.register
 
 import UserInfoViewModel
 import android.os.Bundle
