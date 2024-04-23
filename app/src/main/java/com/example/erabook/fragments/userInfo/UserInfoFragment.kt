@@ -61,11 +61,11 @@ class UserInfoFragment : Fragment() {
                 }
                 dateDialogFragment.show(parentFragmentManager, "DatePicker")
             }
-            val name = updateNameInput.editText?.text.toString()
-            val username = updateUsernameInput.editText?.text.toString()
-            val mobile = updateMobileInput.editText?.text.toString().toIntOrNull()
             updateSubmitInfoButton.setOnClickListener {
-                if (name.isNotEmpty() && username.isNotEmpty() && mobile != null) {
+                val name = updateNameInput.editText?.text.toString()
+                val username = updateUsernameInput.editText?.text.toString()
+                val mobile = updateMobileInput.editText?.text.toString()
+                if (name.isNotEmpty() && username.isNotEmpty() && mobile.isNotEmpty()) {
                     authenticationViewModel.userLiveData.observe(viewLifecycleOwner) { user ->
                         userInfoViewModel.updateUserDataByEmail(
                             updatedUser.copy(
@@ -76,8 +76,7 @@ class UserInfoFragment : Fragment() {
                             user?.email.toString()
                         )
                     }
-                }
-                else{
+                }else{
                     requireContext().showToast(R.string.required_fields)
                 }
             }
