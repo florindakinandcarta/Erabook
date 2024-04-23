@@ -22,12 +22,11 @@ class UserInfoViewModel : ViewModel() {
     private val _userInfo = MutableLiveData<UserDataRemote>()
     private val db = Firebase.firestore
     private val firebaseAuth = FirebaseAuth.getInstance()
-    private val _documentId = MutableLiveData<String>()
     private val _errorMessage = MutableLiveData<Int>()
     private val _updateMessage = MutableLiveData<Boolean>()
     private val _updatePicture = MutableLiveData<Boolean>()
     private val storage = Firebase.storage
-    private var storageRef = storage.reference
+    private val storageRef = storage.reference
     val updateMessage: LiveData<Boolean>
         get() = _updateMessage
     val updatePicture: LiveData<Boolean>
@@ -50,15 +49,15 @@ class UserInfoViewModel : ViewModel() {
                     .get()
                     .addOnSuccessListener { result ->
                         for (document in result) {
-                            _documentId.postValue(document.id)
-                            val userBirthdayTimestamp = document.data["userBirthday"] as? Timestamp
-                            val userBirthday = userBirthdayTimestamp ?: Timestamp.now()
-//                    val userLocation = parseCoordinates(userData["user-location"] as Map<*, *>?)
                             if (document.data["userEmail"].toString() == firebaseAuth.currentUser?.email.toString()) {
+                                val userBirthdayTimestamp =
+                                    document.data["userBirthday"] as? Timestamp
+                                val userBirthday = userBirthdayTimestamp ?: Timestamp.now()
                                 val parsedUserData = UserDataRemote(
                                     document.data["userUid"].toString(),
                                     document.data["userName"].toString(),
                                     document.data["userEmail"].toString(),
+                                    document.data["userLocation"] as ArrayList<String>?,
                                     (document.data["userMobile"] as? Long)?.toInt() ?: 0,
                                     document.data["userProfileImg"].toString(),
                                     document.data["userUsername"].toString(),
@@ -97,6 +96,7 @@ class UserInfoViewModel : ViewModel() {
                                     "userMobile" to updatedUserData.userMobile,
                                     "userBirthday" to updatedUserData.userBirthday,
                                     "userProfileImg" to updatedUserData.userProfileImg,
+                                    "userLocation" to updatedUserData.userLocation
                                 )
                             )
                         }
@@ -181,13 +181,5 @@ class UserInfoViewModel : ViewModel() {
             }
             _updatePicture.postValue(true)
         }
-}
-//TODO(getUserLocation)
-//    private fun parseCoordinates(coordinatesMap: Map<*, *>?): Coordinates? {
-//        return if (coordinatesMap != null) {
-//            Coordinates(coordinatesMap["lat"] as Double?, coordinatesMap["lon"] as Double?)
-//        } else {
-//            null
-//        }
-//    }
+    }
 }

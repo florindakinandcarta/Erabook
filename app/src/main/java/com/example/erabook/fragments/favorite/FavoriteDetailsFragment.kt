@@ -16,7 +16,6 @@ import com.example.erabook.util.startBookDetailsIntent
 
 class FavoriteDetailsFragment : Fragment() {
     private lateinit var binding: FragmentBookDetailsBinding
-    private val favoriteViewModel: FavoriteViewModel by viewModels()
     private val args: FavoriteFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater,
