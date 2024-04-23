@@ -135,9 +135,9 @@ class UserProfileFragment : Fragment() {
     userInfoViewModel.userInfo.observe(viewLifecycleOwner) { userData ->
       var latitude: Double? = null
       var longitude: Double? = null
-      userData.userLocation?.let {
-        latitude = it[0].toDouble()
-        longitude = it[1].toDouble()
+      if (userData.userLocation != null && userData.userLocation.size > 2){
+        latitude = userData.userLocation[0].toDouble()
+        longitude = userData.userLocation[0].toDouble()
       }
       locationViewModel.getLocationPlace(latitude, longitude)
       locationViewModel.osm.observe(viewLifecycleOwner) { osm ->
