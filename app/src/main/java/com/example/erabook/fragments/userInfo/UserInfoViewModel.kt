@@ -58,7 +58,7 @@ class UserInfoViewModel : ViewModel() {
                                     document.data["userName"].toString(),
                                     document.data["userEmail"].toString(),
                                     document.data["userLocation"] as ArrayList<String>?,
-                                    (document.data["userMobile"] as? Long)?.toInt() ?: 0,
+                                    document.data["userMobile"].toString(),
                                     document.data["userProfileImg"].toString(),
                                     document.data["userUsername"].toString(),
                                     userBirthday.toDate(),
