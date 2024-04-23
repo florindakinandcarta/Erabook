@@ -59,7 +59,7 @@ class UserProfileFragment : Fragment() {
     updateUI()
   }
 
-  private fun allPermissionsGranted() =
+  private fun areAllPermissionsGranted() =
       REQUESTED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
       }
@@ -72,7 +72,7 @@ class UserProfileFragment : Fragment() {
       }
       editProfile.setOnClickListener { findNavController().navigate(R.id.userProfileToEdit) }
       photoCamera.setOnClickListener {
-        if (allPermissionsGranted()) {
+        if (areAllPermissionsGranted()) {
           takePhoto.launch(photoUri)
         } else {
           requestCameraPermissions()
