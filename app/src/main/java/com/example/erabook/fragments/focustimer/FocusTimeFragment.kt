@@ -97,6 +97,7 @@ class FocusTimeFragment : Fragment() {
                     position: Int,
                     id: Long
                 ) {
+                    remainingTimeWhenPaused = 0
                     selectedTime = spinnerAdapter.getItem(position)?.minutes?.toLong() ?: 0
                 }
 
