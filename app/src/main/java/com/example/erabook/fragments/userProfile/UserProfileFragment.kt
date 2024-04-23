@@ -133,13 +133,11 @@ class UserProfileFragment : Fragment() {
       }
   private fun getLocationName() {
     userInfoViewModel.userInfo.observe(viewLifecycleOwner) { userData ->
-      var latitude: Double? = null
-      var longitude: Double? = null
-      if (userData.userLocation != null && userData.userLocation.size > 2){
-        latitude = userData.userLocation[0].toDouble()
-        longitude = userData.userLocation[0].toDouble()
+      if (userData.userLocation != null && userData.userLocation.size > 2) {
+        val latitude = userData.userLocation[0].toDouble()
+        val longitude = userData.userLocation[1].toDouble()
+        locationViewModel.getLocationPlace(latitude, longitude)
       }
-      locationViewModel.getLocationPlace(latitude, longitude)
       locationViewModel.osm.observe(viewLifecycleOwner) { osm ->
         binding.locationCity.text = osm?.address?.let { "${it.municipality}, ${it.country}" }
       }

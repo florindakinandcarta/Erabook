@@ -37,7 +37,6 @@
     <string name="create_desc">Enter your username, email &amp; password. If you forget it, then you have to do forgot password.</string>
     <string name="username_label">Username</string>
     <string name="user_info_desc">Please enter some more info about your profile.</string>
-    <string name="username_email_label">Username / Email</string>
     <string name="email_label">Email</string>
     <string name="mobile_label">Mobile</string>
     <string name="location_label">Location</string>
