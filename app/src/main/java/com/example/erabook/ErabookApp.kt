@@ -12,7 +12,7 @@ class ErabookApp:Application() {
 
     override fun onCreate() {
         super.onCreate()
-        Configuration.getInstance().userAgentValue = "Florinda"
+        Configuration.getInstance().userAgentValue = getString(R.string.app_name)
         NetworkXProvider.enable(SmartConfig(this, true, NetworkXLifecycle.Application))
     }
 }
