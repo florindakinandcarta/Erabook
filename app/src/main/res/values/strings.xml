@@ -156,6 +156,7 @@
     <string name="recommended_for_you">For you</string>
     <string name="new_york_best_sellers">NY Best Sellers</string>
     <string name="minutes"> minutes</string>
+    <string name="required_fields">Please fill all the fields!</string>
     <string name="check_network_connection">Check if you\'re connected to the internet!!!</string>
     <string name="clicked">Clicked</string>
     <string name="paper_back_nonfiction">Paper Back Nonfiction</string>
