@@ -96,15 +96,6 @@ class UserInfoFragment : Fragment() {
                     requireContext().showToast(R.string.update_message_success)
                     findNavController().navigate(R.id.editToProfile)
                 }
-            }
-        userInfoViewModel.updatePicture.observe(viewLifecycleOwner){updatePicture ->
-            if (updatePicture != true){
-                requireContext().showToast(R.string.update_message_error)
-            }else{
-                requireContext().showToast(R.string.profile_successful)
-            }
-
         }
-
     }
 }

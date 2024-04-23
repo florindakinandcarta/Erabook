@@ -7,7 +7,7 @@ data class UserDataRemote(
     @SerializedName("userUid") val userUid: String? = null,
     @SerializedName("userName") val userName: String? = null,
     @SerializedName("userEmail") val userEmail: String? = null,
-    @SerializedName("userLocation") val userLocation: String? = null,
+    @SerializedName("userLocation") val userLocation: ArrayList<String>? =arrayListOf(),
     @SerializedName("userMobile") val userMobile: Int? = null,
     @SerializedName("userProfileImg") val userProfileImg: String? = null,
     @SerializedName("userUsername") val userUsername: String? = null,

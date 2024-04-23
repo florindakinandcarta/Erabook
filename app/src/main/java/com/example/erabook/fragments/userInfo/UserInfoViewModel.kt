@@ -27,7 +27,6 @@ class UserInfoViewModel : ViewModel() {
     private val _updatePicture = MutableLiveData<Boolean>()
     private val storage = Firebase.storage
     private val storageRef = storage.reference
-    private val _locationList = MutableLiveData<Map<String,String>?>()
     val updateMessage: LiveData<Boolean>
         get() = _updateMessage
     val updatePicture: LiveData<Boolean>
@@ -39,11 +38,8 @@ class UserInfoViewModel : ViewModel() {
     val userInfo: LiveData<UserDataRemote>
         get() = _userInfo
 
-    val locationList: LiveData<Map<String, String>?>
-        get() = _locationList
     init {
         fetchUserInfo()
-        fetchUsersLocation()
     }
 
     private fun fetchUserInfo() {
@@ -61,7 +57,7 @@ class UserInfoViewModel : ViewModel() {
                                     document.data["userUid"].toString(),
                                     document.data["userName"].toString(),
                                     document.data["userEmail"].toString(),
-                                    document.data["userLocation"].toString(),
+                                    document.data["userLocation"] as ArrayList<String>?,
                                     (document.data["userMobile"] as? Long)?.toInt() ?: 0,
                                     document.data["userProfileImg"].toString(),
                                     document.data["userUsername"].toString(),
@@ -75,24 +71,6 @@ class UserInfoViewModel : ViewModel() {
                     .addOnFailureListener { exception ->
                         _errorMessage.postValue(R.string.error_fetching_data)
                         println("Error getting documents $exception")
-                    }
-            }
-        }
-    }
-
-    private fun fetchUsersLocation() {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                val locationMap = mutableMapOf<String, String>()
-                db.collection("erabook-users")
-                    .get()
-                    .addOnSuccessListener { result ->
-                        for (document in result) {
-                          val userName = document.data["userName"].toString()
-                          val userLocation = document.data["userLocation"].toString()
-                            locationMap[userName] = userLocation
-                        }
-                        _locationList.postValue(locationMap)
                     }
             }
         }
@@ -204,12 +182,4 @@ class UserInfoViewModel : ViewModel() {
             _updatePicture.postValue(true)
         }
     }
-//TODO(getUserLocation)
-//    private fun parseCoordinates(coordinatesMap: Map<*, *>?): Coordinates? {
-//        return if (coordinatesMap != null) {
-//            Coordinates(coordinatesMap["lat"] as Double?, coordinatesMap["lon"] as Double?)
-//        } else {
-//            null
-//        }
-//    }
 }

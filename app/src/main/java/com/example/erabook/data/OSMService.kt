@@ -10,7 +10,8 @@ interface OSMService {
         @Query("lat") latitude: String?,
         @Query("lon") longitude: String?,
         @Query("zoom") zoom: Int = 18,
-        @Query("addressdetails") addressdetails: Int = 1
+        @Query("addressdetails") addressdetails: Int = 1,
+        @Query("accept-language") acceptLanguage: String = "en",
 
     ): OSM
 }

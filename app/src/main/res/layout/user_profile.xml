@@ -160,7 +160,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space10"
         android:layout_marginTop="@dimen/space5"
-        android:text="@string/location_example"
         android:textAlignment="center"
         android:textSize="@dimen/textMedium"
         app:layout_constraintStart_toEndOf="@id/locationIcon"
