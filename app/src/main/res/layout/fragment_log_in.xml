@@ -50,7 +50,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/space20"
-            android:hint="@string/username_email_label"
+            android:hint="@string/email_label"
             app:boxStrokeColor="@color/primary"
             app:boxStrokeWidth="2dp"
             app:layout_constraintEnd_toEndOf="parent"
