@@ -3,6 +3,7 @@ The books at home are fetched from the NYT Best Sellers API. You can search a bo
 It has a count down timer in which you can select the time and when the time is up you'll get a notification.
 You can share the details of the book from the Erabook app to another app of your chosing. 
 If you want to buy that specific book the app will redirect you to the default browser in your device to the Barnes And Noble Page. You can register and login with an email or with a Google account, you can update your profile info in the database. The database which we are using is the Firestore Database and the authentication is being handled with Firestore Auth.
+The location feature is achieved with OpenStreetMap SDK. Also we are using the OpenStreetMap API to get the city name and the municipality based on the location of the user, and updating the users profile according to it. 
 
 Below you'll find some screenshots from the app.
 
