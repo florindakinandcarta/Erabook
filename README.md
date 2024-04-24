@@ -7,10 +7,11 @@ If you want to buy that specific book the app will redirect you to the default b
 Below you'll find some screenshots from the app.
 
 
-<img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/347cdfbe-e5f3-4f95-a868-3403bbe95621" width="200" height="350"> 
-<img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/448b144a-1563-4c9f-9de3-642f4b2e5354" width="200" height="350">
+
+<img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/8c9fa24f-009e-4ed5-827a-dc1a42ca3418" width="200" height="350"> 
+<img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/29836a5e-3249-4988-9430-26bda1d3cc77" width="200" height="350">
 <img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/e3c7f642-75b2-4f29-b8b3-2ec129faae10" width="200" height="350">
-<img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/c56ff825-a48f-43e8-916b-2a3f17dcd7dd" width="200" height="350"> 
+<img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/20962b0a-a1c0-4416-9fe0-03cfa991d371" width="200" height="350"> 
 <img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/08584d47-e555-4659-951c-096e439059b7" width="200" height="350">
 <img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/a9e1d302-e688-4e81-8bcf-03eedd60bf61" width="200" height="350">
 <img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/0a24e332-9c39-4680-be22-c64dab2cde76" width="200" height="350">
@@ -21,7 +22,8 @@ Below you'll find some screenshots from the app.
 <img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/cab83c14-ebff-4617-ba88-fe7fee052d99" width="200" height="350">
 <img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/796d2112-03a5-4e4f-b1c3-b3141f5b6292" width="200" height="350">
 <img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/ba507906-b00d-46ea-8e5b-7a9b6b6a8397" width="200" height="350">
-<img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/5a24ca81-ee59-46db-9882-1194ccebd261" width="200" height="350">
-<img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/6e63aa3d-4120-409c-8b11-9269c21f8ab6" width="200" height="350">
+<img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/7973ee31-116a-41fc-b24c-5910e2a9b52a" width="200" height="350">
+<img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/f54cc4e8-9187-4592-8893-19c1dab49a15" width="200" height="350">
+<img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/3bda413f-d883-4a60-9a57-134365d0ef24" width="200" height="350">
 <img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/9fc47758-237d-4c0e-bb54-92c9e98a0c07" width="200" height="350">
 
