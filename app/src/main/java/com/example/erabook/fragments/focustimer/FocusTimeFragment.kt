@@ -66,7 +66,9 @@ class FocusTimeFragment : Fragment() {
                 if (isRunning) {
                     focusViewModel.setIsTimerRunning(false)
                     focusViewModel.pauseCountDownTimer()
-                    remainingTimeWhenPaused = focusViewModel.remainingTimeInMillis.value!!
+                    focusViewModel.remainingTimeInMillis.value?.let {
+                            remainingTimeWhenPaused = it
+                    }
                 }
             }
             stopButton.setOnClickListener {
