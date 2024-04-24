@@ -7,11 +7,10 @@ If you want to buy that specific book the app will redirect you to the default b
 Below you'll find some screenshots from the app.
 
 
-
 <img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/8c9fa24f-009e-4ed5-827a-dc1a42ca3418" width="200" height="350"> 
-<img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/29836a5e-3249-4988-9430-26bda1d3cc77" width="200" height="350">
+<img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/4ab84794-b231-470a-a720-21f1778fe270" width="200" height="350">
 <img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/e3c7f642-75b2-4f29-b8b3-2ec129faae10" width="200" height="350">
-<img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/20962b0a-a1c0-4416-9fe0-03cfa991d371" width="200" height="350"> 
+<img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/611134cb-3cfd-4cfa-8c26-927c203eedcc" width="200" height="350"> 
 <img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/08584d47-e555-4659-951c-096e439059b7" width="200" height="350">
 <img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/a9e1d302-e688-4e81-8bcf-03eedd60bf61" width="200" height="350">
 <img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/0a24e332-9c39-4680-be22-c64dab2cde76" width="200" height="350">
