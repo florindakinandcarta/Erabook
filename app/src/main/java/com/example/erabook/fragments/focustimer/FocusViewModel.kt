@@ -35,6 +35,7 @@ class FocusViewModel : ViewModel() {
                 }
 
                 override fun onFinish() {
+                    _remainingTimeInMillis.postValue(0)
                     notificationManager.sendNotification(
                         applicationContext.getString(R.string.notification_time_is_up),
                         applicationContext
@@ -48,8 +49,11 @@ class FocusViewModel : ViewModel() {
 
     fun stopCountDownTimer() {
         countdownTimer?.cancel()
+        _remainingTimeInMillis.postValue(0)
     }
-
+    fun pauseCountDownTimer(){
+        countdownTimer?.cancel()
+    }
     fun setIsTimerRunning(isRunning: Boolean): Boolean {
         return isRunning
     }

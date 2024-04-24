@@ -48,32 +48,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/space20"
-        android:text="@string/timer_zero"
         android:textSize="@dimen/textXXL"
-        app:layout_constraintBottom_toTopOf="@+id/give_up"
+        android:text="@string/timer_zero"
+        app:layout_constraintBottom_toTopOf="@+id/stopButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spinner_pick_time" />
-
     <Button
-        android:id="@+id/start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/pauseButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="@dimen/space20"
-        android:backgroundTint="@color/bg_green"
-        android:text="@string/start_button"
+        android:background="@drawable/pause"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/give_up"
+        app:layout_constraintEnd_toStartOf="@id/startButton"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/give_up"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/startButton"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginBottom="@dimen/space20"
-        android:backgroundTint="@color/bg_red"
-        android:text="@string/give_up_button"
+        android:background="@drawable/play"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/stopButton"
+       app:layout_constraintStart_toEndOf="@id/pauseButton"
+        />
+
+    <Button
+        android:id="@+id/stopButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="@dimen/space20"
+        android:background="@drawable/stop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/start" />
+        app:layout_constraintStart_toEndOf="@+id/startButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

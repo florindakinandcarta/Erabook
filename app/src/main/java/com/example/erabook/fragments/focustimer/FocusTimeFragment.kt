@@ -62,27 +62,22 @@ class FocusTimeFragment : Fragment() {
             spinnerPickTime.adapter = spinnerAdapter
             val isRunning = focusViewModel.setIsTimerRunning(true)
 
-            giveUp.setOnClickListener {
+            pauseButton.setOnClickListener {
                 if (isRunning) {
                     focusViewModel.setIsTimerRunning(false)
-                    focusViewModel.stopCountDownTimer()
-                    binding.start.setText(R.string.continue_text)
-                    remainingTimeWhenPaused = focusViewModel.remainingTimeInMillis.value ?: 0
-                    requireContext().showToast(
-                        R.string.hold_button
-                    )
+                    focusViewModel.pauseCountDownTimer()
+                    focusViewModel.remainingTimeInMillis.value?.let {
+                            remainingTimeWhenPaused = it
+                    }
                 }
             }
-            giveUp.setOnLongClickListener {
+            stopButton.setOnClickListener {
                 focusViewModel.setIsTimerRunning(false)
                 focusViewModel.stopCountDownTimer()
-                binding.countDownTimer.setText(R.string.timer_zero)
                 spinnerPickTime.setSelection(0)
-                binding.start.setText(R.string.start_button)
                 remainingTimeWhenPaused = 0
-                true
             }
-            start.setOnClickListener {
+            startButton.setOnClickListener {
                 notificationManager.cancelNotifications()
                 focusViewModel.setIsTimerRunning(true)
                 focusViewModel.stopCountDownTimer()
@@ -104,6 +99,7 @@ class FocusTimeFragment : Fragment() {
                     position: Int,
                     id: Long
                 ) {
+                    remainingTimeWhenPaused = 0
                     selectedTime = spinnerAdapter.getItem(position)?.minutes?.toLong() ?: 0
                 }
 
