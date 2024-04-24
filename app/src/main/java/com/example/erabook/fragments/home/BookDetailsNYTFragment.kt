@@ -40,7 +40,7 @@ class BookDetailsNYTFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     binding.apply {
-      backBookDetails.setOnClickListener {
+      backBookDetailsButton.setOnClickListener {
         requireActivity().onBackPressedDispatcher.onBackPressed()
       }
       loadData()
@@ -92,12 +92,12 @@ class BookDetailsNYTFragment : Fragment() {
     binding.apply {
       book?.let {
         bookImageDetails.loadImage(book.bookImage)
-        bookNameDetails.text = book.title
-        bookAuthorDetails.text = book.author
+        bookNameDetailsText.text = book.title
+        bookAuthorDetailsText.text = book.author
         weeksOnTheListNumber.text = book.weeksOnList
         rankNumber.text = book.rank
-        description.text = book.description
-        buyBook.setOnClickListener { openLinkBrowser(book.title.toString(), requireContext()) }
+        descriptionText.text = book.description
+        buyBookButton.setOnClickListener { openLinkBrowser(book.title.toString(), requireContext()) }
       }
     }
   }

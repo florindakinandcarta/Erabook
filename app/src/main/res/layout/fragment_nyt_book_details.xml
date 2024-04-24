@@ -13,7 +13,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
-                android:id="@+id/backBookDetails"
+                android:id="@+id/backBookDetailsButton"
                 android:layout_width="34dp"
                 android:layout_height="34dp"
                 android:layout_margin="@dimen/space20"
@@ -29,18 +29,17 @@
                 android:layout_height="320dp"
                 android:layout_marginTop="@dimen/space20"
                 android:contentDescription="@string/desc_img"
-                app:layout_constraintEnd_toStartOf="@+id/bookNameDetails"
-                app:layout_constraintStart_toStartOf="@id/backBookDetails"
-                app:layout_constraintTop_toBottomOf="@id/backBookDetails" />
+                app:layout_constraintEnd_toStartOf="@+id/bookNameDetailsText"
+                app:layout_constraintStart_toStartOf="@id/backBookDetailsButton"
+                app:layout_constraintTop_toBottomOf="@id/backBookDetailsButton" />
 
             <TextView
-                android:id="@+id/bookNameDetails"
+                android:id="@+id/bookNameDetailsText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space5"
                 android:layout_marginTop="@dimen/space5"
                 android:padding="@dimen/space10"
-                android:text="@string/empty_text"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +47,7 @@
                 app:layout_constraintTop_toTopOf="@+id/bookImageDetails" />
 
             <TextView
-                android:id="@+id/bookAuthorDetails"
+                android:id="@+id/bookAuthorDetailsText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space5"
@@ -59,8 +58,8 @@
                 android:textSize="@dimen/textMedium"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/bookNameDetails"
-                app:layout_constraintTop_toBottomOf="@+id/bookNameDetails" />
+                app:layout_constraintStart_toStartOf="@+id/bookNameDetailsText"
+                app:layout_constraintTop_toBottomOf="@+id/bookNameDetailsText" />
 
 
             <TextView
@@ -71,8 +70,8 @@
                 android:text="@string/weeks_on_the_list"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/bookAuthorDetails"
-                app:layout_constraintTop_toBottomOf="@+id/rank" />
+                app:layout_constraintStart_toStartOf="@id/bookAuthorDetailsText"
+                app:layout_constraintTop_toBottomOf="@+id/rankText" />
 
             <TextView
                 android:id="@+id/weeksOnTheListNumber"
@@ -86,15 +85,15 @@
                 app:layout_constraintTop_toTopOf="@id/weeksOnTheListText" />
 
             <TextView
-                android:id="@+id/rank"
+                android:id="@+id/rankText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/space8"
                 android:text="@string/rank"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/bookAuthorDetails"
-                app:layout_constraintTop_toBottomOf="@id/bookAuthorDetails" />
+                app:layout_constraintStart_toStartOf="@id/bookAuthorDetailsText"
+                app:layout_constraintTop_toBottomOf="@id/bookAuthorDetailsText" />
 
             <TextView
                 android:id="@+id/rankNumber"
@@ -104,13 +103,13 @@
                 android:text="@string/empty_text"
                 android:textSize="@dimen/textSmall"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/rank"
-                app:layout_constraintStart_toEndOf="@id/rank"
-                app:layout_constraintTop_toTopOf="@id/rank" />
+                app:layout_constraintBottom_toBottomOf="@id/rankText"
+                app:layout_constraintStart_toEndOf="@id/rankText"
+                app:layout_constraintTop_toTopOf="@id/rankText" />
 
 
             <Button
-                android:id="@+id/buyBook"
+                android:id="@+id/buyBookButton"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
                 android:layout_margin="@dimen/space10"
@@ -120,10 +119,10 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/description" />
+                app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
 
             <TextView
-                android:id="@+id/aboutBook"
+                android:id="@+id/aboutBookButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space5"
@@ -135,7 +134,7 @@
 
 
             <TextView
-                android:id="@+id/description"
+                android:id="@+id/descriptionText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space10"
@@ -143,7 +142,7 @@
                 android:textSize="@dimen/textMedium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/aboutBook" />
+                app:layout_constraintTop_toBottomOf="@+id/aboutBookButton" />
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/loader"
