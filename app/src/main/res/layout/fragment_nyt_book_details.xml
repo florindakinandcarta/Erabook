@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/backBookDetailsButton"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_margin="@dimen/space20"
+                android:background="@null"
+                android:contentDescription="@string/desc_img"
+                android:src="@drawable/arrow_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/bookImageDetails"
+                android:layout_width="180dp"
+                android:layout_height="320dp"
+                android:layout_marginTop="@dimen/space20"
+                android:contentDescription="@string/desc_img"
+                app:layout_constraintEnd_toStartOf="@+id/bookNameDetailsText"
+                app:layout_constraintStart_toStartOf="@id/backBookDetailsButton"
+                app:layout_constraintTop_toBottomOf="@id/backBookDetailsButton" />
+
+            <TextView
+                android:id="@+id/bookNameDetailsText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space5"
+                android:layout_marginTop="@dimen/space5"
+                android:padding="@dimen/space10"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/bookImageDetails"
+                app:layout_constraintTop_toTopOf="@+id/bookImageDetails" />
+
+            <TextView
+                android:id="@+id/bookAuthorDetailsText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space5"
+                android:layout_marginTop="@dimen/space5"
+                android:padding="@dimen/space8"
+                android:text="@string/empty_text"
+                android:textColor="@color/primary"
+                android:textSize="@dimen/textMedium"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/bookNameDetailsText"
+                app:layout_constraintTop_toBottomOf="@+id/bookNameDetailsText" />
+
+
+            <TextView
+                android:id="@+id/weeksOnTheListText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/space8"
+                android:text="@string/weeks_on_the_list"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/bookAuthorDetailsText"
+                app:layout_constraintTop_toBottomOf="@+id/rankText" />
+
+            <TextView
+                android:id="@+id/weeksOnTheListNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/empty_text"
+                android:textSize="@dimen/textSmall"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/weeksOnTheListText"
+                app:layout_constraintStart_toEndOf="@+id/weeksOnTheListText"
+                app:layout_constraintTop_toTopOf="@id/weeksOnTheListText" />
+
+            <TextView
+                android:id="@+id/rankText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/space8"
+                android:text="@string/rank"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/bookAuthorDetailsText"
+                app:layout_constraintTop_toBottomOf="@id/bookAuthorDetailsText" />
+
+            <TextView
+                android:id="@+id/rankNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space5"
+                android:text="@string/empty_text"
+                android:textSize="@dimen/textSmall"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/rankText"
+                app:layout_constraintStart_toEndOf="@id/rankText"
+                app:layout_constraintTop_toTopOf="@id/rankText" />
+
+
+            <Button
+                android:id="@+id/buyBookButton"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_margin="@dimen/space10"
+                android:text="@string/buy_book"
+                android:textStyle="bold"
+                app:circularflow_radiusInDP="22"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+
+            <TextView
+                android:id="@+id/aboutBookButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space5"
+                android:text="@string/about_book"
+                android:textSize="@dimen/textXMedium"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/bookImageDetails"
+                app:layout_constraintTop_toBottomOf="@id/bookImageDetails" />
+
+
+            <TextView
+                android:id="@+id/descriptionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space10"
+                android:padding="@dimen/space16"
+                android:textSize="@dimen/textMedium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/aboutBookButton" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/loader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/pages_flipping" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>

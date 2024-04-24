@@ -2,9 +2,12 @@ package com.example.erabook.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.erabook.R
 import com.example.erabook.data.models.nyt.Books
 import com.example.erabook.databinding.ItemNytBinding
 
@@ -29,6 +32,10 @@ class NYTChildAdapter :
         fun bind(item: Books) {
             binding.apply {
                 book = item
+                itemView.setOnClickListener {
+                    val bookItem = bundleOf(Pair("nytBookTitle", item.title))
+                    itemView.findNavController().navigate(R.id.homeToDetails, bookItem)
+                }
             }
         }
     }

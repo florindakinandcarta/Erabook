@@ -31,6 +31,15 @@
             android:defaultValue="@null"
             app:nullable="true"
             />
+        <argument
+            android:name="nytBookTitle"
+            app:argType="string"
+            android:defaultValue="@null"
+            app:nullable="true"
+            />
+        <action
+            android:id="@+id/homeToDetails"
+            app:destination="@id/bookDetailsNYTFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
@@ -177,4 +186,17 @@
         android:name="com.example.erabook.fragments.location.LocationFragment"
         tools:layout="@layout/fragment_location"
         android:label="LocationFragment" />
+    <fragment
+        android:id="@+id/bookDetailsNYTFragment"
+        android:name="com.example.erabook.fragments.home.BookDetailsNYTFragment"
+        android:label="BookDetailsNYTFragment"
+        tools:layout="@layout/fragment_nyt_book_details"
+        >
+        <argument
+            android:name="nytBookTitle"
+            app:argType="string"
+            android:defaultValue="@null"
+            app:nullable="true"
+            />
+    </fragment>
 </navigation>
