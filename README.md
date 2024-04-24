@@ -7,7 +7,7 @@ If you want to buy that specific book the app will redirect you to the default b
 Below you'll find some screenshots from the app.
 
 
-<img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/8c9fa24f-009e-4ed5-827a-dc1a42ca3418" width="200" height="350"> 
+<img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/8c9fa24f-009e-4ed5-827a-dc1a42ca3418" width="200" height="350">
 <img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/4ab84794-b231-470a-a720-21f1778fe270" width="200" height="350">
 <img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/e3c7f642-75b2-4f29-b8b3-2ec129faae10" width="200" height="350">
 <img src="https://github.com/florindakinandcarta/Erabook/assets/153519781/611134cb-3cfd-4cfa-8c26-927c203eedcc" width="200" height="350"> 
