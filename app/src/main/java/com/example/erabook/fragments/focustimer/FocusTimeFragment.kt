@@ -64,6 +64,7 @@ class FocusTimeFragment : Fragment() {
 
             pauseButton.setOnClickListener {
                 if (isRunning) {
+                    timerAnimation.cancelAnimation()
                     focusViewModel.setIsTimerRunning(false)
                     focusViewModel.pauseCountDownTimer()
                     focusViewModel.remainingTimeInMillis.value?.let {
@@ -72,12 +73,15 @@ class FocusTimeFragment : Fragment() {
                 }
             }
             stopButton.setOnClickListener {
+                timerAnimation.cancelAnimation()
+                timerAnimation.progress = 0F
                 focusViewModel.setIsTimerRunning(false)
                 focusViewModel.stopCountDownTimer()
                 spinnerPickTime.setSelection(0)
                 remainingTimeWhenPaused = 0
             }
             startButton.setOnClickListener {
+                timerAnimation.playAnimation()
                 notificationManager.cancelNotifications()
                 focusViewModel.setIsTimerRunning(true)
                 focusViewModel.stopCountDownTimer()

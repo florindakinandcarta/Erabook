@@ -25,7 +25,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/you_can_do_it"
-        app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_url="https://lottie.host/4afe1639-1485-434a-804b-f64503a13c09/GsPGXhOakj.json" />
 
