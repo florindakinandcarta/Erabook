@@ -39,6 +39,7 @@ class UserInfoFragment : Fragment() {
             isInternetConnectedFlow.collectLatest {
                 when (it) {
                     true -> {
+                        setupOnClickListeners()
                     }
 
                     else -> {
@@ -47,13 +48,13 @@ class UserInfoFragment : Fragment() {
                 }
             }
         }
-        setupOnClickListeners()
         loadData()
     }
 
     private fun setupOnClickListeners() {
         binding.apply {
             updateBirthdayInput.setOnClickListener {
+                requireContext().showToast(R.string.update_connection)
                 val dateDialogFragment = DatePickerFragment { selectedDate ->
                     userInfoViewModel.updateUserBirthday(selectedDate)
                     updateBirthdayInput.text =
@@ -62,6 +63,7 @@ class UserInfoFragment : Fragment() {
                 dateDialogFragment.show(parentFragmentManager, "DatePicker")
             }
             updateSubmitInfoButton.setOnClickListener {
+                requireContext().showToast(R.string.update_connection)
                 val name = updateNameInput.editText?.text.toString()
                 val username = updateUsernameInput.editText?.text.toString()
                 val mobile = updateMobileInput.editText?.text.toString()
