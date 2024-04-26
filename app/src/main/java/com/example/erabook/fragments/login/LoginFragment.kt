@@ -118,9 +118,9 @@ class LoginFragment : Fragment() {
             }
           }
         }
-        forgotPasswordTextView.setOnClickListener {
-          startActivity(Intent(requireContext(), ForgotPasswordActivity::class.java))
-        }
+      }
+      forgotPasswordTextView.setOnClickListener {
+        startActivity(Intent(requireContext(), ForgotPasswordActivity::class.java))
       }
     }
   }
