@@ -39,6 +39,7 @@ class UserInfoFragment : Fragment() {
             isInternetConnectedFlow.collectLatest {
                 when (it) {
                     true -> {
+                        setupOnClickListeners()
                     }
 
                     else -> {
@@ -47,7 +48,6 @@ class UserInfoFragment : Fragment() {
                 }
             }
         }
-        setupOnClickListeners()
         loadData()
     }
 
