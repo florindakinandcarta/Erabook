@@ -97,6 +97,7 @@ class DiscoverFragment : Fragment() {
                                         loader.visibility = View.GONE
                                         loadMore.visibility = View.VISIBLE
                                         searchSomething.visibility = View.GONE
+                                        searchBarGoogle.clearFocus()
                                     }
 
                                     else -> {
