@@ -115,6 +115,7 @@ class UserProfileFragment : Fragment() {
       if (updatePicture != true) {
         requireContext().showToast(R.string.update_message_error)
       } else {
+        binding.loader.visibility = View.GONE
         requireContext().showToast(R.string.profile_successful)
       }
     }
@@ -126,6 +127,7 @@ class UserProfileFragment : Fragment() {
             if (photoFile?.exists() == true) {
               photoFile?.let { file ->
                 userInfoViewModel.compressImage(requireContext(), file, name)
+                binding.loader.visibility = View.VISIBLE
               }
             }
           }

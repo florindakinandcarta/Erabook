@@ -155,7 +155,12 @@
         android:name="com.example.erabook.fragments.discoverGoogle.CameraFragment"
         android:label="CameraFragment"
         tools:layout="@layout/fragment_camera"
-        />
+        >
+        <action
+            android:id="@+id/cameraToDiscover"
+            app:destination="@id/discoverFragment"
+            />
+    </fragment>
     <fragment
         android:id="@+id/favoriteDetailsFragment"
         android:name="com.example.erabook.fragments.favorite.FavoriteDetailsFragment"
