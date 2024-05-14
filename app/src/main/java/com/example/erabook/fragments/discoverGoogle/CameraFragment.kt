@@ -43,18 +43,17 @@ class CameraFragment : Fragment() {
       container: ViewGroup?,
       savedInstanceState: Bundle?
   ): View {
-    if (allPermissionsGranted()) {
-      startCamera()
-    } else {
-      requestCameraPermissions()
-    }
     binding = FragmentCameraBinding.inflate(layoutInflater, container, false)
     return binding.root
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-
+    if (areAllPermissionsGranted()) {
+      startCamera()
+    } else {
+      requestCameraPermissions()
+    }
     val options =
         BarcodeScannerOptions.Builder()
             .setBarcodeFormats(Barcode.FORMAT_EAN_13, Barcode.FORMAT_QR_CODE)
@@ -69,7 +68,7 @@ class CameraFragment : Fragment() {
     }
   }
 
-  private fun allPermissionsGranted() =
+  private fun areAllPermissionsGranted() =
       REQUESTED_PERMISSIONS.all {
         ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED
       }
@@ -101,20 +100,24 @@ class CameraFragment : Fragment() {
   }
 
   private fun takePhoto() {
-    imageCapture?.takePicture(
-        ContextCompat.getMainExecutor(requireContext()),
-        object : ImageCapture.OnImageCapturedCallback() {
-          override fun onCaptureSuccess(image: ImageProxy) {
-            val bitmap = image.convertImageProxyToBitmap()
-            image.close()
-            processImage(bitmap)
-          }
+    if (imageCapture == null) {
+      requireContext().showToast(R.string.default_error)
+    } else {
+      imageCapture?.takePicture(
+          ContextCompat.getMainExecutor(requireContext()),
+          object : ImageCapture.OnImageCapturedCallback() {
+            override fun onCaptureSuccess(image: ImageProxy) {
+              val bitmap = image.convertImageProxyToBitmap()
+              image.close()
+              processImage(bitmap)
+            }
 
-          override fun onError(exception: ImageCaptureException) {
-            requireContext().showToast(R.string.default_error)
-            Log.d("Error capture", "Photo capture failed: ${exception.message}")
-          }
-        })
+            override fun onError(exception: ImageCaptureException) {
+              requireContext().showToast(R.string.default_error)
+              Log.d("Error capture", "Photo capture failed: ${exception.message}")
+            }
+          })
+    }
   }
 
   private fun processImage(bitMap: Bitmap?) {
