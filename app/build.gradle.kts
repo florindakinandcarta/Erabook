@@ -20,7 +20,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("String", "NYT_API_KEY", "")
+        buildConfigField("String", "NYT_API_KEY", "\"cF9ELXP0i5tnI1sSBMI1tXINAFIdPvxz\"")
     }
 
     buildTypes {

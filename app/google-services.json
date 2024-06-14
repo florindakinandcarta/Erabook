@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1048665387941",
+    "project_id": "erabook-library",
+    "storage_bucket": "erabook-library.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1048665387941:android:4761537c38303052baae4c",
+        "android_client_info": {
+          "package_name": "com.example.erabook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1048665387941-uto14qr1gqqm6g7oefdh49png8s136vb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.erabook",
+            "certificate_hash": "bd1dcf8566607f74d22dc05dd4d8de8c172f6c75"
+          }
+        },
+        {
+          "client_id": "1048665387941-24du71oej977cnibf4s007oosgk4d7ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxr5aKm1z7VWJ2K-ZcQ2oCP4CJvTA5zws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1048665387941-24du71oej977cnibf4s007oosgk4d7ui.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
